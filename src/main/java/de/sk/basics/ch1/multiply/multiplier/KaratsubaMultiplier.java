@@ -13,14 +13,11 @@ import java.math.BigInteger;
  */
 public class KaratsubaMultiplier implements Multiplier {
 
-    // constants - error message text formats
-    static final String NEGATIVE_INTEGER_PARAMETER_MSG_TEXT_FORMAT = "At least one of x/y is negative. Only non-negative integers allowed. x:%o, y:%o";
+    static final String NEGATIVE_INTEGER_PARAMETER_MSG_TEXT_FORMAT = "At least one of x/y is negative. Only non-negative integers allowed. x:%s, y:%s";
 
-    // constants - big integer constants
     static final BigInteger TEN = BigInteger.TEN;
     static final BigInteger TWO = BigInteger.TWO;
 
-    // collaborators - class members
     @Inject
     private IntegerSplitter splitter;
 

@@ -4,7 +4,7 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import de.sk.basics.ch5.quicksort.QuickSort;
 import de.sk.basics.injection.BasicsInjectionModule;
-import util.SortingUtils;
+import de.sk.util.SortingUtils;
 
 import java.util.Arrays;
 import java.util.Random;

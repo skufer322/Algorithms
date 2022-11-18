@@ -4,7 +4,7 @@ import de.sk.basics.ch5.Sorter;
 import de.sk.basics.ch5.quicksort.partition.Partitioner;
 import de.sk.basics.ch5.quicksort.pivot.PivotChooser;
 import org.jetbrains.annotations.NotNull;
-import util.SortingUtils;
+import de.sk.util.SortingUtils;
 
 import javax.inject.Inject;
 

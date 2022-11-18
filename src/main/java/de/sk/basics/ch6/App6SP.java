@@ -2,7 +2,7 @@ package de.sk.basics.ch6;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import util.SortingUtils;
+import de.sk.util.SortingUtils;
 import de.sk.basics.ch6.selection.Selector;
 import de.sk.basics.injection.BasicsInjectionModule;
 

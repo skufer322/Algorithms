@@ -1,4 +1,4 @@
-package util;
+package de.sk.util;
 
 /**
  * Utility class for math-related utility methods.

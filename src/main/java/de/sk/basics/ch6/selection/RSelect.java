@@ -1,6 +1,6 @@
 package de.sk.basics.ch6.selection;
 
-import util.SortingUtils;
+import de.sk.util.SortingUtils;
 import de.sk.basics.ch5.quicksort.partition.Partitioner;
 import de.sk.basics.ch5.quicksort.pivot.PivotChooser;
 import de.sk.basics.injection.InjectionConstants;

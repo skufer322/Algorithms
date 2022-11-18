@@ -1,6 +1,6 @@
 package de.sk.basics.ch5.quicksort.partition;
 
-import util.SortingUtils;
+import de.sk.util.SortingUtils;
 import org.jetbrains.annotations.NotNull;
 
 public class StandardPartitioner implements Partitioner {

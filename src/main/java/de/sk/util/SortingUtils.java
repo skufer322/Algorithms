@@ -1,4 +1,4 @@
-package util;
+package de.sk.util;
 
 import org.jetbrains.annotations.NotNull;
 

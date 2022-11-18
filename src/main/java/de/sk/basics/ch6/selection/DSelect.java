@@ -1,11 +1,11 @@
 package de.sk.basics.ch6.selection;
 
 import de.sk.basics.ch5.Sorter;
-import util.SortingUtils;
+import de.sk.util.SortingUtils;
 import de.sk.basics.ch5.quicksort.partition.Partitioner;
 import de.sk.basics.injection.InjectionConstants;
 import org.jetbrains.annotations.NotNull;
-import util.MathUtils;
+import de.sk.util.MathUtils;
 
 import javax.inject.Inject;
 import javax.inject.Named;
