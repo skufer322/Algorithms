@@ -1,9 +1,9 @@
-package de.sk.graphs.cc;
+package de.sk.graphs.algorithm.cc;
 
 import de.sk.graphs.GraphUtils;
-import de.sk.graphs.datastructure.AdjacencyList;
-import de.sk.graphs.datastructure.Edge;
-import de.sk.graphs.datastructure.Vertex;
+import de.sk.graphs.datastructure.undirected.UnAdjacencyList;
+import de.sk.graphs.datastructure.undirected.UnEdge;
+import de.sk.graphs.datastructure.undirected.UnVertex;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -11,11 +11,11 @@ import java.util.*;
 /**
  * Determines the connected components of a graph. Utilizes a queue-based breadth-first search.
  */
-public class UndirectedCC {
+public class UnConnectedComponents {
 
-    private final Queue<Vertex> queue;
+    private final Queue<UnVertex> queue;
 
-    public UndirectedCC() {
+    public UnConnectedComponents() {
         this.queue = new LinkedList<>();
     }
 
@@ -26,14 +26,14 @@ public class UndirectedCC {
      * @param adjacencyList adjacency list representation of the graph
      * @return list of connected components
      */
-    public List<Set<Vertex>> determineConnectedComponents(@NotNull AdjacencyList adjacencyList) {
-        List<Set<Vertex>> connectedComponents = new ArrayList<>();
+    public List<Set<UnVertex>> determineConnectedComponents(@NotNull UnAdjacencyList adjacencyList) {
+        List<Set<UnVertex>> connectedComponents = new ArrayList<>();
         int cc = 0;
-        for (Vertex vertex : adjacencyList.vertices()) {
+        for (UnVertex vertex : adjacencyList.vertices()) {
             if (!vertex.isExplored()) {
                 vertex.setCc(cc);
                 GraphUtils.exploreVertexAndAddToQueue(vertex, this.queue);
-                List<Vertex> connectedComponent = this.processQueue(cc);
+                List<UnVertex> connectedComponent = this.processQueue(cc);
                 connectedComponents.add(Set.copyOf(connectedComponent));
                 cc++;
             }
@@ -41,13 +41,13 @@ public class UndirectedCC {
         return connectedComponents;
     }
 
-    private @NotNull List<Vertex> processQueue(int cc) {
-        List<Vertex> connectedComponent = new ArrayList<>();
+    private @NotNull List<UnVertex> processQueue(int cc) {
+        List<UnVertex> connectedComponent = new ArrayList<>();
         while (!this.queue.isEmpty()) {
-            Vertex v = this.queue.remove();
+            UnVertex v = this.queue.remove();
             connectedComponent.add(v);
-            for (Edge edge : v.getEdges()) {
-                Vertex w = GraphUtils.getOtherVertexOfEdge(edge, v);
+            for (UnEdge edge : v.getEdges()) {
+                UnVertex w = GraphUtils.getOtherVertexOfEdge(edge, v);
                 if (!w.isExplored()) {
                     w.setCc(cc);
                     GraphUtils.exploreVertexAndAddToQueue(w, this.queue);

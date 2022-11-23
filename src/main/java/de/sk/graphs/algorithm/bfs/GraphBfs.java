@@ -1,7 +1,7 @@
-package de.sk.graphs.bfs;
+package de.sk.graphs.algorithm.bfs;
 
-import de.sk.graphs.datastructure.AdjacencyList;
-import de.sk.graphs.datastructure.Vertex;
+import de.sk.graphs.datastructure.undirected.UnAdjacencyList;
+import de.sk.graphs.datastructure.undirected.UnVertex;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -19,5 +19,5 @@ public interface GraphBfs {
      * @param s             start vertex
      * @return vertices connected to s in the order of visit
      */
-    @NotNull List<Vertex> conductBfs(@NotNull AdjacencyList adjacencyList, @NotNull Vertex s);
+    @NotNull List<UnVertex> conductBfs(@NotNull UnAdjacencyList adjacencyList, @NotNull UnVertex s);
 }

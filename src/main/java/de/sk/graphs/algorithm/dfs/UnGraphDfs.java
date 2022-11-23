@@ -1,7 +1,7 @@
-package de.sk.graphs.dfs;
+package de.sk.graphs.algorithm.dfs;
 
-import de.sk.graphs.datastructure.AdjacencyList;
-import de.sk.graphs.datastructure.Vertex;
+import de.sk.graphs.datastructure.undirected.UnAdjacencyList;
+import de.sk.graphs.datastructure.undirected.UnVertex;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Interface defining the methods for graph search implementations applying a depth-first search.
  */
-public interface GraphDfs {
+public interface UnGraphDfs {
 
     /**
      * Conducts a depth-first search for the given graph, starting from start vertex s. Returns the vertices connected
@@ -19,5 +19,5 @@ public interface GraphDfs {
      * @param s             start vertex
      * @return vertices connected to s in the order of visit
      */
-    @NotNull List<Vertex> conductDfs(@NotNull AdjacencyList adjacencyList, @NotNull Vertex s);
+    @NotNull List<UnVertex> conductDfs(@NotNull UnAdjacencyList adjacencyList, @NotNull UnVertex s);
 }
