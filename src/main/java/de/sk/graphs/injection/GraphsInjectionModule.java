@@ -9,6 +9,8 @@ import de.sk.graphs.algorithm.bfs.GraphBfsImpl;
 import de.sk.graphs.algorithm.dfs.UnGraphDfs;
 import de.sk.graphs.algorithm.dfs.UnIterativeGraphDfs;
 import de.sk.graphs.algorithm.dfs.UnRecursiveGraphDfs;
+import de.sk.graphs.algorithm.dijkstra.edgeselection.EdgeSelector;
+import de.sk.graphs.algorithm.dijkstra.edgeselection.SimpleEdgeSelector;
 
 public class GraphsInjectionModule extends AbstractModule {
 
@@ -21,5 +23,9 @@ public class GraphsInjectionModule extends AbstractModule {
         // DFS bindings
         bind(UnGraphDfs.class).annotatedWith(Names.named(GraphConstants.INJECTION_NAME_ITERATIVE_DFS)).to(UnIterativeGraphDfs.class);
         bind(UnGraphDfs.class).annotatedWith(Names.named(GraphConstants.INJECTION_NAME_RECURSIVE_DFS)).to(UnRecursiveGraphDfs.class);
+
+        // Dijkstra
+        bind(EdgeSelector.class).to(SimpleEdgeSelector.class);
+        bind(EdgeSelector.class).annotatedWith(Names.named(GraphConstants.INJECTION_NAME_SIMPLE_EDGE_SELECTOR)).to(SimpleEdgeSelector.class);
     }
 }

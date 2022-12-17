@@ -13,7 +13,12 @@ import java.util.stream.Stream;
 /**
  * Representation of an edge in an undirected graph.
  */
-public record DiEdge(String name, DiVertex tail, DiVertex head) implements Edge {
+public class DiEdge implements Edge {
+
+    private final String name;
+    private final DiVertex tail;
+    private final DiVertex head;
+    private final int weight;
 
     /**
      * @param name name of the edge
@@ -21,6 +26,16 @@ public record DiEdge(String name, DiVertex tail, DiVertex head) implements Edge 
      * @param head head vertex of the edge
      */
     public DiEdge(@NotNull String name, @NotNull DiVertex tail, @NotNull DiVertex head) {
+        this(name, tail, head, -1);
+    }
+
+    /**
+     * @param name   name of the edge
+     * @param tail   tail vertex of the edge
+     * @param head   head vertex of the edge
+     * @param weight weight of the edge
+     */
+    public DiEdge(@NotNull String name, @NotNull DiVertex tail, @NotNull DiVertex head, int weight) {
         if (StringUtils.isBlank(name)) {
             throw new IllegalArgumentException(String.format(BLANK_NAME_PASSED_EXCEPTION_MSG_TEXT_FORMAT, name));
         }
@@ -29,6 +44,7 @@ public record DiEdge(String name, DiVertex tail, DiVertex head) implements Edge 
         this.head = head;
         this.tail.addOutgoingEdge(this);
         this.head.addIncomingEdge(this);
+        this.weight = weight;
     }
 
     @Override
@@ -36,14 +52,16 @@ public record DiEdge(String name, DiVertex tail, DiVertex head) implements Edge 
         return this.name;
     }
 
-    @Override
     public @NotNull DiVertex tail() {
         return this.tail;
     }
 
-    @Override
     public @NotNull DiVertex head() {
         return this.head;
+    }
+
+    public int getWeight() {
+        return weight;
     }
 
     @Override
@@ -58,12 +76,13 @@ public record DiEdge(String name, DiVertex tail, DiVertex head) implements Edge 
         if (obj.getClass() != this.getClass()) return false;
 
         final DiEdge other = (DiEdge) obj;
+        if (other.getWeight() != this.weight) return false;
         return this.tail.equals(other.tail()) && this.head.equals(other.head());
     }
 
     @Override
     public @NotNull String toString() {
         String verticesToString = Stream.of(this.tail, this.head).map(DiVertex::getName).collect(Collectors.joining(",head="));
-        return "Edge(name=" + this.name + ", vertices=[tail=" + verticesToString + "])";
+        return "Edge(name=" + this.name + ", vertices=[tail=" + verticesToString + "], weight=" + this.weight + ")";
     }
 }

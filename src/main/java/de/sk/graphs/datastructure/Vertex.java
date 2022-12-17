@@ -9,13 +9,38 @@ public interface Vertex {
 
     String BLANK_NAME_PASSED_EXCEPTION_MSG_TEXT_FORMAT = "The name passed for the vertex is blank: %s";
 
+    /**
+     * Returns the name of the vertex.
+     *
+     * @return the vertex's name
+     */
     @NotNull String getName();
 
+    /**
+     * Returns whether the vertex has been explored, yet.
+     *
+     * @return true if the vertex has been explored, false else
+     */
     boolean isExplored();
 
+    /**
+     * Sets the information if the vertex has been explored.
+     *
+     * @param explored boolean if the vertex has been explored, or not
+     */
     void setExplored(boolean explored);
 
+    /**
+     * Returns the number/id of the connected component the vertex is located in.
+     *
+     * @return number/id of the connected component the vertex is located in, -1 if the vertex was not involved in a cc analysis
+     */
     int getCc();
 
+    /**
+     * Sets the number/id of the connected component the vertex is located in.
+     *
+     * @param cc the number/id of the connected component the vertex is located in
+     */
     void setCc(int cc);
 }

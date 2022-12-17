@@ -18,6 +18,7 @@ public final class GraphConstants {
     public static final String INJECTION_NAME_AUGMENTED_BFS = "Augmented-BFS";
     public static final String INJECTION_NAME_ITERATIVE_DFS = "Iterative-BFS";
     public static final String INJECTION_NAME_RECURSIVE_DFS = "Recursive-BFS";
+    public static final String INJECTION_NAME_SIMPLE_EDGE_SELECTOR = "SimpleEdgeSelector";
 
     public static final Comparator<UnVertex> COMPARE_VERTICES_BY_LEVEL = Comparator.comparingInt(UnVertex::getLevel);
     public static final Comparator<UnVertex> COMPARE_VERTICES_BY_GRAPH_SEARCH_POSITION = Comparator.comparingInt(UnVertex::getGraphSearchPosition);

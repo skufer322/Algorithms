@@ -2,13 +2,7 @@ package de.sk.graphs;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import com.google.inject.Key;
-import com.google.inject.name.Names;
-import de.sk.graphs.algorithm.bfs.GraphBfs;
-import de.sk.graphs.algorithm.cc.UnConnectedComponents;
-import de.sk.graphs.algorithm.dfs.DiSccDfs;
-import de.sk.graphs.algorithm.dfs.DiTopSort;
-import de.sk.graphs.algorithm.dfs.UnGraphDfs;
+import de.sk.graphs.algorithm.dijkstra.HeapBasedDijkstra;
 import de.sk.graphs.datastructure.directed.DiAdjacencyList;
 import de.sk.graphs.datastructure.directed.DiEdge;
 import de.sk.graphs.datastructure.directed.DiVertex;
@@ -19,8 +13,6 @@ import de.sk.graphs.injection.GraphsInjectionModule;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 public class App8G {
 
@@ -73,11 +65,23 @@ public class App8G {
 //        System.out.println(topologicalOrdering);
 
         // SCC
-        DiSccDfs sccDfs = injector.getInstance(DiSccDfs.class);
-        DiAdjacencyList diAdjacencyList = createSccAdjacencyList();
-        System.out.println(diAdjacencyList);
-        Map<Integer, List<DiVertex>> scc = sccDfs.determineScc(diAdjacencyList);
-        System.out.println(scc);
+//        DiSccDfs sccDfs = injector.getInstance(DiSccDfs.class);
+//        DiAdjacencyList diAdjacencyList = createSccAdjacencyList();
+//        System.out.println(diAdjacencyList);
+//        Map<Integer, List<DiVertex>> scc = sccDfs.determineScc(diAdjacencyList);
+//        System.out.println(scc);
+
+        // StraightForwardDijkstra
+//        StraightForwardDijkstra straightForwardDijkstra = injector.getInstance(StraightForwardDijkstra.class);
+//        DiAdjacencyList diAdjacencyList = createComplexWeightedDirectedGraph();
+//        straightForwardDijkstra.determineSingleSourceShortestPaths(diAdjacencyList, diAdjacencyList.vertices().get(0));
+//        System.out.println(diAdjacencyList.vertices());
+
+        // HeapBasedDijkstra
+        HeapBasedDijkstra heapBasedDijkstra = injector.getInstance(HeapBasedDijkstra.class);
+        DiAdjacencyList diAdjacencyList = createComplexWeightedDirectedGraph();
+        heapBasedDijkstra.determineSingleSourceShortestPaths(diAdjacencyList, diAdjacencyList.vertices().get(0));
+        System.out.println(diAdjacencyList.vertices());
     }
 
     private static @NotNull UnAdjacencyList createSimpleAdjacencyListUndirectedGraph() {
@@ -231,6 +235,54 @@ public class App8G {
 
         List<DiVertex> vertices = List.of(v01, v02, v03, v04, v05, v06, v07, v08, v09, v10, v11);
         List<DiEdge> edges = List.of(e_3_1, e_1_5, e_5_3, e_11_3, e_6_11, e_8_11, e_7_5, e_9_5, e_9_7, e_7_4, e_4_9, e_4_2, e_2_9, e_8_9, e_6_8, e_8_10, e_10_2, e_10_6);
+        return new DiAdjacencyList(vertices, edges);
+    }
+
+    public static @NotNull DiAdjacencyList createSimpleWeightedDirectedGraph() {
+        DiVertex s = new DiVertex("s");
+        DiVertex v = new DiVertex("v");
+        DiVertex w = new DiVertex("w");
+        DiVertex t = new DiVertex("t");
+
+        DiEdge sv = new DiEdge("sv", s, v, 1);
+        DiEdge sw = new DiEdge("sw", s, w, 4);
+        DiEdge vt = new DiEdge("vt", v, t, 6);
+        DiEdge vw = new DiEdge("vw", v, w, 2);
+        DiEdge wt = new DiEdge("wt", w, t, 3);
+
+        List<DiVertex> vertices = List.of(s, v, w, t);
+        List<DiEdge> edges = List.of(sv, sw, vt, vw, wt);
+        return new DiAdjacencyList(vertices, edges);
+    }
+
+    public static @NotNull DiAdjacencyList createComplexWeightedDirectedGraph() {
+        DiVertex v1 = new DiVertex("v1");
+        DiVertex v2 = new DiVertex("v2");
+        DiVertex v3 = new DiVertex("v3");
+        DiVertex v4 = new DiVertex("v4");
+        DiVertex v5 = new DiVertex("v5");
+        DiVertex v6 = new DiVertex("v6");
+        DiVertex v7 = new DiVertex("v7");
+        DiVertex v8 = new DiVertex("v8");
+
+        DiEdge e12 = new DiEdge("e12", v1, v2, 1);
+        DiEdge e13 = new DiEdge("e13", v1, v3, 5);
+        DiEdge e14 = new DiEdge("e14", v1, v4, 10);
+        DiEdge e23 = new DiEdge("e23", v2, v3, 2);
+        DiEdge e25 = new DiEdge("e25", v2, v5, 4);
+        DiEdge e34 = new DiEdge("e34", v3, v4, 2);
+        DiEdge e35 = new DiEdge("e35", v3, v5, 3);
+        DiEdge e36 = new DiEdge("e36", v3, v6, 8);
+        DiEdge e46 = new DiEdge("e46", v4, v6, 3);
+        DiEdge e48 = new DiEdge("e48", v4, v8, 9);
+        DiEdge e56 = new DiEdge("e56", v5, v6, 6);
+        DiEdge e57 = new DiEdge("e57", v5, v7, 7);
+        DiEdge e67 = new DiEdge("e67", v6, v7, 10);
+        DiEdge e68 = new DiEdge("e68", v6, v8, 2);
+        DiEdge e87 = new DiEdge("e87", v8, v7, 1);
+
+        List<DiVertex> vertices = List.of(v1, v2, v3, v4, v5, v6, v7, v8);
+        List<DiEdge> edges = List.of(e12, e13, e14, e23, e25, e34, e35, e36, e46, e48, e56, e57, e67, e68, e87);
         return new DiAdjacencyList(vertices, edges);
     }
 }

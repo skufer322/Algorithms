@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 /**
  * Representation of a vertex in a directed graph.
  */
-public class DiVertex implements Vertex {
+public class DiVertex implements Vertex, Comparable<DiVertex> {
 
     static final String NOT_HEAD_OF_INCOMING_EDGE_EXCEPTION_MSG_TEXT_FORMAT = "Vertex %s is not the head of edge %s.";
     static final String NOT_TAIL_OF_OUTGOING_EDGE_EXCEPTION_MSG_TEXT_FORMAT = "Vertex %s is not the tail of edge %s";
@@ -25,6 +25,8 @@ public class DiVertex implements Vertex {
     private int topSortPosition;
     private int cc;
     private int numScc;
+    private int len;
+    private int key;
 
     /**
      * @param name name of the vertex
@@ -40,6 +42,8 @@ public class DiVertex implements Vertex {
         this.topSortPosition = -1;
         this.cc = -1;
         this.numScc = -1;
+        this.len = -1;
+        this.key = -1;
     }
 
     @Override
@@ -117,19 +121,39 @@ public class DiVertex implements Vertex {
         this.numScc = numScc;
     }
 
+    public int getLen() {
+        return len;
+    }
+
+    public void setLen(int len) {
+        this.len = len;
+    }
+
+    public int getKey() {
+        return key;
+    }
+
+    public void setKey(int key) {
+        this.key = key;
+    }
+
     //    @Override
     public @NotNull String toString2() {
-        // TODO numScc ergänzen
-        String incomingEdgesToString = this.incomingEdges.stream().map(DiEdge::name).collect(Collectors.joining(GraphConstants.STRING_JOIN_DELIMITER));
-        String outgoingEdgesToString = this.outgoingEdges.stream().map(DiEdge::name).collect(Collectors.joining(GraphConstants.STRING_JOIN_DELIMITER));
-        return "Vertex(name=" + this.name + ", incoming edges=[" + incomingEdgesToString + "] outgoing edges=[" + outgoingEdgesToString + "], isExplored="
-                + this.isExplored + ", topSortPosition=" + this.topSortPosition + ", cc=" + this.cc + ")";
+        String incomingEdgesToString = this.incomingEdges.stream().map(DiEdge::getName).collect(Collectors.joining(GraphConstants.STRING_JOIN_DELIMITER));
+        String outgoingEdgesToString = this.outgoingEdges.stream().map(DiEdge::getName).collect(Collectors.joining(GraphConstants.STRING_JOIN_DELIMITER));
+        return "Vertex(name=" + this.name + ", incoming edges=[" + incomingEdgesToString + "] outgoing edges=[" + outgoingEdgesToString + "], isExplored=" +
+                this.isExplored + ", topSortPosition=" + this.topSortPosition + ", cc=" + this.cc + ", scc=" + this.numScc + ", len=" + this.len +
+                ", key=" + this.key + ")";
     }
 
     @Override
     public @NotNull String toString() {
-        // TODO numScc ergänzen
-        return "Vertex(name=" + this.name + ", isExplored=" + this.isExplored + ", topSortPosition=" + this.topSortPosition + ", cc=" + this.cc
-                + ", scc=" + this.numScc +")";
+        return "Vertex(name=" + this.name + ", isExplored=" + this.isExplored + ", topSortPosition=" + this.topSortPosition + ", cc=" + this.cc +
+                ", scc=" + this.numScc + ", len=" + this.len + ", key=" + this.key + ")";
+    }
+
+    @Override
+    public int compareTo(@NotNull DiVertex other) {
+        return Integer.compare(this.key, other.getKey());
     }
 }
