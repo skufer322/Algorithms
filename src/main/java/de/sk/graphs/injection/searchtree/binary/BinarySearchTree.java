@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Implements {@link SearchTree} in the form of a binary tree.
+ */
 public class BinarySearchTree implements SearchTree {
 
     static final String DUPLICATE_KEY_EXCEPTION_MSG_TEXT_FORMAT = "Duplicate keys are not allowed. Key does already exist in search tree: %d.";
@@ -30,6 +33,11 @@ public class BinarySearchTree implements SearchTree {
         this.treeChildCounter = new BinaryTreeChildCounter();
     }
 
+    /**
+     * Creates a new, empty binary search tree.
+     *
+     * @return newly created, empty binary search tree
+     */
     public static @NotNull BinarySearchTree createEmptyBinarySearchTree() {
         return new BinarySearchTree();
     }
@@ -70,7 +78,7 @@ public class BinarySearchTree implements SearchTree {
 
     @Override
     public @Nullable SearchTreeNode predecessor(int key) {
-        BinarySearchTreeNode treeWithKeyAtRoot = this.useSearchToGetStartNodeForOtherOperation(key);
+        BinarySearchTreeNode treeWithKeyAtRoot = this.useSearchToGetStartNodeForAnotherOperation(key);
         if (treeWithKeyAtRoot == null) {
             return null;
         }
@@ -81,7 +89,7 @@ public class BinarySearchTree implements SearchTree {
 
     @Override
     public @Nullable SearchTreeNode successor(int key) {
-        BinarySearchTreeNode treeWithKeyAtRoot = this.useSearchToGetStartNodeForOtherOperation(key);
+        BinarySearchTreeNode treeWithKeyAtRoot = this.useSearchToGetStartNodeForAnotherOperation(key);
         if (treeWithKeyAtRoot == null) {
             return null;
         }
@@ -90,7 +98,7 @@ public class BinarySearchTree implements SearchTree {
         return rightChild != null ? this.minNode(rightChild) : BinarySearchTreeOperations.getFirstAncestorWithGreaterKey(key, parent);
     }
 
-    private @Nullable BinarySearchTreeNode useSearchToGetStartNodeForOtherOperation(int key) {
+    private @Nullable BinarySearchTreeNode useSearchToGetStartNodeForAnotherOperation(int key) {
         if (this.isEmpty) {
             return null;
         }
@@ -132,7 +140,7 @@ public class BinarySearchTree implements SearchTree {
 
     @Override
     public @Nullable SearchTreeNode delete(int key) {
-        BinarySearchTreeNode nodeToDelete = useSearchToGetStartNodeForOtherOperation(key);
+        BinarySearchTreeNode nodeToDelete = useSearchToGetStartNodeForAnotherOperation(key);
         if (nodeToDelete == null) {
             return null;
         }
@@ -277,6 +285,12 @@ public class BinarySearchTree implements SearchTree {
         }
     }
 
+    /**
+     * Creates a string depicting the hierarchical structure of the binary search tree.
+     *
+     * @param doPrintCounts whether the left child and right child counts shall be printed with each node, or not
+     * @return string depicting the hierarchical structure of the binary search tree
+     */
     public @NotNull String getTreeStructure(boolean doPrintCounts) {
         if (this.isEmpty) {
             return StringUtils.EMPTY;

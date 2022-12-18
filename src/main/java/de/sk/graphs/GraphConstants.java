@@ -6,7 +6,7 @@ import de.sk.graphs.datastructure.undirected.UnVertex;
 import java.util.Comparator;
 
 /**
- * Class holding some general graph-related constants.
+ * Class holding some general, graph-related constants.
  */
 public final class GraphConstants {
 

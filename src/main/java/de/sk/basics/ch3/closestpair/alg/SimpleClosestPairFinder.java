@@ -14,7 +14,7 @@ import java.util.Arrays;
  */
 public class SimpleClosestPairFinder extends ArgumentValidatingClosestPairFinder {
 
-    static final String CLOSEST_PAIR_CONTAINS_NULL_TXT_FORMAT = "At least one of the closest pair points is null: %s!";
+    static final String CLOSEST_PAIR_CONTAINS_NULL_TXT_FORMAT = "Internal Error: At least one of the closest pair points is null: %s!";
 
     @Inject
     private Distance distance;
@@ -27,7 +27,7 @@ public class SimpleClosestPairFinder extends ArgumentValidatingClosestPairFinder
             Point2D p1 = points[i];
             for (int j = i + 1; j < points.length; j++) {
                 Point2D p2 = points[j];
-                double currentDist = distance.calcDist(p1, p2); // TODO check if p1 || p2 is null?
+                double currentDist = distance.calcDist(p1, p2);
                 if (currentDist < minDist) {
                     closestPair[0] = p1;
                     closestPair[1] = p2;

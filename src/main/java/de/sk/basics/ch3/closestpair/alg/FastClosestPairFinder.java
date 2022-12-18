@@ -49,7 +49,7 @@ public class FastClosestPairFinder extends ArgumentValidatingClosestPairFinder {
         Point2D[] rx = lxAndRx.getRight();
         Point2D[] ry = lyAndRy.getRight();
 
-        // recursive calls -> determine closest pairs in left and right halves
+        // recursive calls -> determine the closest pair in left and right halves, each
         Pair<Point2D, Point2D> leftPair = recClosestPairDetermination(lx, ly);
         Pair<Point2D, Point2D> rightPair = recClosestPairDetermination(rx, ry);
 

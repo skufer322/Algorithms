@@ -1,11 +1,11 @@
 package de.sk.basics.ch6.selection;
 
 import de.sk.basics.ch5.Sorter;
-import de.sk.util.SortingUtils;
 import de.sk.basics.ch5.quicksort.partition.Partitioner;
 import de.sk.basics.injection.InjectionConstants;
-import org.jetbrains.annotations.NotNull;
 import de.sk.util.MathUtils;
+import de.sk.util.SortingUtils;
+import org.jetbrains.annotations.NotNull;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -16,9 +16,12 @@ import java.util.Arrays;
  */
 public class DSelect extends ArgumentValidatingSelector {
 
+    static final String ELEMENT_NOT_CONTAINED_EXCEPTION_MSG_TEXT_FORMAT = "Element %d is not contained within the (sub)array bounds [%d;%d] of array %s.";
+
     static final int GROUP_SIZE = 5;
 
-    @Inject @Named(InjectionConstants.INSERTION_SORT)
+    @Inject
+    @Named(InjectionConstants.INSERTION_SORT)
     private Sorter sorter;
 
     @Inject
@@ -80,6 +83,6 @@ public class DSelect extends ArgumentValidatingSelector {
                 return i;
             }
         }
-        throw new IllegalStateException("TODO");
+        throw new IllegalStateException(String.format(ELEMENT_NOT_CONTAINED_EXCEPTION_MSG_TEXT_FORMAT, element, l, r, Arrays.toString(array)));
     }
 }
