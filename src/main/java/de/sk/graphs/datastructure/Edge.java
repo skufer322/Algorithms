@@ -19,6 +19,13 @@ public interface Edge {
     @NotNull String getName();
 
     /**
+     * Returns the weight of the edge.
+     *
+     * @return weight of the edge
+     */
+    int getWeight();
+
+    /**
      * Returns the vertices of the edge in random order. Note that for an edge in a directed graph, this can only be used
      * to check which two vertices make up the edge, but NOT which vertex is tail and which is head. (For an edge in an
      * undirected graphs, there is no order of vertices.)

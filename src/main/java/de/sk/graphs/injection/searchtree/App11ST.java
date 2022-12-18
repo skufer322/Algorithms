@@ -1,6 +1,6 @@
-package de.sk.graphs.searchtree;
+package de.sk.graphs.injection.searchtree;
 
-import de.sk.graphs.searchtree.binary.BinarySearchTree;
+import de.sk.graphs.injection.searchtree.binary.BinarySearchTree;
 
 import java.util.Arrays;
 import java.util.List;

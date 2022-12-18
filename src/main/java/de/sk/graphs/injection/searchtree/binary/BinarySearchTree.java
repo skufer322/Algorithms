@@ -1,7 +1,7 @@
-package de.sk.graphs.searchtree.binary;
+package de.sk.graphs.injection.searchtree.binary;
 
-import de.sk.graphs.searchtree.SearchTree;
-import de.sk.graphs.searchtree.SearchTreeNode;
+import de.sk.graphs.injection.searchtree.SearchTree;
+import de.sk.graphs.injection.searchtree.SearchTreeNode;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

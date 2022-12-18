@@ -1,6 +1,6 @@
-package de.sk.graphs.searchtree.binary;
+package de.sk.graphs.injection.searchtree.binary;
 
-import de.sk.graphs.searchtree.SearchTreeNode;
+import de.sk.graphs.injection.searchtree.SearchTreeNode;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.NotNull;
@@ -54,6 +54,7 @@ public final class BinarySearchTreeOperations {
             BinarySearchTreeOperations.swapNonNeighboredNodes(first, second);
         }
         // swap counters of the swapped nodes
+        // TODO Löschoperationen und Kindknoten-COunter im Zusammenspiel prüfen
         treeChildCounter.put(first, formerCounterOfSecond.getLeft(), formerCounterOfSecond.getRight());
         treeChildCounter.put(second, formerCounterOfFirst.getLeft(), formerCounterOfFirst.getRight());
     }

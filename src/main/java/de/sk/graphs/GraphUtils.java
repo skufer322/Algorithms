@@ -2,6 +2,8 @@ package de.sk.graphs;
 
 import de.sk.graphs.datastructure.Edge;
 import de.sk.graphs.datastructure.Vertex;
+import de.sk.graphs.datastructure.directed.DiAdjacencyList;
+import de.sk.graphs.datastructure.directed.DiEdge;
 import de.sk.graphs.datastructure.directed.DiVertex;
 import de.sk.graphs.datastructure.undirected.UnEdge;
 import de.sk.graphs.datastructure.undirected.UnVertex;
@@ -22,6 +24,7 @@ public final class GraphUtils {
     static final String EDGE_STARTS_AND_ENDS_AT_VERTEX_EXCEPTION_MSG_TEXT_FORMAT = "Edge %s starts and ends at vertex %s.";
     static final String EDGE_ENDPOINTS_NOT_IN_GRAPH_EXCEPTION_MSG_TEXT_FORMAT = "At least one endpoint of edge %s ([%s]) is incident to " +
             "a vertex not in the adjacency list ([%s]).";
+    static final String EDGE_WITH_TOO_SMALL_WEIGHT_EXCEPTION_MSG_TEXT_FORMAT = "Edge %s has a weight smaller than %d.";
 
     private GraphUtils() {
         // only utility methods
@@ -101,5 +104,21 @@ public final class GraphUtils {
         vertex.setTopSortPosition(-1);
         vertex.setCc(-1);
         vertex.setNumScc(-1);
+    }
+
+    /**
+     * Checks whether all the edges of the graph represented by an adjacency list have a weight of at least <code>minWeight</code>.
+     * Throws an <code>IllegalArgumentException</code> if any edge has a smaller weight.
+     *
+     * @param adjacencyList graph for which the edge weights are checked
+     * @param minWeight min weight each edge must have
+     */
+    public static void assertAllEdgesHaveWeightGreaterThan(@NotNull DiAdjacencyList adjacencyList, int minWeight) {
+        // could be improved to only account for edges reachable from a specific start vertex
+        for (DiEdge edge : adjacencyList.edges()) {
+            if (edge.getWeight() < minWeight) {
+                throw new IllegalArgumentException(String.format(EDGE_WITH_TOO_SMALL_WEIGHT_EXCEPTION_MSG_TEXT_FORMAT, edge, minWeight));
+            }
+        }
     }
 }

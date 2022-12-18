@@ -1,4 +1,4 @@
-package de.sk.greedy;
+package de.sk.greedy.huffman;
 
 import org.jetbrains.annotations.NotNull;
 

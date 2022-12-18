@@ -1,4 +1,4 @@
-package de.sk.graphs.searchtree.binary;
+package de.sk.graphs.injection.searchtree.binary;
 
 import org.jetbrains.annotations.NotNull;
 

@@ -1,4 +1,4 @@
-package de.sk.graphs.searchtree;
+package de.sk.graphs.injection.searchtree;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

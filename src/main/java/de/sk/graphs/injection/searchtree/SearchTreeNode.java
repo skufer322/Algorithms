@@ -1,4 +1,4 @@
-package de.sk.graphs.searchtree;
+package de.sk.graphs.injection.searchtree;
 
 /**
  * Interface könnte noch um Payload ergänzt werden.

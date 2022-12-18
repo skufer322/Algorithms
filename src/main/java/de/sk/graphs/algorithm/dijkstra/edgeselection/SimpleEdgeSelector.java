@@ -9,14 +9,17 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
 
+/**
+ * Straight-forward implementation of {@link EdgeSelector}.
+ */
 public class SimpleEdgeSelector extends AbstractEdgeSelector {
 
     @Override
-    public @NotNull Pair<DiEdge, Integer> selectEligibleEdgeWithLowestDijkstraScore(@NotNull DiAdjacencyList adjacencyList, @NotNull Set<DiVertex> processedVertices) {
+    public @NotNull Pair<DiEdge, Integer> selectEligibleEdgeWithLowestDijkstraScore(@NotNull DiAdjacencyList adjacencyList, @NotNull Set<DiVertex> alreadySelectedVertices) {
         int lowestDijkstraScore = Integer.MAX_VALUE;
         DiEdge edgeWithLowestDijkstraScore = null;
         for (DiEdge edge : adjacencyList.edges()) {
-            if (this.isEligibleEdge(edge, processedVertices)) {
+            if (this.isEligibleEdge(edge, alreadySelectedVertices)) {
                 int dijkstraScoreOfCurrentEdge = this.calculateDijkstraScore(edge);
                 if (dijkstraScoreOfCurrentEdge < lowestDijkstraScore) {
                     lowestDijkstraScore = dijkstraScoreOfCurrentEdge;

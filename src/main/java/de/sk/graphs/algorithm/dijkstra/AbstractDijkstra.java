@@ -4,9 +4,20 @@ import de.sk.graphs.datastructure.directed.DiAdjacencyList;
 import de.sk.graphs.datastructure.directed.DiVertex;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Abstract class implementing common methods required by implementations of {@link Dijkstra}'s algorithm.
+ * TODO: in utility class auslagern?
+ */
 public abstract class AbstractDijkstra implements Dijkstra {
 
-    void setLenValues(@NotNull DiAdjacencyList adjacencyList, @NotNull DiVertex s) {
+    /**
+     * Initializes the <code>len</code> values for all vertices in the graph (represented as an adjacency list).
+     * The <code>len</code> value of the starting vertex is set to 0, for all other vertices it is set to Integer.MAX_VALUE.
+     *
+     * @param adjacencyList graph
+     * @param s             starting vertex
+     */
+    void initializeLenValues(@NotNull DiAdjacencyList adjacencyList, @NotNull DiVertex s) {
         for (DiVertex vertex : adjacencyList.vertices()) {
             if (vertex != s) {
                 vertex.setLen(Integer.MAX_VALUE);
@@ -16,7 +27,14 @@ public abstract class AbstractDijkstra implements Dijkstra {
         }
     }
 
-    void setKeyValues(@NotNull DiAdjacencyList adjacencyList, @NotNull DiVertex s) {
+    /**
+     * Initializes the <code>key</code> values for all vertices in the graph (represented as an adjacency list).
+     * The <code>key</code> value of the starting vertex is set to 0, for all other vertices it is set to Integer.MAX_VALUE.
+     *
+     * @param adjacencyList graph
+     * @param s             starting vertex
+     */
+    void initializeKeyValues(@NotNull DiAdjacencyList adjacencyList, @NotNull DiVertex s) {
         for (DiVertex vertex : adjacencyList.vertices()) {
             if (vertex != s) {
                 vertex.setKey(Integer.MAX_VALUE);

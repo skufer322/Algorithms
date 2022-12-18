@@ -9,11 +9,17 @@ import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Set;
 
+/**
+ * Heap-based implementation of Dijkstra's algorithm for the single-source shortest path problem which runs in O(m log n).
+ */
 public class HeapBasedDijkstra extends AbstractDijkstra {
 
     private final Set<DiVertex> processedVertices;
     private final PriorityQueue<DiVertex> heap;
 
+    /**
+     * Constructor.
+     */
     public HeapBasedDijkstra() {
         this.processedVertices = new HashSet<>();
         this.heap = new PriorityQueue<>();
@@ -23,7 +29,7 @@ public class HeapBasedDijkstra extends AbstractDijkstra {
     public void determineSingleSourceShortestPaths(@NotNull DiAdjacencyList adjacencyList, @NotNull DiVertex s) {
         this.processedVertices.clear();
         this.heap.clear();
-        this.setKeyValues(adjacencyList, s);
+        this.initializeKeyValues(adjacencyList, s);
         this.heap.addAll(adjacencyList.vertices());
         while (!this.heap.isEmpty()) {
             DiVertex removedVertex = this.heap.poll();

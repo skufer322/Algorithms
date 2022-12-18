@@ -8,7 +8,18 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
 
+/**
+ * Interface defining the methods for implementations selecting the next eligible edge for the straight-forward implementation of Dijkstra's algorithm.
+ */
 public interface EdgeSelector {
 
-    @NotNull Pair<DiEdge, Integer> selectEligibleEdgeWithLowestDijkstraScore(@NotNull DiAdjacencyList adjacencyList, @NotNull Set<DiVertex> processedVertices);
+    /**
+     * For the graph represented as adjacency list, selects the lowest-cost eligible edge considering the set of already selected vertices X. An edge (v,w)
+     * is eligible if v ∈ X and w ∈ V - X (V is the set of all vertices).
+     *
+     * @param adjacencyList           graph
+     * @param alreadySelectedVertices set of already selected vertices
+     * @return next eligible edge with the lowest cost (i.e. the lowest Dijkstra score)
+     */
+    @NotNull Pair<DiEdge, Integer> selectEligibleEdgeWithLowestDijkstraScore(@NotNull DiAdjacencyList adjacencyList, @NotNull Set<DiVertex> alreadySelectedVertices);
 }

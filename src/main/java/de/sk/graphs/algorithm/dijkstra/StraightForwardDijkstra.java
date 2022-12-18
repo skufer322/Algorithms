@@ -1,5 +1,6 @@
 package de.sk.graphs.algorithm.dijkstra;
 
+import de.sk.graphs.GraphUtils;
 import de.sk.graphs.algorithm.dijkstra.edgeselection.EdgeSelector;
 import de.sk.graphs.datastructure.directed.DiAdjacencyList;
 import de.sk.graphs.datastructure.directed.DiEdge;
@@ -11,21 +12,29 @@ import javax.inject.Inject;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Straight-forward implementation of Dijkstra's algorithm for the single-source shortest path problem which runs in O(mn).
+ */
 public class StraightForwardDijkstra extends AbstractDijkstra {
+
+    static final int ZERO = 0;
 
     @Inject
     private EdgeSelector edgeSelector;
 
     private final Set<DiVertex> processedVertices;
 
+    /**
+     * Constructor.
+     */
     public StraightForwardDijkstra() {
         this.processedVertices = new HashSet<>();
     }
 
     public void determineSingleSourceShortestPaths(@NotNull DiAdjacencyList adjacencyList, @NotNull DiVertex s) {
-        // TODO: validität der ajdzenzliste prüfen -> nur kanten mit weight >= 0
+        GraphUtils.assertAllEdgesHaveWeightGreaterThan(adjacencyList, ZERO);
         this.processedVertices.clear();
-        this.setLenValues(adjacencyList, s);
+        this.initializeLenValues(adjacencyList, s);
         this.processedVertices.add(s);
         Pair<DiEdge, Integer> eligibleEdgeWithLowestDijkstraScore = edgeSelector.selectEligibleEdgeWithLowestDijkstraScore(adjacencyList, processedVertices);
         while (eligibleEdgeWithLowestDijkstraScore.getLeft() != null) {
