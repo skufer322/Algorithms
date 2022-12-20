@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Straight-forward adjacency list implementation for undirected graphs.
+ * Straight-forward {@link AdjacencyList} implementation for undirected graphs.
  *
  * @param vertices the graph's vertices
  * @param edges    the graph's edges

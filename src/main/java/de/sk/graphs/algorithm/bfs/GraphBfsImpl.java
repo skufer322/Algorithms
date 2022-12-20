@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Queue;
 
 /**
- * {@link GraphBfs} implementation utilizing a queue.
+ * Implementation of {@link GraphBfs} implementation utilizing a queue. Time complexity: O(m+n), m=|E|, n=|V|.
  */
 public class GraphBfsImpl implements GraphBfs {
 

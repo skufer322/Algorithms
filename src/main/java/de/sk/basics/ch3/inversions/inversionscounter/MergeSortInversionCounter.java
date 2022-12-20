@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 
 /**
- * O(n log n) implementation of {@link InversionCounter} piggybacking the MergeSort algorithm.
+ * O(n log n) implementation of {@link InversionCounter}, piggybacking the MergeSort algorithm.
  */
 public class MergeSortInversionCounter implements InversionCounter {
 

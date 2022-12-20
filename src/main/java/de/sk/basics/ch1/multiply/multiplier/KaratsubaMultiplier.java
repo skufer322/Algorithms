@@ -21,6 +21,7 @@ public class KaratsubaMultiplier implements Multiplier {
     @Inject
     private IntegerSplitter splitter;
 
+    @Override
     public @NotNull BigInteger multiply(@NotNull BigInteger x, @NotNull BigInteger y) {
         // integrity check
         if (x.signum() == -1 || y.signum() == -1) {

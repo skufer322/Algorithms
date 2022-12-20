@@ -10,7 +10,7 @@ import java.util.PriorityQueue;
 import java.util.Set;
 
 /**
- * Heap-based implementation of Dijkstra's algorithm for the single-source shortest path problem which runs in O(m log n).
+ * Heap-based implementation of {@link Dijkstra}'s algorithm for the single-source shortest path problem which runs in O(m log n).
  */
 public class HeapBasedDijkstra extends AbstractDijkstra {
 

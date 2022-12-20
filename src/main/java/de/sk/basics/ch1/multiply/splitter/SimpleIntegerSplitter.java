@@ -14,6 +14,7 @@ public class SimpleIntegerSplitter implements IntegerSplitter {
 
     static final String N_IS_SHORTER_THAN_MAX_DIGITS_XY_EXCEPTION_TEXT_FORMAT = "n (%d) must be >= max {number of digits of x (%s); number of digits of y (%s)}";
 
+    @Override
     public @NotNull Pair<Pair<BigInteger, BigInteger>, Pair<BigInteger, BigInteger>> splitIntoHalves(@NotNull BigInteger x, @NotNull BigInteger y, int n) {
         // check integrity
         if (Math.max(MultiplierUtils.getIntegerLength(x), MultiplierUtils.getIntegerLength(y)) > n) {

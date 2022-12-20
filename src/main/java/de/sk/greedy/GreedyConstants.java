@@ -1,5 +1,8 @@
 package de.sk.greedy;
 
+/**
+ * Class holding general constants related to greedy algorithms.
+ */
 public final class GreedyConstants {
 
     private GreedyConstants() {

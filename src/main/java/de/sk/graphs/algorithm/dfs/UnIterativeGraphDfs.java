@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Stack;
 
 /**
- * Iterative {@link UnGraphDfs} implementation utilizing a stack.
+ * Iterative implementation of {@link UnGraphDfs} utilizing a stack.
  */
 public class UnIterativeGraphDfs implements UnGraphDfs {
 

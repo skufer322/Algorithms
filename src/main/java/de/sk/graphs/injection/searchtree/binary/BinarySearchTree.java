@@ -318,6 +318,6 @@ public class BinarySearchTree implements SearchTree {
     }
 
     private @NotNull String childCountEntryToString(@NotNull BinarySearchTreeNode node) {
-        return node.getKey() + " {" + this.treeChildCounter.printCounterInformation(node) + "}";
+        return node.getKey() + " {" + this.treeChildCounter.getCounterInformation(node) + "}";
     }
 }

@@ -15,7 +15,8 @@ import java.util.Set;
 public class SimpleEdgeSelector extends AbstractEdgeSelector {
 
     @Override
-    public @NotNull Pair<DiEdge, Integer> selectEligibleEdgeWithLowestDijkstraScore(@NotNull DiAdjacencyList adjacencyList, @NotNull Set<DiVertex> alreadySelectedVertices) {
+    public @NotNull Pair<DiEdge, Integer> selectEligibleEdgeWithLowestDijkstraScore(@NotNull DiAdjacencyList adjacencyList,
+                                                                                    @NotNull Set<DiVertex> alreadySelectedVertices) {
         int lowestDijkstraScore = Integer.MAX_VALUE;
         DiEdge edgeWithLowestDijkstraScore = null;
         for (DiEdge edge : adjacencyList.edges()) {

@@ -12,8 +12,9 @@ import java.util.List;
 import java.util.Queue;
 
 /**
- * {@link GraphBfs} implementation utilizing a stack which additionally determines the levels of the graph's vertices
- * (the level of a vertex is also the minimum distance between the very vertex and the start vertex s).
+ * Implementation of {@link GraphBfs} utilizing a stack which additionally determines the levels of the graph's vertices
+ * (the level of a vertex is also the minimum distance between the very vertex and the starting vertex {@code s}).
+ * Time complexity: O(m+n), m=|E|, n=|V|.
  */
 public class AugmentedBfs implements GraphBfs {
 

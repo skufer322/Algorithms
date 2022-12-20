@@ -8,9 +8,9 @@ import org.jetbrains.annotations.NotNull;
 public interface Partitioner {
 
     /**
-     * Partitions the given (sub)array (specified per left and right bound) via a pivot. It is assumed that the pivot
-     * is at the leftmost position of the (sub)array, i.e. index l. After partitioning, the pivot is at its final position,
-     * and all smaller (greater) elements are left (right) of the pivot.
+     * Partitions the given (sub){@code array} (specified per left and right bound, {@code l} and {@code r}) via a pivot.
+     * It is assumed that the pivot is already at the leftmost position of the (sub){@code array}, i.e. at index {@code l}. After
+     * partitioning, the pivot is at its final position, and all smaller (greater) elements are to the left (right) of the pivot.
      *
      * @param array (sub)array to partition
      * @param l left bound of the (sub)array

@@ -4,6 +4,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
 
+/**
+ * Implementation of {@link HuffmanCodes}.
+ */
 public class HuffmanCodesImpl implements HuffmanCodes {
 
     // exception message text formats for validation errors
@@ -19,6 +22,9 @@ public class HuffmanCodesImpl implements HuffmanCodes {
     private final Queue<HuffmanTreeNode> oneSymbolTrees;
     private final Queue<HuffmanTreeNode> multipleSymbolsTrees;
 
+    /**
+     * Constructor.
+     */
     public HuffmanCodesImpl() {
         this.oneSymbolTrees = new LinkedList<>();
         this.multipleSymbolsTrees = new LinkedList<>();

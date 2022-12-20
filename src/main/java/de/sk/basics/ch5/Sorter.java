@@ -11,9 +11,9 @@ public interface Sorter {
     // TODO: in README.md unterbringen?
 
     /**
-     * Sorts the given array (ascending order).
+     * Sorts the given {@code array} (in ascending order).
      * @param array array to sort
-     * @return sorted array (ascending order)
+     * @return sorted {@code array} (in ascending order)
      */
     int @NotNull [] sort(int @NotNull [] array);
 }

@@ -3,6 +3,9 @@ package de.sk.basics.ch5.quicksort.partition;
 import de.sk.util.SortingUtils;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * Straight-forward implementation of {@link Partitioner}.
+ */
 public class StandardPartitioner implements Partitioner {
 
     @Override

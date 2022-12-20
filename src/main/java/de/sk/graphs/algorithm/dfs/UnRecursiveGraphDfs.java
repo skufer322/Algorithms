@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 /**
- * Recursive {@link UnGraphDfs} implementation.
+ * Recursive implementation of {@link UnGraphDfs}.
  */
 public class UnRecursiveGraphDfs implements UnGraphDfs {
 

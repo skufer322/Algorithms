@@ -10,10 +10,10 @@ import java.math.BigInteger;
 public interface Multiplier {
 
     /**
-     * Multiplies two non-negative integers x and y and returns the result.
+     * Multiplies two non-negative integers {@code x} and {@code y} and returns the result.
      * @param x first non-negative integer
      * @param y second non-negative integer
-     * @return result of x multiplied with y
+     * @return result of {@code x} multiplied with {@code y}
      */
     @NotNull BigInteger multiply(@NotNull BigInteger x, @NotNull BigInteger y);
 }

@@ -21,18 +21,20 @@ public final class Point2DUtil {
     }
 
     /**
-     * Sorts the given array of points in ascending order w.r.t. the x-coordinates of the points.
+     * Sorts the given array of points in ascending order w.r.t. the x-coordinates of the {@code points}.
+     *
      * @param points points to sort
-     * @return sorted array (ascending order) w.r.t. the x-coordinates of the points
+     * @return sorted array (ascending order) w.r.t. the x-coordinates of the {@code points}
      */
     public static @NotNull Point2D[] sortByXCoordinates(@NotNull Point2D[] points) {
         return sort(points, xSorter);
     }
 
     /**
-     * Sorts the given array of points in ascending order w.r.t. the y-coordinates of the points.
+     * Sorts the given array of points in ascending order w.r.t. the y-coordinates of the {@code points}.
+     *
      * @param points points to sort
-     * @return sorted array (ascending order) w.r.t. the y-coordinates of the points
+     * @return sorted array (ascending order) w.r.t. the y-coordinates of the {@code points}
      */
     public static @NotNull Point2D[] sortByYCoordinates(@NotNull Point2D[] points) {
         return sort(points, ySorter);
@@ -44,19 +46,22 @@ public final class Point2DUtil {
     }
 
     /**
-     * Creates a duplicate of the given array of points. Is only a shallow copy, i.e. the points within the array are not copied.
+     * Creates a duplicate of the given array of {@code points}. Is only a shallow copy, i.e. the {@code points} within
+     * the array are not copied.
+     *
      * @param points array of points to copy
-     * @return shallow copy of the given array
+     * @return shallow copy of the given {@code points} array
      */
     public static @NotNull Point2D[] clone(@NotNull Point2D[] points) {
         return Arrays.copyOf(points, points.length);
     }
 
     /**
-     * Splits the given array of points into two equally-sized halves. If the array size is odd, the right half has one
+     * Splits the given array of {@code points} into two equally-sized halves. If the array size is odd, the right half has one
      * point more than the left half.
+     *
      * @param points array of points to split in halves
-     * @return original array split into a left and a right half
+     * @return original array split into its left and right half
      */
     public static @NotNull Pair<Point2D[], Point2D[]> splitIntoHalves(@NotNull Point2D[] points) {
         int mid = points.length / 2;

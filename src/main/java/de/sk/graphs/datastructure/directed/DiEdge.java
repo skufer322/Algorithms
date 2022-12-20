@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * Representation of an edge in an undirected graph.
+ * Representation of an {@link Edge} in an undirected graph.
  */
 public class DiEdge implements Edge {
 
@@ -21,18 +21,22 @@ public class DiEdge implements Edge {
     private final int weight;
 
     /**
+     * Constructor.
+     *
      * @param name name of the edge
-     * @param tail tail vertex of the edge
-     * @param head head vertex of the edge
+     * @param tail tail vertex of the edge (i.e. the start of the edge)
+     * @param head head vertex of the edge (i.e. the end of the edge)
      */
     public DiEdge(@NotNull String name, @NotNull DiVertex tail, @NotNull DiVertex head) {
         this(name, tail, head, -1);
     }
 
     /**
+     * Constructor.
+     *
      * @param name   name of the edge
-     * @param tail   tail vertex of the edge
-     * @param head   head vertex of the edge
+     * @param tail   tail vertex of the edge (i.e. the start of the edge)
+     * @param head   head vertex of the edge (i.e. the end of the edge)
      * @param weight weight of the edge
      */
     public DiEdge(@NotNull String name, @NotNull DiVertex tail, @NotNull DiVertex head, int weight) {

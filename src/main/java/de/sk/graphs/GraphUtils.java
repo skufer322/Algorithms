@@ -31,10 +31,10 @@ public final class GraphUtils {
     }
 
     /**
-     * Given an undirected edge with two endpoints v and w, returns endpoint w if v is passed to the method.
-     * Throws an IllegalArgumentException if either none of the edge's endpoints is v or both endpoints are v.
+     * Given an undirected edge with two endpoints {@code v} and w, returns endpoint w if {@code v} is passed to the method.
+     * Throws an {@link IllegalArgumentException} if either none of the edge's endpoints is {@code v} or both endpoints are {@code v}.
      *
-     * @param edge edge with endpoints v and w, for which w shall be returned
+     * @param edge edge with endpoints {@code v} and w, for which w shall be returned
      * @param v    endpoint v which shall not be returned
      * @return endpoint w
      */
@@ -53,10 +53,10 @@ public final class GraphUtils {
     }
 
     /**
-     * Sets the status of the given vertex as explored and adds the vertex to the given queue.
+     * Sets the status of the given {@code vertex} as explored and adds {@code vertex} to the given queue.
      *
      * @param vertex vertex whose status is to be set true and which is to be added to the queue
-     * @param queue  queue to which the vertex shall be added
+     * @param queue  queue to which the {@code vertex} is to be added
      */
     public static void exploreVertexAndAddToQueue(@NotNull UnVertex vertex, @NotNull Queue<UnVertex> queue) {
         vertex.setExplored(true);
@@ -64,10 +64,10 @@ public final class GraphUtils {
     }
 
     /**
-     * Validates that all endpoints of the given edges are contained in the vertices.
+     * Validates that all endpoints of the given {@code edges} are contained in the {@code vertices}.
      *
-     * @param vertices list of vertices which are potential endpoints for the given endpoints
-     * @param edges    list of edges whose endpoints must be contained in the list of vertices.
+     * @param vertices list of vertices which are potential endpoints for the given {@code edges}
+     * @param edges    list of edges whose endpoints must be contained in the list of {@code vertices}.
      */
     public static void validateEdgesAreInGraph(@NotNull List<? extends Vertex> vertices, @NotNull List<? extends Edge> edges) {
         Set<Vertex> verticesForValidation = new HashSet<>(vertices); // create set to speed up containment checks
@@ -84,9 +84,9 @@ public final class GraphUtils {
     }
 
     /**
-     * Resets the primitive type attributes of all vertices in the list to their default values.
+     * Resets the primitive type attributes of all {@code vertices} in the list to their default values.
      *
-     * @param vertices vertices whose primitive type attributes shall be reset to their default values
+     * @param vertices vertices whose primitive type attributes are to be reset to their default values
      */
     public static void resetAttributesOfVertices(@NotNull List<DiVertex> vertices) {
         for (DiVertex vertex : vertices) {
@@ -95,9 +95,9 @@ public final class GraphUtils {
     }
 
     /**
-     * Resets the primitive type attributes of the vertex to their default values.
+     * Resets the primitive type attributes of the {@code vertex} to their default values.
      *
-     * @param vertex vertex whose primitive type attributes shall be reset to their default values
+     * @param vertex vertex whose primitive type attributes are to be reset to their default values
      */
     public static void resetAttributesOfVertex(@NotNull DiVertex vertex) {
         vertex.setExplored(false);
@@ -107,14 +107,14 @@ public final class GraphUtils {
     }
 
     /**
-     * Checks whether all the edges of the graph represented by an adjacency list have a weight of at least <code>minWeight</code>.
-     * Throws an <code>IllegalArgumentException</code> if any edge has a smaller weight.
+     * Checks whether all the edges of the graph represented by an adjacency list have a weight of at least {@code minWeight}.
+     * Throws an {@link IllegalArgumentException} if any edge has a smaller weight.
      *
      * @param adjacencyList graph for which the edge weights are checked
      * @param minWeight min weight each edge must have
      */
     public static void assertAllEdgesHaveWeightGreaterThan(@NotNull DiAdjacencyList adjacencyList, int minWeight) {
-        // could be improved to only account for edges reachable from a specific start vertex
+        // could be improved to only account for edges reachable from a specific starting vertex
         for (DiEdge edge : adjacencyList.edges()) {
             if (edge.getWeight() < minWeight) {
                 throw new IllegalArgumentException(String.format(EDGE_WITH_TOO_SMALL_WEIGHT_EXCEPTION_MSG_TEXT_FORMAT, edge, minWeight));

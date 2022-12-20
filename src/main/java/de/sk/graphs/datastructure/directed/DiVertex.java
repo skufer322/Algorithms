@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Representation of a vertex in a directed graph.
+ * Representation of a {@link Vertex} in a directed graph.
  */
 public class DiVertex implements Vertex, Comparable<DiVertex> {
 
@@ -29,6 +29,8 @@ public class DiVertex implements Vertex, Comparable<DiVertex> {
     private int key;
 
     /**
+     * Constructor.
+     *
      * @param name name of the vertex
      */
     public DiVertex(@NotNull String name) {
@@ -60,7 +62,7 @@ public class DiVertex implements Vertex, Comparable<DiVertex> {
     }
 
     /**
-     * Adds the edge to the list of incoming edges. Throws an IllegalArgumentException if this vertex is not the
+     * Adds the edge to the list of incoming edges. Throws an {@link IllegalArgumentException} if this vertex is not the
      * head vertex of the edge.
      *
      * @param edge edge to add to the incoming edges
@@ -73,7 +75,7 @@ public class DiVertex implements Vertex, Comparable<DiVertex> {
     }
 
     /**
-     * Adds the edge to the list of outgoing edges. Throws an IllegalArgumentException if this vertex is not the
+     * Adds the edge to the list of outgoing edges. Throws an {@link IllegalArgumentException} if this vertex is not the
      * tail vertex of the edge.
      *
      * @param edge edge to add to the outgoing edges
@@ -91,8 +93,8 @@ public class DiVertex implements Vertex, Comparable<DiVertex> {
     }
 
     @Override
-    public void setExplored(boolean explored) {
-        this.isExplored = explored;
+    public void setExplored(boolean isExplored) {
+        this.isExplored = isExplored;
     }
 
     public int getTopSortPosition() {

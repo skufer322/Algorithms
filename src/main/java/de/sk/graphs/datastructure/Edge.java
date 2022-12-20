@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Set;
 
 /**
- * Interface defining the general methods for edge implementations (both for directed and undirected graphs).
+ * Interface defining the general methods for edge implementations (for both directed and undirected graphs).
  */
 public interface Edge {
 

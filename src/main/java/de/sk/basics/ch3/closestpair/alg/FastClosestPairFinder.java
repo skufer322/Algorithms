@@ -27,6 +27,7 @@ public class FastClosestPairFinder extends ArgumentValidatingClosestPairFinder {
 
     @Override
     public @NotNull Pair<Point2D, Point2D> determineClosestPair(@NotNull Point2D[] points) {
+        this.validateDetermineClosestPairMethodArguments(points);
         Point2D[] px = Point2DUtil.sortByXCoordinates(Point2DUtil.clone(points));
         Point2D[] py = Point2DUtil.sortByYCoordinates(Point2DUtil.clone(points));
         return recClosestPairDetermination(px, py);

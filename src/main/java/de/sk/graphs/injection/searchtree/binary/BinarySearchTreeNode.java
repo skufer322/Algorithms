@@ -40,6 +40,16 @@ public class BinarySearchTreeNode implements SearchTreeNode {
         this.setParentAndRelationship(parent, isLeftChild);
     }
 
+    /**
+     * Sets the {@code parent} node for this node and also ensures the correct wiring of their relationship. This means
+     * that if the {@code parent} node is not null ...
+     * a) ... and the node is the left child of its {@code parent}, the {@code parent}'s left child reference is also set to
+     * this node.
+     * b) Else, the node is set as the {@code parent}'s right child.
+     *
+     * @param parent new parent node of this node
+     * @param isLeftChild whether this node is the left child of its new parent node, or not
+     */
     public void setParentAndRelationship(@Nullable BinarySearchTreeNode parent, boolean isLeftChild) {
         this.parent = parent;
         if (this.parent != null) {

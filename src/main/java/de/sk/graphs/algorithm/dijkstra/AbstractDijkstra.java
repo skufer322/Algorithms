@@ -11,8 +11,8 @@ import org.jetbrains.annotations.NotNull;
 public abstract class AbstractDijkstra implements Dijkstra {
 
     /**
-     * Initializes the <code>len</code> values for all vertices in the graph (represented as an adjacency list).
-     * The <code>len</code> value of the starting vertex is set to 0, for all other vertices it is set to Integer.MAX_VALUE.
+     * Initializes the {@code len} values for all vertices in the graph (represented as an adjacency list).
+     * The {@code len} value of the starting vertex {@code s} is set to 0, for all other vertices it is set to {@code Integer.MAX_VALUE}.
      *
      * @param adjacencyList graph
      * @param s             starting vertex
@@ -28,8 +28,9 @@ public abstract class AbstractDijkstra implements Dijkstra {
     }
 
     /**
-     * Initializes the <code>key</code> values for all vertices in the graph (represented as an adjacency list).
-     * The <code>key</code> value of the starting vertex is set to 0, for all other vertices it is set to Integer.MAX_VALUE.
+     * Initializes the {@code key} values for all vertices in the graph (represented as an adjacency list).
+     * The {@code key} value of the starting vertex {@code s} is set to 0, for all other vertices it is set to
+     * {@code Integer.MAX_VALUE}.
      *
      * @param adjacencyList graph
      * @param s             starting vertex

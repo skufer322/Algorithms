@@ -29,7 +29,7 @@ public class DSelect extends ArgumentValidatingSelector {
 
     @Override
     public int select(int @NotNull [] array, int ithOrderStatistics) {
-        validateSelectMethodArguments(array, ithOrderStatistics);
+        this.validateSelectMethodArguments(array, ithOrderStatistics);
         ithOrderStatistics -= 1; // adjust ithOrderStatistics (= i-th-smallest element) for 0-based array index
         return recDSelect(array, ithOrderStatistics, 0, array.length - 1);
     }

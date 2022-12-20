@@ -3,7 +3,7 @@ package de.sk.graphs.datastructure;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Interface defining the general methods for vertex implementations (both for directed and undirected graphs).
+ * Interface defining the general methods for vertex implementations (for both directed and undirected graphs).
  */
 public interface Vertex {
 
@@ -26,9 +26,9 @@ public interface Vertex {
     /**
      * Sets the information if the vertex has been explored.
      *
-     * @param explored boolean if the vertex has been explored, or not
+     * @param isExplored boolean if the vertex has been explored, or not
      */
-    void setExplored(boolean explored);
+    void setExplored(boolean isExplored);
 
     /**
      * Returns the number/id of the connected component the vertex is located in.
@@ -38,7 +38,7 @@ public interface Vertex {
     int getCc();
 
     /**
-     * Sets the number/id of the connected component the vertex is located in.
+     * Sets the number/id/{@code cc} of the connected component the vertex is located in.
      *
      * @param cc the number/id of the connected component the vertex is located in
      */

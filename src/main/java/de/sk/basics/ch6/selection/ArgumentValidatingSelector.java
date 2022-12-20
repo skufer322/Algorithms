@@ -5,7 +5,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 
 /**
- * Abstract class defining common default methods/properties for Selector-type subclasses.
+ * Abstract class defining common default methods/properties for instantiable {@link Selector} implementations which validate the
+ * arguments passed to the methods.
  */
 public abstract class ArgumentValidatingSelector implements Selector {
 

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Representation of a vertex in an undirected graph.
+ * Representation of a {@link Vertex}  in an undirected graph.
  */
 public class UnVertex implements Vertex {
 
@@ -24,6 +24,8 @@ public class UnVertex implements Vertex {
     private int cc;
 
     /**
+     * Constructor.
+     *
      * @param name name of the vertex
      */
     public UnVertex(@NotNull String name) {
@@ -48,8 +50,8 @@ public class UnVertex implements Vertex {
     }
 
     /**
-     * Adds the given add to the vertex's edges. Throws an IllegalArgumentException if th given edge does not have the
-     * vertex itself as one of its endpoints.
+     * Adds the given {@code edge} to the vertex's edges. Throws an {@link IllegalArgumentException} if the given {@code edge}
+     * does not have the vertex itself as one of its endpoints.
      *
      * @param edge edge to be added to the vertex's edges
      */
@@ -71,8 +73,8 @@ public class UnVertex implements Vertex {
     }
 
     @Override
-    public void setExplored(boolean explored) {
-        isExplored = explored;
+    public void setExplored(boolean isExplored) {
+        this.isExplored = isExplored;
     }
 
     public int getLevel() {

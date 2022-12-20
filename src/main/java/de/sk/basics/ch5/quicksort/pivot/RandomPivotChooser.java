@@ -6,13 +6,17 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Pivot chooser implementation (uniform) randomly selecting an element of the given (sub)array.
+ * Implementation of {@link PivotChooser} selecting an element of the given (sub)array uniformly at random as pivot.
  */
 public class RandomPivotChooser implements PivotChooser {
 
     private final Random rnd;
 
     /**
+     * Constructor.
+     *
+     * TODO: Zusätzliche Konstruktor, der den Random entgegennimmt.
+     *
      * @param isSeeded whether a seeded selector shall be used for the random selection process
      * @param seed seed for the seeded selector
      */

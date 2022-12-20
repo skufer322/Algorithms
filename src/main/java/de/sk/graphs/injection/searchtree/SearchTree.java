@@ -11,10 +11,10 @@ import java.util.List;
 public interface SearchTree {
 
     /**
-     * Searches and returns the node with the given key. If no such node exists, null is returned.
+     * Searches and returns the node with the given {@code key}. If no such node exists, null is returned.
      *
      * @param key key to search for
-     * @return the node with the given key, or null if no such key exists
+     * @return the node with the given {@code key}, or null if no such key exists
      */
     @Nullable SearchTreeNode search(int key);
 
@@ -33,20 +33,20 @@ public interface SearchTree {
     @Nullable SearchTreeNode max();
 
     /**
-     * Returns the predecessor for the given key, i.e. the node with the next smaller key (w.r.t. the given key). Returns
+     * Returns the predecessor for the given {@code key}, i.e. the node with the next smaller key (w.r.t. the given key). Returns
      * null if no smaller key exists in the search tree.
      *
      * @param key key for which the predecessor shall be returned.
-     * @return node with the next smaller key (w.r.t. the given key), or null if no smaller key exists
+     * @return node with the next smaller key (w.r.t. the given {@code key}), or null if no smaller key exists
      */
     @Nullable SearchTreeNode predecessor(int key);
 
     /**
-     * Returns the successor for the given key, i.e. the node with the next greater key (w.r.t. the given key). Returns
+     * Returns the successor for the given {@code key}, i.e. the node with the next greater key (w.r.t. the given key). Returns
      * null if no greater key exists in the search tree.
      *
      * @param key key for which the successor shall be returned.
-     * @return node with the next greater key (w.r.t. the given key), or null if no greater key exists
+     * @return node with the next greater key (w.r.t. the given {@code key}), or null if no greater key exists
      */
     @Nullable SearchTreeNode successor(int key);
 
@@ -58,34 +58,34 @@ public interface SearchTree {
     @NotNull List<SearchTreeNode> outputSorted();
 
     /**
-     * Inserts a new key into the search tree, creating a corresponding node associated with the key.
+     * Inserts a new {@code key} into the search tree, creating a corresponding node associated with the {@code key}.
      *
      * @param key the new key to insert
-     * @return the created node associated with the new key
+     * @return the created node associated with the new {@code key}
      */
     @NotNull SearchTreeNode insert(int key);
 
     /**
-     * Deletes the node with the given key from the search tree. Returns the deleted node or null if there is given key
-     * (respectively its associated node) does not exist in the search tree.
+     * Deletes the node with the given {@code key} from the search tree. Returns the deleted node or null if there is given
+     * {@code key} (respectively its associated node) does not exist in the search tree.
      *
      * @param key key which, together which its associated node, shall be deleted from the search tree
-     * @return the deleted node, or null if the given key does not exist
+     * @return the deleted node, or null if the given {@code key} does not exist
      */
     @Nullable SearchTreeNode delete(int key);
 
     /**
-     * Returns the node with the <code>rank</code>-greatest key from the search tree. Returns null if the given rank is
+     * Returns the node with the {@code rank}-greatest key from the search tree. Returns null if the given rank is
      * greater than the number of nodes in the search tree.
      *
-     * @param rank the rank of the key/node which shall be returned (i.e. the node with the <code>rank</code>-greatest key)
-     * @return node with the <code>rank</code>-greatest key, or null if rank is greater than the number of nodes in the search tree
+     * @param rank the rank of the key/node which shall be returned (i.e. the node with the {@code rank}-greatest key)
+     * @return node with the {@code rank}-greatest key, or null if rank is greater than the number of nodes in the search tree
      */
     @Nullable SearchTreeNode select(int rank);
 
     /**
-     * Returns the rank of the given key, considering all keys maintained in the search tree. Throws an <code>IllegalArgumentException</code>
-     * if there is no node with the given key.
+     * Returns the rank of the given {@code key}, considering all keys maintained in the search tree. Throws an {@link IllegalArgumentException}
+     * if there is no node with the given {@code key}.
      *
      * @param key key whose rank shall be determined (considering all keys maintained in the search tree)
      * @return the rank of the given key

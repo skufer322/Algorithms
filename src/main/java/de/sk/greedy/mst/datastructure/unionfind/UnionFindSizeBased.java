@@ -5,6 +5,10 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
+/**
+ * Implementation of the {@link UnionFind} data structure applying the (rather simple) union-by-size strategy.
+ * @param <T> the type of the elements in the UnionFind data structure
+ */
 public class UnionFindSizeBased<T> implements UnionFind<T> {
 
     static final String ALREADY_INITIALIZED_EXCEPTION_MSG = "UnionFind data structure is already initialized!";
@@ -17,6 +21,9 @@ public class UnionFindSizeBased<T> implements UnionFind<T> {
     private List<Element> parentGraph;
     private final Map<T, Integer> objectMap;
 
+    /**
+     * Default constructor.
+     */
     public UnionFindSizeBased() {
         this.isInitialized = false;
         this.parentGraph = new ArrayList<>();
@@ -109,6 +116,10 @@ public class UnionFindSizeBased<T> implements UnionFind<T> {
         return buffer.toString();
     }
 
+    /**
+     * Class to represent elements and the required associated meta information to efficiently maintain the
+     * UnionFind data structure.
+     */
     private class Element {
 
         private final T object;

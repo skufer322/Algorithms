@@ -12,12 +12,12 @@ import java.util.List;
 public interface GraphBfs {
 
     /**
-     * Conducts a breadth-first search for the given graph, starting from start vertex s. Returns the vertices connected
-     * to s in the order of visit.
+     * Conducts a breadth-first search for the given graph, starting from starting vertex {@code s}. Returns the vertices connected
+     * to {@code s} in the order of visit.
      *
      * @param adjacencyList adjacency list of the graph for which the bfs is to be conducted
-     * @param s             start vertex
-     * @return vertices connected to s in the order of visit
+     * @param s             starting vertex
+     * @return vertices connected to {@code s} in the order of visit
      */
     @NotNull List<UnVertex> conductBfs(@NotNull UnAdjacencyList adjacencyList, @NotNull UnVertex s);
 }

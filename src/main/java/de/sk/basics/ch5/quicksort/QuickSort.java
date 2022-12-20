@@ -3,13 +3,13 @@ package de.sk.basics.ch5.quicksort;
 import de.sk.basics.ch5.Sorter;
 import de.sk.basics.ch5.quicksort.partition.Partitioner;
 import de.sk.basics.ch5.quicksort.pivot.PivotChooser;
-import org.jetbrains.annotations.NotNull;
 import de.sk.util.SortingUtils;
+import org.jetbrains.annotations.NotNull;
 
 import javax.inject.Inject;
 
 /**
- * Implementation using QuickSort to sort the array.
+ * Implementation of {@link Sorter} using QuickSort to sort the array (O(n log n) best and avg case, O(n²) worst case).
  */
 public class QuickSort implements Sorter {
 

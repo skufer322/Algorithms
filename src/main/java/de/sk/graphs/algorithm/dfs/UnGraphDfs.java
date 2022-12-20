@@ -12,12 +12,12 @@ import java.util.List;
 public interface UnGraphDfs {
 
     /**
-     * Conducts a depth-first search for the given graph, starting from start vertex s. Returns the vertices connected
-     * to s in the order of visit.
+     * Conducts a depth-first search for the given graph, starting from starting vertex {@code s}. Returns the vertices connected
+     * to {@code s} in the order of visit.
      *
      * @param adjacencyList adjacency list of the graph for which the dfs is to be conducted
-     * @param s             start vertex
-     * @return vertices connected to s in the order of visit
+     * @param s             starting vertex
+     * @return vertices connected to {@code s} in the order of visit
      */
     @NotNull List<UnVertex> conductDfs(@NotNull UnAdjacencyList adjacencyList, @NotNull UnVertex s);
 }

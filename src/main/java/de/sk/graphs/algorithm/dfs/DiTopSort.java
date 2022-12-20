@@ -8,10 +8,21 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
+/**
+ * Implementation of an O(m+n) algorithm to determine a topological ordering for a given graph.
+ */
 public class DiTopSort {
 
     private int nextTopSortPosition;
 
+    /**
+     * Determines the topological ordering for the given graph (represented as {@code adjacencyList}). The boolean
+     * {@code isReverse} specifies whether the edges are to be traced in the reversed direction.
+     *
+     * @param adjacencyList graph for which the topological ordering shall be determined
+     * @param isReverse whether the edges of the graph are to be traced in the reversed direction, or not
+     * @return list of the graph's vertices, sorted in a topological ordering
+     */
     public @NotNull List<DiVertex> determineTopologicalOrdering(@NotNull DiAdjacencyList adjacencyList, boolean isReverse) {
         List<DiVertex> vertices = adjacencyList.vertices();
         this.nextTopSortPosition = vertices.size();

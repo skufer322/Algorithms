@@ -10,10 +10,10 @@ import org.jetbrains.annotations.NotNull;
 public interface ClosestPairFinder {
 
     /**
-     * Determines the closest pair for the given array of 2D points.
+     * Determines the closest pair for the given array of 2D {@code points}.
      *
      * @param points array of 2D points for which the closest pair shall be determined
-     * @return closest pair of 2D points
+     * @return closest pair of 2D {@code points}
      */
     @NotNull Pair<Point2D, Point2D> determineClosestPair(@NotNull Point2D[] points);
 }

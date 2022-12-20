@@ -13,6 +13,10 @@ import javax.inject.Inject;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * {@link UnionFind}-based implementation of Kruskal's algorithm for determining the Minimum Spanning Tree of a given
+ * connected, undirected graph {@link MstAlg}. Time complexity: O(m log n).
+ */
 public class KruskalAlgUnionFindBased implements MstAlg {
 
     static final Comparator<UnEdge> EDGE_WEIGHT_SORTER = Comparator.comparing(UnEdge::getWeight, Comparator.naturalOrder());

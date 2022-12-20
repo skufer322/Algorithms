@@ -9,10 +9,10 @@ import org.jetbrains.annotations.NotNull;
 public interface Selector {
 
     /**
-     * Returns the i-th-largest element/i-th-order statistics for the given array.
+     * Returns the i-th-largest element/{@code ithOrderStatistics} of the given {@code array}.
      * @param array array
      * @param ithOrderStatistics specification which element to return (the i-th-largest element)
-     * @return the i-th-largest element of the array
+     * @return the i-th-largest element of the {@code array}
      */
     int select(int @NotNull [] array, int ithOrderStatistics);
 }

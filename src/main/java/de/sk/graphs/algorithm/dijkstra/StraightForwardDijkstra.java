@@ -13,7 +13,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Straight-forward implementation of Dijkstra's algorithm for the single-source shortest path problem which runs in O(mn).
+ * Straight-forward implementation of {@link Dijkstra}'s algorithm for the single-source shortest path problem which runs in O(mn).
  */
 public class StraightForwardDijkstra extends AbstractDijkstra {
 
@@ -31,6 +31,7 @@ public class StraightForwardDijkstra extends AbstractDijkstra {
         this.processedVertices = new HashSet<>();
     }
 
+    @Override
     public void determineSingleSourceShortestPaths(@NotNull DiAdjacencyList adjacencyList, @NotNull DiVertex s) {
         GraphUtils.assertAllEdgesHaveWeightGreaterThan(adjacencyList, ZERO);
         this.processedVertices.clear();

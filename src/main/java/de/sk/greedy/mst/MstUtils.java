@@ -14,6 +14,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Utility class supplying various 'Minimum Spanning Tree'-related utility methods.
+ */
 public final class MstUtils {
 
     static final String NOT_EXACTLY_1_CC_EXCEPTION_MSG_TEXT_FORMAT = "Undirected graph must consist of exactly 1 connected component. Number of connected components: %d.";
@@ -27,6 +30,13 @@ public final class MstUtils {
         // only utils
     }
 
+    /**
+     * Verifies the integrity of the graph for which the Minimum Spanning Tree (MST) shall be determined. It only makes sense
+     * to determine the minimum spanning tree for undirected, connected graphs. Also, it is checked that at a max, there is
+     * only 1 edge between each pair of vertices.
+     *
+     * @param undirectedGraph undirected graph which shall be verified for its integrity to apply MST algorithms on it
+     */
     public static void verifyIntegrityOfGraph(@NotNull UnAdjacencyList undirectedGraph) {
         // verify that graph consists of exactly one connected component
         List<Set<UnVertex>> connectedComponents = UCC.determineConnectedComponents(undirectedGraph);

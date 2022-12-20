@@ -30,7 +30,7 @@ public interface Point2DGenerator {
      * @param minY lower bound for the y-coordinate of created points
      * @param maxY upper bound for the y-coordinate of created points
      * @param n number of points to create
-     * @param random Random used in the shuffling
+     * @param random Random used in the shuffling process
      * @return list of n 2D points
      */
     @NotNull List<Point2D> createPoints(int minX, int maxX, int minY, int maxY, int n, @NotNull Random random);

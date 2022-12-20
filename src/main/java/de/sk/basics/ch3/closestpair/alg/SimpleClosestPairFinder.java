@@ -10,7 +10,7 @@ import javax.inject.Inject;
 import java.util.Arrays;
 
 /**
- * Brute force implementation of {@link ClosestPairFinder}, runtime of O(n²).
+ * Brute force implementation of {@link ClosestPairFinder}, time complexity of O(n²).
  */
 public class SimpleClosestPairFinder extends ArgumentValidatingClosestPairFinder {
 
@@ -21,6 +21,7 @@ public class SimpleClosestPairFinder extends ArgumentValidatingClosestPairFinder
 
     @Override
     public @NotNull Pair<Point2D, Point2D> determineClosestPair(@NotNull Point2D[] points) {
+        this.validateDetermineClosestPairMethodArguments(points);
         double minDist = Double.MAX_VALUE;
         Point2D[] closestPair = new Point2D[2];
         for (int i = 0; i < points.length; i++) {

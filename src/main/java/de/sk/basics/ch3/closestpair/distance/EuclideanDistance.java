@@ -5,7 +5,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Implementation of the euclidean distance measure.
+ * Implementation of the Euclidean {@link Distance} measure.
  */
 public class EuclideanDistance implements Distance {
 

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Straight-forward adjacency list implementation for directed graphs.
+ * Straight-forward {@link AdjacencyList} implementation for directed graphs.
  *
  * @param vertices the graph's vertices
  * @param edges    the graph's edges
@@ -17,6 +17,8 @@ import java.util.List;
 public record DiAdjacencyList(List<DiVertex> vertices, List<DiEdge> edges) implements AdjacencyList {
 
     /**
+     * Constructor.
+     *
      * @param vertices vertices of the graph
      * @param edges    edges of the graph
      */

@@ -10,10 +10,10 @@ import java.math.BigInteger;
 public class MultiplierUtils {
 
     /**
-     * Determines the number of digits the given big integer has.
+     * Determines the number of digits the given big {@code integer} has.
      *
      * @param integer big integer for which the number of digits shall be determined
-     * @return number of digits of the given big integer
+     * @return number of digits of the given big {@code integer}
      */
     public static int getIntegerLength(@NotNull BigInteger integer){
         String integerAsString = String.valueOf(integer);
@@ -33,13 +33,14 @@ public class MultiplierUtils {
     }
 
     /**
-     * Calculates the next greater power of 2 for the given integer.
+     * Calculates the next greater power of 2 for the given {@code integer} .
      * For example,
-     * if integer is 3, the next greater power of 2 is 4 (2^2)
-     * if integer is 6, the next greater power of 2 is 8 (2^3)
+     * if {@code integer} is 3, the next greater power of 2 is 4 (2^2)
+     * if {@code integer} is 6, the next greater power of 2 is 8 (2^3)
+     * if {@code integer} is 30, the next greater power of 2 is 32 (2^5)
      *
      * @param integer integer for which the next greater power of 2 shall be calculated
-     * @return next greater power of 2 for integer
+     * @return next greater power of 2 for {@code integer}
      */
     public static int getNextGreaterPowerOfTwo(int integer){
         return (int) Math.pow(2, Math.ceil(Math.log(integer)/Math.log(2)));

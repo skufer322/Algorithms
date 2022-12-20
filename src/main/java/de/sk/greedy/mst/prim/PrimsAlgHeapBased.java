@@ -7,6 +7,7 @@ import de.sk.graphs.datastructure.undirected.UnEdge;
 import de.sk.graphs.datastructure.undirected.UnVertex;
 import de.sk.greedy.mst.MstAlg;
 import de.sk.greedy.mst.MstUtils;
+import de.sk.greedy.mst.datastructure.unionfind.UnionFind;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -15,6 +16,10 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+/**
+ * Heap-based implementation of Kruskal's algorithm for determining the Minimum Spanning Tree of a given
+ * connected, undirected graph {@link MstAlg}. Time complexity: O(m log n).
+ */
 public class PrimsAlgHeapBased implements MstAlg {
 
     @Inject

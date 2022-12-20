@@ -12,23 +12,23 @@ import java.util.Set;
 public abstract class AbstractEdgeSelector implements EdgeSelector {
 
     /**
-     * Based on the set of already selected Vertices X, determines whether the given edge (v,w) is eligible for selection
+     * Based on the set of already selected Vertices X, determines whether the given {@code edge} (v,w) is eligible for selection
      * in the next iteration of Dijkstra's algorithm, or not. An edge (v,w) is eligible if v ∈ X and w ∈ V - X (V is the
      * set of all vertices).
      *
      * @param edge                    edge whose eligibility shall be asserted
      * @param alreadySelectedVertices set of already selected vertices
-     * @return true if the given edge is eligible, else false
+     * @return true if the given {@code edge} is eligible, else false
      */
     boolean isEligibleEdge(@NotNull DiEdge edge, @NotNull Set<DiVertex> alreadySelectedVertices) {
         return alreadySelectedVertices.contains(edge.tail()) && !alreadySelectedVertices.contains(edge.head());
     }
 
     /**
-     * Calculates the Dijkstra score for the given edge.
+     * Calculates the Dijkstra score for the given {@code edge}.
      *
      * @param edge edge for which the Dijkstra score shall be calculated
-     * @return the edge's Dijkstra score
+     * @return the {@code edge}'s Dijkstra score
      */
     int calculateDijkstraScore(@NotNull DiEdge edge) {
         return edge.tail().getLen() + edge.getWeight();

@@ -10,7 +10,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * Representation of an edge in an undirected graph.
+ * Representation of an {@link Edge} in an undirected graph.
  */
 public class UnEdge implements Edge, Comparable<UnEdge> {
 
@@ -19,6 +19,8 @@ public class UnEdge implements Edge, Comparable<UnEdge> {
     private final Set<UnVertex> vertices;
 
     /**
+     * Constructor.
+     *
      * @param name name of the edge
      * @param v    first endpoint of the edge
      * @param w    second endpoint of the edge
@@ -28,6 +30,8 @@ public class UnEdge implements Edge, Comparable<UnEdge> {
     }
 
     /**
+     * Constructor.
+     *
      * @param name   name of the edge
      * @param weight weight of the edge
      * @param v      first endpoint of the edge

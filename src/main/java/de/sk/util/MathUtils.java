@@ -10,7 +10,7 @@ public final class MathUtils {
     }
 
     /**
-     * Calculates the ceil (⌈dividend/divisor⌉) of dividend and divisor, i.e. rounds the result up to the next integer number.
+     * Calculates the ceil (⌈dividend/divisor⌉) integer of dividend and divisor, i.e. rounds up the result to the next integer number.
      * E.g.:
      * 5/3 = ⌈1.666...⌉ = 2.
      * 6/2 = ⌈3⌉ = 3.
