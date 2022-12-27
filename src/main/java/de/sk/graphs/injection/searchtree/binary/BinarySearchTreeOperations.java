@@ -14,7 +14,7 @@ import java.util.List;
  */
 public final class BinarySearchTreeOperations {
 
-    static final String WRONG_PARENT_EXCEPTION_MSG_TEXT_FORMAT = "Internal error. Parent node %d of given child %d of given parent %d.";
+    static final String WRONG_PARENT_EXCEPTION_MSG_TF = "Internal error. Parent node %d of given child %d of given parent %d.";
 
     private BinarySearchTreeOperations() {
         // only utilities
@@ -23,7 +23,7 @@ public final class BinarySearchTreeOperations {
     /**
      * Returns the first ancestor which has an associated key greater than the given key. Returns null if there is no such ancestor.
      *
-     * @param key      key for which the first ancestor with a greater key shall be returned
+     * @param key      key for which the first ancestor with a greater key is to be returned
      * @param ancestor current ancestor which is checked if its key is greater than the given key
      * @return first ancestor with a greater key than the given key, or null if there is no such ancestor
      */
@@ -38,7 +38,7 @@ public final class BinarySearchTreeOperations {
      * Returns the first ancestor which has an associated key smaller than the given key. Returns null if there is no such ancestor.
      * Recursively ascends the search tree.
      *
-     * @param key      key for which the first ancestor with a smaller key shall be returned
+     * @param key      key for which the first ancestor with a smaller key is to be returned
      * @param ancestor current ancestor which is checked if its key is smaller than the given key
      * @return first ancestor with a smaller key than the given key, or null if there is no such ancestor
      */
@@ -72,8 +72,8 @@ public final class BinarySearchTreeOperations {
      * Swaps the positions of the first and the second given nodes in the binary search tree. Also, accordingly adjusts
      * the child tree counters associated with both nodes.
      *
-     * @param first            node whose position shall be swapped with the second node
-     * @param second           node whose position shall be swapped with the first node
+     * @param first            node whose position is to be swapped with the second node
+     * @param second           node whose position is to be swapped with the first node
      * @param treeChildCounter child tree counter maintaining the left and right child counts for all nodes in the search trees
      */
     public static void swapFirstAndSecondNode(@NotNull BinarySearchTreeNode first, @NotNull BinarySearchTreeNode second,
@@ -97,7 +97,7 @@ public final class BinarySearchTreeOperations {
         BinarySearchTreeNode formerChild = formerParent == first ? second : first;
         // integrity check
         if (formerChild.getParent() != formerParent) {
-            throw new IllegalArgumentException(WRONG_PARENT_EXCEPTION_MSG_TEXT_FORMAT);
+            throw new IllegalArgumentException(WRONG_PARENT_EXCEPTION_MSG_TF);
         }
         // temporary variables for subsequent swap
         boolean wasFormerChildLeftChild = formerChild.isLeftChild();

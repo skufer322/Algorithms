@@ -59,7 +59,7 @@ public final class SortingUtils {
     /**
      * Swaps the two elements specified with the indexes i and j for the given array.
      *
-     * @param array array for which the two specified elements shall be swapped
+     * @param array array for which the two specified elements are to be swapped
      * @param i     position of the first element to swap
      * @param j     position of the second element to swap
      */

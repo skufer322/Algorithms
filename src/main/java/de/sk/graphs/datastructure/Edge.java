@@ -9,7 +9,7 @@ import java.util.Set;
  */
 public interface Edge {
 
-    String BLANK_NAME_PASSED_EXCEPTION_MSG_TEXT_FORMAT = "The name passed for the edge is blank: %s";
+    String BLANK_NAME_PASSED_EXCEPTION_MSG_TF = "The name passed for the edge is blank: %s";
 
     /**
      * Returns the name of the edge.

@@ -15,12 +15,12 @@ import java.util.List;
  */
 public class BinarySearchTree implements SearchTree {
 
-    static final String DUPLICATE_KEY_EXCEPTION_MSG_TEXT_FORMAT = "Duplicate keys are not allowed. Key does already exist in search tree: %d.";
-    static final String NO_PREDECESSOR_FOUND_EXCEPTION_MSG_TEXT_FORMAT = "Internal error. No predecessor found for node to delete %d even though the node has two children.";
-    static final String ONLY_NULL_CHILDREN_FOUND_EXCEPTION_MSG_TEXT_FORMAT = "Internal error. Both children of node to delete %d are null, even " +
+    static final String DUPLICATE_KEY_EXCEPTION_MSG_TF = "Duplicate keys are not allowed. Key does already exist in search tree: %d.";
+    static final String NO_PREDECESSOR_FOUND_EXCEPTION_MSG_TF = "Internal error. No predecessor found for node to delete %d even though the node has two children.";
+    static final String ONLY_NULL_CHILDREN_FOUND_EXCEPTION_MSG_TF = "Internal error. Both children of node to delete %d are null, even " +
             "though the node should have one non-null child.";
-    static final String TREE_IS_EMPTY_EXCEPTION_MSG_TEXT_FORMAT = "The tree is empty, key %d not contained";
-    static final String KEY_NOT_CONTAINED_IN_TREE_EXCEPTION_MSG_TEXT_FORMAT = "Key %d is not contained in the tree";
+    static final String TREE_IS_EMPTY_EXCEPTION_MSG_TF = "The tree is empty, key %d not contained";
+    static final String KEY_NOT_CONTAINED_IN_TREE_EXCEPTION_MSG_TF = "Key %d is not contained in the tree";
 
 
     private boolean isEmpty;
@@ -127,7 +127,7 @@ public class BinarySearchTree implements SearchTree {
 
     private @NotNull BinarySearchTreeNode insertNode(int key, @NotNull BinarySearchTreeNode node) {
         if (key == node.getKey()) {
-            throw new IllegalArgumentException(String.format(DUPLICATE_KEY_EXCEPTION_MSG_TEXT_FORMAT, node.getKey()));
+            throw new IllegalArgumentException(String.format(DUPLICATE_KEY_EXCEPTION_MSG_TF, node.getKey()));
         }
         boolean belongsInLeftSubtree = key < node.getKey();
         this.treeChildCounter.incrementChildCount(node, belongsInLeftSubtree);
@@ -183,7 +183,7 @@ public class BinarySearchTree implements SearchTree {
         BinarySearchTreeNode parent = nodeToDelete.getParent();
         BinarySearchTreeNode child = nodeToDelete.getLeftChild() != null ? nodeToDelete.getLeftChild() : nodeToDelete.getRightChild();
         if (child == null) {
-            throw new IllegalStateException(String.format(ONLY_NULL_CHILDREN_FOUND_EXCEPTION_MSG_TEXT_FORMAT, nodeToDelete.getKey()));
+            throw new IllegalStateException(String.format(ONLY_NULL_CHILDREN_FOUND_EXCEPTION_MSG_TF, nodeToDelete.getKey()));
         }
         if (parent == null) {
             // nodeToDelete is root -> make child the new root
@@ -201,7 +201,7 @@ public class BinarySearchTree implements SearchTree {
     private @NotNull BinarySearchTreeNode deleteWith2DirectChildren(@NotNull BinarySearchTreeNode nodeToDelete) {
         BinarySearchTreeNode predecessor = (BinarySearchTreeNode) this.predecessor(nodeToDelete.getKey());
         if (predecessor == null) {
-            throw new IllegalStateException(NO_PREDECESSOR_FOUND_EXCEPTION_MSG_TEXT_FORMAT);
+            throw new IllegalStateException(NO_PREDECESSOR_FOUND_EXCEPTION_MSG_TF);
         }
         // if nodeToDelete has 2 children, one of its left children is its predecessor
         // -> decrement left child count of nodeToDelete, as it will also swap its child counts with its predecessor (and after swapping, nodeToDelete is deleted)
@@ -264,14 +264,14 @@ public class BinarySearchTree implements SearchTree {
 
     public int rank(int key) {
         if (this.isEmpty) {
-            throw new IllegalArgumentException(String.format(TREE_IS_EMPTY_EXCEPTION_MSG_TEXT_FORMAT, key));
+            throw new IllegalArgumentException(String.format(TREE_IS_EMPTY_EXCEPTION_MSG_TF, key));
         }
         return this.rankNode(this.root, key, 1);
     }
 
     private int rankNode(@Nullable BinarySearchTreeNode node, int key, int rank) {
         if (node == null) {
-            throw new IllegalArgumentException(String.format(KEY_NOT_CONTAINED_IN_TREE_EXCEPTION_MSG_TEXT_FORMAT, key));
+            throw new IllegalArgumentException(String.format(KEY_NOT_CONTAINED_IN_TREE_EXCEPTION_MSG_TF, key));
         }
         if (node.getKey() == key) {
             return rank + this.treeChildCounter.getLeftChildCount(node);
@@ -288,7 +288,7 @@ public class BinarySearchTree implements SearchTree {
     /**
      * Creates a string depicting the hierarchical structure of the binary search tree.
      *
-     * @param doPrintCounts whether the left child and right child counts shall be printed with each node, or not
+     * @param doPrintCounts whether the left child and right child counts is to be printed with each node, or not
      * @return string depicting the hierarchical structure of the binary search tree
      */
     public @NotNull String getTreeStructure(boolean doPrintCounts) {

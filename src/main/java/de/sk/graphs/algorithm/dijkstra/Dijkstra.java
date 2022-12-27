@@ -14,7 +14,7 @@ public interface Dijkstra {
      * the starting vertex.
      *
      * @param adjacencyList graph
-     * @param s             starting vertex from which the shortest paths to all reachable vertices shall be determined
+     * @param s             starting vertex from which the shortest paths to all reachable vertices are to be determined
      */
     void determineSingleSourceShortestPaths(@NotNull DiAdjacencyList adjacencyList, @NotNull DiVertex s);
 }

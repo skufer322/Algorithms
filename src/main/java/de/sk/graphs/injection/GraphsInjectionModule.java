@@ -17,15 +17,15 @@ public class GraphsInjectionModule extends AbstractModule {
     @Override
     protected void configure() {
         // BFS bindings
-        bind(GraphBfs.class).annotatedWith(Names.named(GraphConstants.INJECTION_NAME_GRAPH_BFS_SIMPLE)).to(GraphBfsImpl.class);
-        bind(GraphBfs.class).annotatedWith(Names.named(GraphConstants.INJECTION_NAME_AUGMENTED_BFS)).to(AugmentedBfs.class);
+        bind(GraphBfs.class).annotatedWith(Names.named(GraphConstants.IN_GRAPH_BFS_SIMPLE)).to(GraphBfsImpl.class);
+        bind(GraphBfs.class).annotatedWith(Names.named(GraphConstants.IN_AUGMENTED_BFS)).to(AugmentedBfs.class);
 
         // DFS bindings
-        bind(UnGraphDfs.class).annotatedWith(Names.named(GraphConstants.INJECTION_NAME_ITERATIVE_DFS)).to(UnIterativeGraphDfs.class);
-        bind(UnGraphDfs.class).annotatedWith(Names.named(GraphConstants.INJECTION_NAME_RECURSIVE_DFS)).to(UnRecursiveGraphDfs.class);
+        bind(UnGraphDfs.class).annotatedWith(Names.named(GraphConstants.IN_ITERATIVE_DFS)).to(UnIterativeGraphDfs.class);
+        bind(UnGraphDfs.class).annotatedWith(Names.named(GraphConstants.IN_RECURSIVE_DFS)).to(UnRecursiveGraphDfs.class);
 
         // Dijkstra
         bind(EdgeSelector.class).to(SimpleEdgeSelector.class);
-        bind(EdgeSelector.class).annotatedWith(Names.named(GraphConstants.INJECTION_NAME_SIMPLE_EDGE_SELECTOR)).to(SimpleEdgeSelector.class);
+        bind(EdgeSelector.class).annotatedWith(Names.named(GraphConstants.IN_SIMPLE_EDGE_SELECTOR)).to(SimpleEdgeSelector.class);
     }
 }

@@ -39,7 +39,7 @@ public class UnEdge implements Edge, Comparable<UnEdge> {
      */
     public UnEdge(@NotNull String name, int weight, @NotNull UnVertex v, @NotNull UnVertex w) {
         if (StringUtils.isBlank(name)) {
-            throw new IllegalArgumentException(String.format(BLANK_NAME_PASSED_EXCEPTION_MSG_TEXT_FORMAT, name));
+            throw new IllegalArgumentException(String.format(BLANK_NAME_PASSED_EXCEPTION_MSG_TF, name));
         }
         this.name = name;
         this.weight = weight;

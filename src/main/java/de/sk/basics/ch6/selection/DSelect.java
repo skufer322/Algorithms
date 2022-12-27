@@ -16,7 +16,7 @@ import java.util.Arrays;
  */
 public class DSelect extends ArgumentValidatingSelector {
 
-    static final String ELEMENT_NOT_CONTAINED_EXCEPTION_MSG_TEXT_FORMAT = "Element %d is not contained within the (sub)array bounds [%d;%d] of array %s.";
+    static final String ELEMENT_NOT_CONTAINED_EXCEPTION_MSG_TF = "Element %d is not contained within the (sub)array bounds [%d;%d] of array %s.";
 
     static final int GROUP_SIZE = 5;
 
@@ -83,6 +83,6 @@ public class DSelect extends ArgumentValidatingSelector {
                 return i;
             }
         }
-        throw new IllegalStateException(String.format(ELEMENT_NOT_CONTAINED_EXCEPTION_MSG_TEXT_FORMAT, element, l, r, Arrays.toString(array)));
+        throw new IllegalStateException(String.format(ELEMENT_NOT_CONTAINED_EXCEPTION_MSG_TF, element, l, r, Arrays.toString(array)));
     }
 }

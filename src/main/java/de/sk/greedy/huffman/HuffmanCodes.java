@@ -12,7 +12,7 @@ public interface HuffmanCodes {
     /**
      * For the given string {@code toEncode}, determines the occurring symbols and their probabilities.
      *
-     * @param toEncode string for which the symbols and their occurrences shall be determined
+     * @param toEncode string for which the symbols and their occurrences is to be determined
      * @return map of occurring symbols (as key) and their probabilities (as double between ]0;1]).
      */
     @NotNull Map<Character, Double> determineSymbolsAndProbabilities(@NotNull String toEncode);

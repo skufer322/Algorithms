@@ -12,13 +12,13 @@ import java.math.BigInteger;
  */
 public class SimpleIntegerSplitter implements IntegerSplitter {
 
-    static final String N_IS_SHORTER_THAN_MAX_DIGITS_XY_EXCEPTION_TEXT_FORMAT = "n (%d) must be >= max {number of digits of x (%s); number of digits of y (%s)}";
+    static final String N_IS_SHORTER_THAN_MAX_DIGITS_XY_EXCEPTION_TF = "n (%d) must be >= max {number of digits of x (%s); number of digits of y (%s)}";
 
     @Override
     public @NotNull Pair<Pair<BigInteger, BigInteger>, Pair<BigInteger, BigInteger>> splitIntoHalves(@NotNull BigInteger x, @NotNull BigInteger y, int n) {
         // check integrity
         if (Math.max(MultiplierUtils.getIntegerLength(x), MultiplierUtils.getIntegerLength(y)) > n) {
-            throw new IllegalArgumentException(String.format(N_IS_SHORTER_THAN_MAX_DIGITS_XY_EXCEPTION_TEXT_FORMAT, n, x, y));
+            throw new IllegalArgumentException(String.format(N_IS_SHORTER_THAN_MAX_DIGITS_XY_EXCEPTION_TF, n, x, y));
         }
 
         // split x in halves

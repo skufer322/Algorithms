@@ -13,10 +13,10 @@ import java.util.stream.Stream;
  */
 public class HuffmanTreeNode {
 
-    static final String CHILDREN_BOTH_MUST_BE_NULL_OR_NON_NULL_ = "The left and the right child have to be either both null or " +
+    static final String CHILDREN_BOTH_MUST_BE_NULL_OR_NON_NULL_TF = "The left and the right child have to be either both null or " +
             "both non-null, but not a mix. left: %s, right: %s";
-    static final String PROBABILITY_MUST_BE_BETWEEN_0_AND_1_EXCEPTION_MSG_TEXT_FORMAT = "Probability must be between 0 and 1. Given: %s.";
-    static final String NAME_IS_BLANK_EXCEPTION_MSG_TEXT_FORMAT = "Name must not be blank. Name: '%s', probability: '%s'.";
+    static final String PROBABILITY_MUST_BE_BETWEEN_0_AND_1_EXCEPTION_MSG_TF = "Probability must be between 0 and 1. Given: %s.";
+    static final String NAME_IS_BLANK_EXCEPTION_MSG_TF = "Name must not be blank. Name: '%s', probability: '%s'.";
 
     private final String name;
     private final double probability;
@@ -28,7 +28,7 @@ public class HuffmanTreeNode {
      * Constructor for creating a leaf node in the Huffman tree. Has no point pointers to child nodes and the {@code name}
      * is passed as a character since the {@code name} of a leaf node corresponds to the symbol it represents.
      *
-     * @param name symbol the leaf node to create shall represent in the Huffman tree
+     * @param name symbol the leaf node to create is to represent in the Huffman tree
      * @param probability probability that the given symbol occurs in the sequence of symbols to encode
      */
     public HuffmanTreeNode(@NotNull Character name, double probability) {
@@ -40,20 +40,20 @@ public class HuffmanTreeNode {
      * (featuring both a {@code left} and a {@code right} child), but can also be used for creating leaf nodes (by passing
      * null for both {@code left} and {@code right}).
      *
-     * @param name name of the node (made up of the symbol(s) the node shall represent)
+     * @param name name of the node (made up of the symbol(s) the node is to represent)
      * @param probability probability that the symbol(s) represented by this node occur(s) in the sequence of symbols to encode
      * @param left left child node
      * @param right right child node
      */
     public HuffmanTreeNode(@NotNull String name, double probability, @Nullable HuffmanTreeNode left, @Nullable HuffmanTreeNode right) {
         if (Stream.of(left, right).filter(Objects::nonNull).count() == 1) {
-            throw new IllegalArgumentException(String.format(CHILDREN_BOTH_MUST_BE_NULL_OR_NON_NULL_, left, right));
+            throw new IllegalArgumentException(String.format(CHILDREN_BOTH_MUST_BE_NULL_OR_NON_NULL_TF, left, right));
         }
         if (probability < 0d || probability > 1d) {
-            throw new IllegalArgumentException(String.format(PROBABILITY_MUST_BE_BETWEEN_0_AND_1_EXCEPTION_MSG_TEXT_FORMAT, probability));
+            throw new IllegalArgumentException(String.format(PROBABILITY_MUST_BE_BETWEEN_0_AND_1_EXCEPTION_MSG_TF, probability));
         }
         if (StringUtils.isBlank(name)) {
-            throw new IllegalArgumentException(String.format(NAME_IS_BLANK_EXCEPTION_MSG_TEXT_FORMAT, name, probability));
+            throw new IllegalArgumentException(String.format(NAME_IS_BLANK_EXCEPTION_MSG_TF, name, probability));
         }
         this.name = name;
         this.probability = probability;

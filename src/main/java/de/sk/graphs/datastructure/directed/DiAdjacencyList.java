@@ -1,6 +1,6 @@
 package de.sk.graphs.datastructure.directed;
 
-import de.sk.graphs.GraphUtils;
+import de.sk.graphs.util.CommonGraphUtils;
 import de.sk.graphs.datastructure.AdjacencyList;
 import de.sk.util.CollectionUtils;
 import org.jetbrains.annotations.NotNull;
@@ -25,9 +25,9 @@ public record DiAdjacencyList(List<DiVertex> vertices, List<DiEdge> edges) imple
     public DiAdjacencyList(@NotNull List<DiVertex> vertices, @NotNull List<DiEdge> edges) {
         // validate integrity of given vertices and edges
         if (CollectionUtils.containsNullElement(vertices) || CollectionUtils.containsNullElement(edges)) {
-            throw new IllegalArgumentException(String.format(NULL_ELEMENT_IN_LISTS_EXCEPTION_MSG_TEXT_FORMAT, vertices, edges));
+            throw new IllegalArgumentException(String.format(NULL_ELEMENT_IN_LISTS_EXCEPTION_MSG_TF, vertices, edges));
         }
-        GraphUtils.validateEdgesAreInGraph(vertices, edges);
+        CommonGraphUtils.validateEdgesAreInGraph(vertices, edges);
         // set class members
         this.vertices = new ArrayList<>(vertices);
         this.edges = new ArrayList<>(edges);

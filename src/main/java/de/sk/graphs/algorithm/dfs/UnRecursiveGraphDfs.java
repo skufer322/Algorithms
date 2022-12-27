@@ -1,7 +1,7 @@
 package de.sk.graphs.algorithm.dfs;
 
 import de.sk.graphs.GraphConstants;
-import de.sk.graphs.GraphUtils;
+import de.sk.graphs.util.UndirectedGraphUtils;
 import de.sk.graphs.datastructure.undirected.UnAdjacencyList;
 import de.sk.graphs.datastructure.undirected.UnEdge;
 import de.sk.graphs.datastructure.undirected.UnVertex;
@@ -30,7 +30,7 @@ public class UnRecursiveGraphDfs implements UnGraphDfs {
             v.setGraphSearchPosition(this.nextGraphSearchPosition++);
             v.setExplored(true);
             for (UnEdge edge : v.getEdges()) {
-                UnVertex w = GraphUtils.getOtherVertexOfEdge(edge, v);
+                UnVertex w = UndirectedGraphUtils.getOtherVertexOfEdge(edge, v);
                 this.recursiveDfs(w);
             }
         }

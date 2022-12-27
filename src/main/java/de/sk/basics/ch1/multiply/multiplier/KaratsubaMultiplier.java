@@ -13,7 +13,7 @@ import java.math.BigInteger;
  */
 public class KaratsubaMultiplier implements Multiplier {
 
-    static final String NEGATIVE_INTEGER_PARAMETER_MSG_TEXT_FORMAT = "At least one of x/y is negative. Only non-negative integers allowed. x:%s, y:%s";
+    static final String NEGATIVE_INTEGER_PARAMETER_MSG_TF = "At least one of x/y is negative. Only non-negative integers allowed. x:%s, y:%s";
 
     static final BigInteger TEN = BigInteger.TEN;
     static final BigInteger TWO = BigInteger.TWO;
@@ -25,7 +25,7 @@ public class KaratsubaMultiplier implements Multiplier {
     public @NotNull BigInteger multiply(@NotNull BigInteger x, @NotNull BigInteger y) {
         // integrity check
         if (x.signum() == -1 || y.signum() == -1) {
-            throw new IllegalArgumentException(String.format(NEGATIVE_INTEGER_PARAMETER_MSG_TEXT_FORMAT, x, y));
+            throw new IllegalArgumentException(String.format(NEGATIVE_INTEGER_PARAMETER_MSG_TF, x, y));
         }
 
         // check base case

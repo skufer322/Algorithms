@@ -41,7 +41,7 @@ public class DiEdge implements Edge {
      */
     public DiEdge(@NotNull String name, @NotNull DiVertex tail, @NotNull DiVertex head, int weight) {
         if (StringUtils.isBlank(name)) {
-            throw new IllegalArgumentException(String.format(BLANK_NAME_PASSED_EXCEPTION_MSG_TEXT_FORMAT, name));
+            throw new IllegalArgumentException(String.format(BLANK_NAME_PASSED_EXCEPTION_MSG_TF, name));
         }
         this.name = name;
         this.tail = tail;

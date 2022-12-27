@@ -10,12 +10,15 @@ import java.util.*;
 public class HuffmanCodesImpl implements HuffmanCodes {
 
     // exception message text formats for validation errors
-    static final String TOO_FEW_SYMBOLS_EXCEPTION_MSG_TEXT_FORMAT = "At least 2 symbols must be given. Given %d symbol(s).";
-    static final String PROBABILITIES_SUM_IS_NOT_1_EXCEPTION_MSG_TEXT_FORMAT = "Probabilities do not add up to 1. Sum of probabilities: %s.";
-    static final String SYMBOL_IS_NOT_UNIQUE_EXCEPTION_MSG_TEXT_FORMAT = "Symbol '%s' exists at least twice in input map. Symbols must be unique.";
+    static final String TOO_FEW_SYMBOLS_EXCEPTION_MSG_TF = "At least 2 symbols must be given. Given %d symbol(s).";
+    static final String PROBABILITIES_SUM_IS_NOT_1_EXCEPTION_MSG_TF = "Probabilities do not add up to 1. Sum of probabilities: %s.";
+    static final String SYMBOL_IS_NOT_UNIQUE_EXCEPTION_MSG_TF = "Symbol '%s' exists at least twice in input map. Symbols must be unique.";
     // exception message text formats for implementation errors
-    static final String COULD_NOT_FIND_LOWEST_PROBABILITY_NODE_EXCEPTION_MSG_TEXT_FORMAT = "Internal error: Could not find the node with the lowest probability.";
-    static final String FAILED_TO_CREATE_HUFFMAN_TREE_EXCEPTION_MSG_TEXT_FORMAT = "Internal error: Failed to create Huffman tree for symbols and probabilities: %s.";
+    static final String COULD_NOT_FIND_LOWEST_PROBABILITY_NODE_EXCEPTION_MSG_TF = "Internal error: Could not find the node with the lowest probability.";
+    static final String FAILED_TO_CREATE_HUFFMAN_TREE_EXCEPTION_MSG_TF = "Internal error: Failed to create Huffman tree for symbols and probabilities: %s.";
+
+    static final String NOT_A_VALID_LEAF_NODE_EXCEPTION_MSG_TF = "Node with name '%s' is not a valid leaf node (valid leaf nodes represent a symbol of length 1).";
+    static final String CONTAINS_MORE_THAN_1_NODE_FOR_SYMBOL_EXCEPTION_MSG_TF = "Huffman tree contains more than one leaf node representing symbol '%s'.";
 
     static final Comparator<HuffmanTreeNode> HUFFMAN_TREE_NODE_COMPARATOR = Comparator.comparingDouble(HuffmanTreeNode::getProbability);
 
@@ -59,21 +62,21 @@ public class HuffmanCodesImpl implements HuffmanCodes {
             this.multipleSymbolsTrees.add(mergedNode);
         }
         return Optional.ofNullable(this.multipleSymbolsTrees.poll())
-                .orElseThrow(() -> new IllegalStateException(String.format(FAILED_TO_CREATE_HUFFMAN_TREE_EXCEPTION_MSG_TEXT_FORMAT, symbolsAndProbabilities)));
+                .orElseThrow(() -> new IllegalStateException(String.format(FAILED_TO_CREATE_HUFFMAN_TREE_EXCEPTION_MSG_TF, symbolsAndProbabilities)));
     }
 
     private void validate(@NotNull Map<Character, Double> symbolsAndProbabilities) {
         if (symbolsAndProbabilities.size() < 2) {
-            throw new IllegalArgumentException(String.format(TOO_FEW_SYMBOLS_EXCEPTION_MSG_TEXT_FORMAT, symbolsAndProbabilities.size()));
+            throw new IllegalArgumentException(String.format(TOO_FEW_SYMBOLS_EXCEPTION_MSG_TF, symbolsAndProbabilities.size()));
         }
         double sumOfProbabilities = symbolsAndProbabilities.values().stream().mapToDouble(Double::doubleValue).sum();
         if (sumOfProbabilities != 1d) {
-            throw new IllegalArgumentException(String.format(PROBABILITIES_SUM_IS_NOT_1_EXCEPTION_MSG_TEXT_FORMAT, sumOfProbabilities));
+            throw new IllegalArgumentException(String.format(PROBABILITIES_SUM_IS_NOT_1_EXCEPTION_MSG_TF, sumOfProbabilities));
         }
         Set<Character> symbols = new HashSet<>();
         for (Character symbol : symbolsAndProbabilities.keySet()) {
             if (symbols.contains(symbol)) {
-                throw new IllegalArgumentException(String.format(SYMBOL_IS_NOT_UNIQUE_EXCEPTION_MSG_TEXT_FORMAT, symbol));
+                throw new IllegalArgumentException(String.format(SYMBOL_IS_NOT_UNIQUE_EXCEPTION_MSG_TF, symbol));
             } else {
                 symbols.add(symbol);
             }
@@ -104,7 +107,7 @@ public class HuffmanCodesImpl implements HuffmanCodes {
 
         HuffmanTreeNode lowestProbabilityTreeRoot = firstCandidateProbability <= secondCandidateProbability ? this.oneSymbolTrees.poll() : this.multipleSymbolsTrees.poll();
         return Optional.ofNullable(lowestProbabilityTreeRoot)
-                .orElseThrow(() -> new IllegalStateException(COULD_NOT_FIND_LOWEST_PROBABILITY_NODE_EXCEPTION_MSG_TEXT_FORMAT));
+                .orElseThrow(() -> new IllegalStateException(COULD_NOT_FIND_LOWEST_PROBABILITY_NODE_EXCEPTION_MSG_TF));
     }
 
     private @NotNull HuffmanTreeNode createMergedNode(@NotNull HuffmanTreeNode n1, @NotNull HuffmanTreeNode n2) {
@@ -141,11 +144,11 @@ public class HuffmanCodesImpl implements HuffmanCodes {
         Map<Character, HuffmanTreeNode> symbolNodeMap = new HashMap<>();
         for (HuffmanTreeNode symbolNode : symbolNodes) {
             if (symbolNode.getName().length() != 1) {
-                throw new IllegalStateException("TODO not a valid leaf node symbol");
+                throw new IllegalStateException(String.format(NOT_A_VALID_LEAF_NODE_EXCEPTION_MSG_TF, symbolNode.getName()));
             }
             Character symbol = symbolNode.getName().charAt(0);
             if (symbolNodeMap.containsKey(symbol)) {
-                throw new IllegalStateException("TODO more than 1 node with symbol contained in huffman tree");
+                throw new IllegalStateException(String.format(CONTAINS_MORE_THAN_1_NODE_FOR_SYMBOL_EXCEPTION_MSG_TF, symbol));
             }
             symbolNodeMap.put(symbol, symbolNode);
         }

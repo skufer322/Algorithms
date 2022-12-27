@@ -14,13 +14,23 @@ import java.util.stream.Collectors;
  */
 public class DiVertex implements Vertex, Comparable<DiVertex> {
 
-    static final String NOT_HEAD_OF_INCOMING_EDGE_EXCEPTION_MSG_TEXT_FORMAT = "Vertex %s is not the head of edge %s.";
-    static final String NOT_TAIL_OF_OUTGOING_EDGE_EXCEPTION_MSG_TEXT_FORMAT = "Vertex %s is not the tail of edge %s";
+    // default attribute values (DAV) for vertices in directed graphs (DG)
+    public static final boolean DAV_DG_IS_EXPLORED = false;
+    public static final int DAV_DG_TOP_SORT_POSITION = -1;
+    public static final int DAV_DG_CC = -1;
+    public static final int DAV_DG_NUM_SCC = -1;
+    public static final int DAV_DG_LEN = -1;
+    public static final int DAV_DG_KEY = -1;
 
+    // text format (tf) strings for exception messages
+    static final String NOT_HEAD_OF_INCOMING_EDGE_EXCEPTION_MSG_TF = "Vertex %s is not the head of edge %s.";
+    static final String NOT_TAIL_OF_OUTGOING_EDGE_EXCEPTION_MSG_TF = "Vertex %s is not the tail of edge %s";
+
+    // regular attributes
     private final String name;
     private final List<DiEdge> incomingEdges;
     private final List<DiEdge> outgoingEdges;
-
+    // attributes which can be modified in diverse graph algorithms
     private boolean isExplored;
     private int topSortPosition;
     private int cc;
@@ -35,7 +45,7 @@ public class DiVertex implements Vertex, Comparable<DiVertex> {
      */
     public DiVertex(@NotNull String name) {
         if (StringUtils.isBlank(name)) {
-            throw new IllegalArgumentException(String.format(BLANK_NAME_PASSED_EXCEPTION_MSG_TEXT_FORMAT, name));
+            throw new IllegalArgumentException(String.format(BLANK_NAME_PASSED_EXCEPTION_MSG_TF, name));
         }
         this.name = name;
         this.incomingEdges = new ArrayList<>();
@@ -69,7 +79,7 @@ public class DiVertex implements Vertex, Comparable<DiVertex> {
      */
     public void addIncomingEdge(@NotNull DiEdge edge) {
         if (edge.head() != this) {
-            throw new IllegalArgumentException(String.format(NOT_HEAD_OF_INCOMING_EDGE_EXCEPTION_MSG_TEXT_FORMAT, this.name, edge));
+            throw new IllegalArgumentException(String.format(NOT_HEAD_OF_INCOMING_EDGE_EXCEPTION_MSG_TF, this.name, edge));
         }
         this.incomingEdges.add(edge);
     }
@@ -82,7 +92,7 @@ public class DiVertex implements Vertex, Comparable<DiVertex> {
      */
     public void addOutgoingEdge(@NotNull DiEdge edge) {
         if (edge.tail() != this) {
-            throw new IllegalArgumentException(String.format(NOT_TAIL_OF_OUTGOING_EDGE_EXCEPTION_MSG_TEXT_FORMAT, this.name, edge));
+            throw new IllegalArgumentException(String.format(NOT_TAIL_OF_OUTGOING_EDGE_EXCEPTION_MSG_TF, this.name, edge));
         }
         this.outgoingEdges.add(edge);
     }
@@ -137,6 +147,20 @@ public class DiVertex implements Vertex, Comparable<DiVertex> {
 
     public void setKey(int key) {
         this.key = key;
+    }
+
+    /**
+     * Resets all attribute values of the vertex which could be set in diverse algorithms to their default values.
+     * <p>
+     * The {@code name} and the set of {@code incomingEdges}, and the set of {@code outgoingEdges} are not reset.
+     */
+    public void resetAttributeValuesModifiableByAlgorithms() {
+        this.isExplored = DAV_DG_IS_EXPLORED;
+        this.topSortPosition = DAV_DG_TOP_SORT_POSITION;
+        this.cc = DAV_DG_CC;
+        this.numScc = DAV_DG_NUM_SCC;
+        this.len = DAV_DG_LEN;
+        this.key = DAV_DG_KEY;
     }
 
     //    @Override

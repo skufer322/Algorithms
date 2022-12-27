@@ -39,7 +39,7 @@ public class MergeSortInversionCounter implements InversionCounter {
     private @NotNull Pair<int[], Long> mergeAndCountInversions(Pair<int[], Long> leftHalfAndInversions, Pair<int[], Long> rightHalfAndInversions) {
         // get the number of inversions which occurred so far
         long inversions = leftHalfAndInversions.getValue() + rightHalfAndInversions.getValue();
-        // get halves which shall be merged
+        // get halves which are to be merged
         int[] leftHalf = leftHalfAndInversions.getKey();
         int[] rightHalf = rightHalfAndInversions.getKey();
 

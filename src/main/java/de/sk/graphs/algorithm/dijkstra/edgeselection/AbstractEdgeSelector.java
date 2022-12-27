@@ -16,7 +16,7 @@ public abstract class AbstractEdgeSelector implements EdgeSelector {
      * in the next iteration of Dijkstra's algorithm, or not. An edge (v,w) is eligible if v ∈ X and w ∈ V - X (V is the
      * set of all vertices).
      *
-     * @param edge                    edge whose eligibility shall be asserted
+     * @param edge                    edge whose eligibility is to be asserted
      * @param alreadySelectedVertices set of already selected vertices
      * @return true if the given {@code edge} is eligible, else false
      */
@@ -27,7 +27,7 @@ public abstract class AbstractEdgeSelector implements EdgeSelector {
     /**
      * Calculates the Dijkstra score for the given {@code edge}.
      *
-     * @param edge edge for which the Dijkstra score shall be calculated
+     * @param edge edge for which the Dijkstra score is to be calculated
      * @return the {@code edge}'s Dijkstra score
      */
     int calculateDijkstraScore(@NotNull DiEdge edge) {

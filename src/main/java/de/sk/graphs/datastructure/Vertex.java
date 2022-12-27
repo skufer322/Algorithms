@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public interface Vertex {
 
-    String BLANK_NAME_PASSED_EXCEPTION_MSG_TEXT_FORMAT = "The name passed for the vertex is blank: %s";
+    String BLANK_NAME_PASSED_EXCEPTION_MSG_TF = "The name passed for the vertex is blank: %s";
 
     /**
      * Returns the name of the vertex.

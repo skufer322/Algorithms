@@ -13,8 +13,8 @@ public class UnionFindSizeBased<T> implements UnionFind<T> {
 
     static final String ALREADY_INITIALIZED_EXCEPTION_MSG = "UnionFind data structure is already initialized!";
     static final String NOT_INITIALIZED_EXCEPTION_MSG = "UnionFind data structure has not been initialized, yet!";
-    static final String OBJECT_NOT_IN_PARENT_GRAPH_EXCEPTION_MSG_TEXT_FORMAT = "Object %s is not contained in the parent graph.";
-    static final String OUT_OF_PARENT_GRAPH_BOUNDS_EXCEPTION_MSG_TEXT_FORMAT = "Index '%d' for %s out of parent graph bounds [0;%d].";
+    static final String OBJECT_NOT_IN_PARENT_GRAPH_EXCEPTION_MSG_TF = "Object %s is not contained in the parent graph.";
+    static final String OUT_OF_PARENT_GRAPH_BOUNDS_EXCEPTION_MSG_TF = "Index '%d' for %s out of parent graph bounds [0;%d].";
 
     private boolean isInitialized;
     private int numberOfElementsInParentGraph;
@@ -22,7 +22,7 @@ public class UnionFindSizeBased<T> implements UnionFind<T> {
     private final Map<T, Integer> objectMap;
 
     /**
-     * Default constructor.
+     * Constructor.
      */
     public UnionFindSizeBased() {
         this.isInitialized = false;
@@ -100,7 +100,7 @@ public class UnionFindSizeBased<T> implements UnionFind<T> {
 
     private @NotNull Integer verifyFoundObjectIsNotNull(@Nullable Integer object) {
         return Optional.ofNullable(object)
-                .orElseThrow(() -> new IllegalArgumentException(String.format(OBJECT_NOT_IN_PARENT_GRAPH_EXCEPTION_MSG_TEXT_FORMAT, object)));
+                .orElseThrow(() -> new IllegalArgumentException(String.format(OBJECT_NOT_IN_PARENT_GRAPH_EXCEPTION_MSG_TF, object)));
     }
 
     @Override
@@ -148,7 +148,7 @@ public class UnionFindSizeBased<T> implements UnionFind<T> {
 
         private void verifyIsWithinParentGraphBounds(int idxValueToCheck, @NotNull String parameterName) {
             if (idxValueToCheck < 0 || idxValueToCheck >= numberOfElementsInParentGraph) {
-                throw new IllegalArgumentException(String.format(OUT_OF_PARENT_GRAPH_BOUNDS_EXCEPTION_MSG_TEXT_FORMAT,
+                throw new IllegalArgumentException(String.format(OUT_OF_PARENT_GRAPH_BOUNDS_EXCEPTION_MSG_TF,
                         idxValueToCheck, parameterName, parentGraph.size()));
             }
         }

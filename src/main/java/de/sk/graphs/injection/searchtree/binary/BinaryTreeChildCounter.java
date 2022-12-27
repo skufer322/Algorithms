@@ -12,8 +12,8 @@ import java.util.Map;
  */
 public class BinaryTreeChildCounter {
 
-    static final String NO_COUNTER_FOR_NODE_EXCEPTION_MSG_TEXT_FORMAT = "Internal error: No counter exists for node with key %d.";
-    static final String CHILD_COUNTS_ARE_NEGATIVE_EXCEPTION_MSG_TEXT_FORMAT = "Child counts must not be negative. leftChildCount: %d, "
+    static final String NO_COUNTER_FOR_NODE_EXCEPTION_MSG_TF = "Internal error: No counter exists for node with key %d.";
+    static final String CHILD_COUNTS_ARE_NEGATIVE_EXCEPTION_MSG_TF = "Child counts must not be negative. leftChildCount: %d, "
             + "rightChildCount: %d.";
 
     private final Map<BinarySearchTreeNode, Counter> childCounts;
@@ -29,7 +29,7 @@ public class BinaryTreeChildCounter {
      * Returns the number of nodes in the left subtree of the given {@code node} (i.e. the number of nodes in the subtree which
      * has the left child of {@code node} as a root).
      *
-     * @param node node for which the number of nodes in its left subtree shall be returned
+     * @param node node for which the number of nodes in its left subtree is to be returned
      * @return number of nodes in the left subtree of {@code node}
      */
     public int getLeftChildCount(@NotNull BinarySearchTreeNode node) {
@@ -40,7 +40,7 @@ public class BinaryTreeChildCounter {
      * Returns the number of nodes in the right subtree of the given {@code node} (i.e. the number of nodes in the subtree which
      * has the right child of {@code node} as a root).
      *
-     * @param node node for which the number of nodes in its right subtree shall be returned
+     * @param node node for which the number of nodes in its right subtree is to be returned
      * @return number of nodes in the right subtree of {@code node}
      */
     public int getRightChildCount(@NotNull BinarySearchTreeNode node) {
@@ -50,7 +50,7 @@ public class BinaryTreeChildCounter {
     /**
      * Returns the total number of nodes in the left and right subtrees of the given {@code node}.
      *
-     * @param node node for which the number of nodes in its subtrees shall be returned
+     * @param node node for which the number of nodes in its subtrees is to be returned
      * @return number of nodes in the subtrees of {@code node}
      */
     public int getTotalChildCount(@NotNull BinarySearchTreeNode node) {
@@ -61,13 +61,13 @@ public class BinaryTreeChildCounter {
     /**
      * Adds a new {@code node} and its left and right child counts.
      *
-     * @param node            new node for which the child counts shall be maintained
+     * @param node            new node for which the child counts are to be maintained
      * @param leftChildCount  number of nodes in the left subtree of {@code node}
      * @param rightChildCount number of nodes in the right subtree of {@code node}
      */
     public void put(@NotNull BinarySearchTreeNode node, int leftChildCount, int rightChildCount) {
         if (leftChildCount < 0 || rightChildCount < 0) {
-            throw new IllegalArgumentException(String.format(CHILD_COUNTS_ARE_NEGATIVE_EXCEPTION_MSG_TEXT_FORMAT, leftChildCount, rightChildCount));
+            throw new IllegalArgumentException(String.format(CHILD_COUNTS_ARE_NEGATIVE_EXCEPTION_MSG_TF, leftChildCount, rightChildCount));
         }
         this.childCounts.put(node, new Counter(leftChildCount, rightChildCount));
     }
@@ -75,7 +75,7 @@ public class BinaryTreeChildCounter {
     /**
      * Adds a new {@code node} whose left and right child counters are both set to 0.
      *
-     * @param node new node for which the child counts shall be maintained
+     * @param node new node for which the child counts are to be maintained
      */
     public void putWithNewCounter(@NotNull BinarySearchTreeNode node) {
         this.put(node, 0, 0);
@@ -100,8 +100,8 @@ public class BinaryTreeChildCounter {
     /**
      * Decrements the left or the right child count of the given {@code node}, depending on {@code isLeftChildToDecrement}.
      *
-     * @param node                   node for which the left or right child count shall be decremented
-     * @param isLeftChildToDecrement whether the left child count shall be decremented, or not (i.e. the right child count shall be decremented)
+     * @param node                   node for which the left or right child count are to be decremented
+     * @param isLeftChildToDecrement whether the left child count is to be decremented, or not (i.e. the right child count is to be decremented)
      */
     public void decrementChildCount(@NotNull BinarySearchTreeNode node, boolean isLeftChildToDecrement) {
         if (isLeftChildToDecrement) {
@@ -114,7 +114,7 @@ public class BinaryTreeChildCounter {
     /**
      * Decrements the left child count of the given {@code node}.
      *
-     * @param node node for which the left child count shall be decremented
+     * @param node node for which the left child count is to be decremented
      */
     public void decrementLeftChildCount(@NotNull BinarySearchTreeNode node) {
         this.childCounts.get(node).decrementLeftChildCount();
@@ -123,7 +123,7 @@ public class BinaryTreeChildCounter {
     /**
      * Decrements the right child count of the given {@code node}.
      *
-     * @param node node for which the right child count shall be decremented
+     * @param node node for which the right child count is to be decremented
      */
     public void decrementRightChildCount(@NotNull BinarySearchTreeNode node) {
         this.childCounts.get(node).decrementRightChildCount();
@@ -132,7 +132,7 @@ public class BinaryTreeChildCounter {
     /**
      * Removes the given {@code node} from the binary tree child counter.
      *
-     * @param node node which shall be removed from the binary tree child counter
+     * @param node node which is to be removed from the binary tree child counter
      */
     public void remove(@NotNull BinarySearchTreeNode node) {
         this.childCounts.remove(node);
@@ -141,13 +141,13 @@ public class BinaryTreeChildCounter {
     /**
      * Returns a string depicting the left and right child counter information of the given {@code node}.
      *
-     * @param node node for which the left and right child counter information shall be depicted in the returned string
+     * @param node node for which the left and right child counter information are to be depicted in the returned string
      * @return string depicting the left and right child counter information of the given {@code node}
      */
     public @NotNull String getCounterInformation(@NotNull BinarySearchTreeNode node) {
         Counter counter = this.childCounts.get(node);
         if (counter == null) {
-            throw new IllegalStateException(String.format(NO_COUNTER_FOR_NODE_EXCEPTION_MSG_TEXT_FORMAT, node.getKey()));
+            throw new IllegalStateException(String.format(NO_COUNTER_FOR_NODE_EXCEPTION_MSG_TF, node.getKey()));
         }
         return counter.toString();
     }

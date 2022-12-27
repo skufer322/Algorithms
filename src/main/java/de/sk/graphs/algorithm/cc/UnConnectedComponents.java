@@ -1,6 +1,6 @@
 package de.sk.graphs.algorithm.cc;
 
-import de.sk.graphs.GraphUtils;
+import de.sk.graphs.util.UndirectedGraphUtils;
 import de.sk.graphs.datastructure.undirected.UnAdjacencyList;
 import de.sk.graphs.datastructure.undirected.UnEdge;
 import de.sk.graphs.datastructure.undirected.UnVertex;
@@ -32,7 +32,7 @@ public class UnConnectedComponents {
         for (UnVertex vertex : adjacencyList.vertices()) {
             if (!vertex.isExplored()) {
                 vertex.setCc(cc);
-                GraphUtils.exploreVertexAndAddToQueue(vertex, this.queue);
+                UndirectedGraphUtils.exploreVertexAndAddToQueue(vertex, this.queue);
                 List<UnVertex> connectedComponent = this.processQueue(cc);
                 connectedComponents.add(Set.copyOf(connectedComponent));
                 cc++;
@@ -47,10 +47,10 @@ public class UnConnectedComponents {
             UnVertex v = this.queue.remove();
             connectedComponent.add(v);
             for (UnEdge edge : v.getEdges()) {
-                UnVertex w = GraphUtils.getOtherVertexOfEdge(edge, v);
+                UnVertex w = UndirectedGraphUtils.getOtherVertexOfEdge(edge, v);
                 if (!w.isExplored()) {
                     w.setCc(cc);
-                    GraphUtils.exploreVertexAndAddToQueue(w, this.queue);
+                    UndirectedGraphUtils.exploreVertexAndAddToQueue(w, this.queue);
                 }
             }
         }

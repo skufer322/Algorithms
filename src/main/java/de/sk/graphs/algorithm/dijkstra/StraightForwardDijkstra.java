@@ -1,6 +1,6 @@
 package de.sk.graphs.algorithm.dijkstra;
 
-import de.sk.graphs.GraphUtils;
+import de.sk.graphs.util.DirectedGraphUtils;
 import de.sk.graphs.algorithm.dijkstra.edgeselection.EdgeSelector;
 import de.sk.graphs.datastructure.directed.DiAdjacencyList;
 import de.sk.graphs.datastructure.directed.DiEdge;
@@ -33,7 +33,7 @@ public class StraightForwardDijkstra extends AbstractDijkstra {
 
     @Override
     public void determineSingleSourceShortestPaths(@NotNull DiAdjacencyList adjacencyList, @NotNull DiVertex s) {
-        GraphUtils.assertAllEdgesHaveWeightGreaterThan(adjacencyList, ZERO);
+        DirectedGraphUtils.assertAllEdgesHaveWeightGreaterThan(adjacencyList, ZERO);
         this.processedVertices.clear();
         this.initializeLenValues(adjacencyList, s);
         this.processedVertices.add(s);

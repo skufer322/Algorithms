@@ -1,6 +1,6 @@
 package de.sk.graphs.datastructure.undirected;
 
-import de.sk.graphs.GraphUtils;
+import de.sk.graphs.util.CommonGraphUtils;
 import de.sk.graphs.datastructure.AdjacencyList;
 import de.sk.util.CollectionUtils;
 import org.jetbrains.annotations.NotNull;
@@ -23,9 +23,9 @@ public record UnAdjacencyList(List<UnVertex> vertices, List<UnEdge> edges) imple
     public UnAdjacencyList(@NotNull List<UnVertex> vertices, @NotNull List<UnEdge> edges) {
         // validate integrity of given vertices and edges
         if (CollectionUtils.containsNullElement(vertices) || CollectionUtils.containsNullElement(edges)) {
-            throw new IllegalArgumentException(String.format(NULL_ELEMENT_IN_LISTS_EXCEPTION_MSG_TEXT_FORMAT, vertices, edges));
+            throw new IllegalArgumentException(String.format(NULL_ELEMENT_IN_LISTS_EXCEPTION_MSG_TF, vertices, edges));
         }
-        GraphUtils.validateEdgesAreInGraph(vertices, edges);
+        CommonGraphUtils.validateEdgesAreInGraph(vertices, edges);
         // set class members
         this.vertices = new ArrayList<>(vertices);
         this.edges = new ArrayList<>(edges);

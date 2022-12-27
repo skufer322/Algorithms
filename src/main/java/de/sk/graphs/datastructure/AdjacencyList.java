@@ -8,7 +8,7 @@ import java.util.List;
  */
 public interface AdjacencyList {
 
-    String NULL_ELEMENT_IN_LISTS_EXCEPTION_MSG_TEXT_FORMAT = "Null elements are allowed neither in the vertices " +
+    String NULL_ELEMENT_IN_LISTS_EXCEPTION_MSG_TF = "Null elements are allowed neither in the vertices " +
             "list nor the edges list. Vertices: %s. Edges: %s";
 
     /**

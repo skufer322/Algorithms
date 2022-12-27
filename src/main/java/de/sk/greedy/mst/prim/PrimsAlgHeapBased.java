@@ -1,13 +1,12 @@
 package de.sk.greedy.mst.prim;
 
-import de.sk.graphs.GraphUtils;
+import de.sk.graphs.util.UndirectedGraphUtils;
 import de.sk.graphs.algorithm.cc.UnConnectedComponents;
 import de.sk.graphs.datastructure.undirected.UnAdjacencyList;
 import de.sk.graphs.datastructure.undirected.UnEdge;
 import de.sk.graphs.datastructure.undirected.UnVertex;
 import de.sk.greedy.mst.MstAlg;
 import de.sk.greedy.mst.MstUtils;
-import de.sk.greedy.mst.datastructure.unionfind.UnionFind;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -22,9 +21,6 @@ import java.util.stream.Collectors;
  */
 public class PrimsAlgHeapBased implements MstAlg {
 
-    @Inject
-    private UnConnectedComponents ucc;
-
     private final List<UnEdge> mst = new ArrayList<>();
     private final Set<UnVertex> connectedByMst = new HashSet<>();
     private final Map<UnVertex, WinnerOfVertex> winnersOfVertices = new HashMap<>();
@@ -32,9 +28,10 @@ public class PrimsAlgHeapBased implements MstAlg {
 
     @Override
     public @NotNull List<UnEdge> determineMst(@NotNull UnAdjacencyList undirectedGraph) {
+        // verify integrity of graph
         MstUtils.verifyIntegrityOfGraph(undirectedGraph);
         this.clearDatastructures();
-        // select a random vertex as starting vertex
+        // start actual algorithm -> select a random vertex as starting vertex
         UnVertex start = undirectedGraph.vertices().get(0);
         this.connectedByMst.add(start);
         // initially fill heap with adjacent vertices to start
@@ -47,14 +44,14 @@ public class PrimsAlgHeapBased implements MstAlg {
             this.connectedByMst.add(newlyConnectedVertex);
             this.updateAffectedWinnersToMaintainHeapInvariant(newlyConnectedVertex);
         }
-        return this.mst;
+        return Collections.unmodifiableList(this.mst);
     }
 
     private void initializeHeap(@NotNull UnVertex start, @NotNull UnAdjacencyList undirectedGraph) {
         // @formatter:off
         Map<UnVertex, UnEdge> adjacentVerticesOfStartAndCorrespondingEdges = start.getEdges().stream()
                                         .filter(edge -> edge.getVertices().contains(start))
-                                        .collect(Collectors.toMap(edge -> GraphUtils.getOtherVertexOfEdge(edge, start), Function.identity())); // @formatter:off
+                                        .collect(Collectors.toMap(edge -> UndirectedGraphUtils.getOtherVertexOfEdge(edge, start), Function.identity())); // @formatter:off
         for (UnVertex vertex : undirectedGraph.vertices()) {
             if (vertex != start) {
                 UnEdge edgeBetweenStartAndVertex =  adjacentVerticesOfStartAndCorrespondingEdges.get(vertex);
@@ -68,7 +65,7 @@ public class PrimsAlgHeapBased implements MstAlg {
 
     private void updateAffectedWinnersToMaintainHeapInvariant(@NotNull UnVertex newlyConnectedVertex) {
         for (UnEdge edge : newlyConnectedVertex.getEdges()) {
-            UnVertex otherVertex = GraphUtils.getOtherVertexOfEdge(edge, newlyConnectedVertex);
+            UnVertex otherVertex = UndirectedGraphUtils.getOtherVertexOfEdge(edge, newlyConnectedVertex);
             if (!this.connectedByMst.contains(otherVertex)) {
                 WinnerOfVertex winnerOfOtherVertex = this.winnersOfVertices.get(otherVertex);
                 this.heap.remove(winnerOfOtherVertex);

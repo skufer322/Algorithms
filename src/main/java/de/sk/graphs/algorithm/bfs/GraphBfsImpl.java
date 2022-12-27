@@ -1,7 +1,7 @@
 package de.sk.graphs.algorithm.bfs;
 
 import de.sk.graphs.GraphConstants;
-import de.sk.graphs.GraphUtils;
+import de.sk.graphs.util.UndirectedGraphUtils;
 import de.sk.graphs.datastructure.undirected.UnAdjacencyList;
 import de.sk.graphs.datastructure.undirected.UnEdge;
 import de.sk.graphs.datastructure.undirected.UnVertex;
@@ -26,7 +26,7 @@ public class GraphBfsImpl implements GraphBfs {
     public @NotNull List<UnVertex> conductBfs(@NotNull UnAdjacencyList adjacencyList, @NotNull UnVertex s) {
         List<UnVertex> verticesByBfs = adjacencyList.vertices();
         s.setGraphSearchPosition(GraphConstants.INITIAL_GRAPH_SEARCH_POSITION);
-        GraphUtils.exploreVertexAndAddToQueue(s, this.queue);
+        UndirectedGraphUtils.exploreVertexAndAddToQueue(s, this.queue);
         this.processQueue();
         verticesByBfs.sort(GraphConstants.COMPARE_VERTICES_BY_GRAPH_SEARCH_POSITION);
         return verticesByBfs;
@@ -38,7 +38,7 @@ public class GraphBfsImpl implements GraphBfs {
             UnVertex v = this.queue.remove();
             List<UnEdge> edges = v.getEdges();
             for (UnEdge edge : edges) {
-                UnVertex w = GraphUtils.getOtherVertexOfEdge(edge, v);
+                UnVertex w = UndirectedGraphUtils.getOtherVertexOfEdge(edge, v);
                 if (!w.isExplored()) {
                     w.setGraphSearchPosition(nextGraphSearchPosition);
                     nextGraphSearchPosition++;

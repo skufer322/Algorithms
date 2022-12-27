@@ -19,7 +19,7 @@ public class DiTopSort {
      * Determines the topological ordering for the given graph (represented as {@code adjacencyList}). The boolean
      * {@code isReverse} specifies whether the edges are to be traced in the reversed direction.
      *
-     * @param adjacencyList graph for which the topological ordering shall be determined
+     * @param adjacencyList graph for which the topological ordering is to be determined
      * @param isReverse whether the edges of the graph are to be traced in the reversed direction, or not
      * @return list of the graph's vertices, sorted in a topological ordering
      */

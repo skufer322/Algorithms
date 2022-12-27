@@ -8,10 +8,13 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 /**
- * Utility class for Huffman-encoding-related methods. Some methods traverse the tree structure of Huffman trees,
- * others are for the creation of binary Huffman codes from a Huffman tree.
+ * Utility class for Huffman-encoding-related methods (e.g. for traversing the binary Huffman tree or for creating
+ * the binary code).
  */
 public final class HuffmanTreeUtils {
+
+    static final String NOT_A_LEAF_NODE_EXCEPTION_MSG_TF = "Node with name '%s' is not a leaf node.";
+    static final String LEAF_NODE_IS_ACTUALLY_ROOT_EXCEPTION_MSG_TF = "Leaf node with name '%s' is actually a root node.";
 
     static final String NODE_NAME_DELIMITER = "|";
     static final char ZERO = '0';
@@ -24,9 +27,9 @@ public final class HuffmanTreeUtils {
     }
 
     /**
-     * Traverses the Huffman tree anchored at the given root node and returns a list of the tree's leaf nodes.
+     * Traverses the Huffman tree anchored at the given {@code root} node and returns a list of the tree's leaf nodes.
      *
-     * @param root root of the Huffman tree for which the leaf nodes shall be retrieved
+     * @param root root of the Huffman tree for which the leaf nodes are to be retrieved
      * @return list of the tree's leaf nodes
      */
     public static @NotNull List<HuffmanTreeNode> getLeafNodes(@NotNull HuffmanTreeNode root) {
@@ -49,18 +52,18 @@ public final class HuffmanTreeUtils {
      * in a top-down fashion, i.e. starting at the root and ending at the leaf node level (required to create prefix-free
      * codes) .Throws an {@link IllegalArgumentException} in case the given node is not a leaf node or a root node.
      *
-     * @param leafNode leaf node for which the binary code shall be determined
+     * @param leafNode leaf node for which the binary code is to be determined
      * @return binary code for the given leaf node (in the form of a string)
      */
     public static @NotNull String getBinaryCode(@NotNull HuffmanTreeNode leafNode) {
         if (!leafNode.isLeaf()) {
-            throw new IllegalArgumentException("TODO given node is not a leaf node");
+            throw new IllegalArgumentException(String.format(NOT_A_LEAF_NODE_EXCEPTION_MSG_TF, leafNode.getName()));
         }
         BitSet bitSet = new BitSet();
         HuffmanTreeNode currentChild = leafNode;
         HuffmanTreeNode currentParent = leafNode.getParent();
         if (currentParent == null) {
-            throw new IllegalArgumentException("TODO given leafnode is a actually a root node;");
+            throw new IllegalArgumentException(String.format(LEAF_NODE_IS_ACTUALLY_ROOT_EXCEPTION_MSG_TF, currentChild.getName()));
         }
         int idx = 0;
         while (currentParent != null) {
@@ -75,11 +78,11 @@ public final class HuffmanTreeUtils {
     }
 
     /**
-     * Converts a {@link BitSet} to a string representation consisting of '0's (for false) and '1's (for true).
+     * Converts the given {@code bitSet} to a string representation consisting of '0's (for false) and '1's (for true).
      *
      * @param bitSet BitSet to convert to a string representation
-     * @param nBits  number of bits to consider for creating the string representation (since BitSets have only an implicit length)
-     * @return string representation of the given BitSet, depicting false as '0' and true as '1'
+     * @param nBits  number of bits to consider for creating the string representation (since {@link BitSet}s have only an implicit length)
+     * @return string representation of {@code bitSet}, depicting false as '0' and true as '1'
      */
     public static @NotNull String convertToBinaryString(@NotNull BitSet bitSet, int nBits) {
         final StringBuilder buffer = new StringBuilder(nBits);

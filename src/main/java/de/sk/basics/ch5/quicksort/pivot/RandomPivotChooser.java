@@ -17,7 +17,7 @@ public class RandomPivotChooser implements PivotChooser {
      *
      * TODO: Zusätzliche Konstruktor, der den Random entgegennimmt.
      *
-     * @param isSeeded whether a seeded selector shall be used for the random selection process
+     * @param isSeeded whether a seeded selector is to be used for the random selection process
      * @param seed seed for the seeded selector
      */
     public RandomPivotChooser(boolean isSeeded, long seed) {

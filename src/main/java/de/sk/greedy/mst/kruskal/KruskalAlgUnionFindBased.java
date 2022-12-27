@@ -3,6 +3,7 @@ package de.sk.greedy.mst.kruskal;
 import de.sk.graphs.datastructure.undirected.UnAdjacencyList;
 import de.sk.graphs.datastructure.undirected.UnEdge;
 import de.sk.graphs.datastructure.undirected.UnVertex;
+import de.sk.greedy.GreedyConstants;
 import de.sk.greedy.mst.MstAlg;
 import de.sk.greedy.mst.MstUtils;
 import de.sk.greedy.mst.datastructure.unionfind.UnionFind;
@@ -19,17 +20,18 @@ import java.util.stream.Collectors;
  */
 public class KruskalAlgUnionFindBased implements MstAlg {
 
-    static final Comparator<UnEdge> EDGE_WEIGHT_SORTER = Comparator.comparing(UnEdge::getWeight, Comparator.naturalOrder());
-
     private final List<UnEdge> mst = new ArrayList<>();
     @Inject
     private UnionFind<UnVertex> unionFind;
 
     @Override
     public @NotNull List<UnEdge> determineMst(@NotNull UnAdjacencyList undirectedGraph) {
+        // verify integrity of graph
         MstUtils.verifyIntegrityOfGraph(undirectedGraph);
         this.clearDatastructures();
-        PriorityQueue<UnEdge> edgesSortedByWeight = undirectedGraph.edges().stream().sorted(EDGE_WEIGHT_SORTER).collect(Collectors.toCollection(PriorityQueue::new));
+        // start actual algorithm @formatter:off
+        PriorityQueue<UnEdge> edgesSortedByWeight = undirectedGraph.edges().stream().sorted(GreedyConstants.EDGE_WEIGHT_SORTER)
+                                                        .collect(Collectors.toCollection(PriorityQueue::new)); // @formatter:on
         this.unionFind = new UnionFindSizeBased<>();
         this.unionFind.initialize(undirectedGraph.vertices());
         while (this.mst.size() != undirectedGraph.vertices().size() - 1) {
@@ -43,7 +45,7 @@ public class KruskalAlgUnionFindBased implements MstAlg {
                 this.unionFind.union(rootOf1stGroup, rootOf2ndGroup);
             }
         }
-        return this.mst;
+        return Collections.unmodifiableList(this.mst);
     }
 
     private void clearDatastructures() {

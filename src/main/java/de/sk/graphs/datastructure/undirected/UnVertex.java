@@ -14,10 +14,20 @@ import java.util.stream.Collectors;
  */
 public class UnVertex implements Vertex {
 
-    static final String VERTEX_NOT_PART_OF_ADDED_EDGE_EXCEPTION_MSG_TEXT_FORMAT = "Vertex %s is not part of added edge %s.";
+    // default attribute values (DAV) for vertices in undirected graphs (UG)
+    static final boolean DAV_UG_IS_EXPLORED = false;
+    static final int DAV_UG_GRAPH_SEARCH_POSITION = -1;
+    static final int DAV_UG_LEVEL = -1;
+    static final int DAV_UG_CC = -1;
 
+    // text format (tf) strings for exception messages
+    static final String VERTEX_NOT_PART_OF_ADDED_EDGE_EXCEPTION_MSG_TF = "Vertex %s is not part of added edge %s.";
+
+    // "regular" attributes
     private final String name;
     private final List<UnEdge> edges;
+    // attributes which can be modified in diverse graph algorithms
+    private final int weight;
     private boolean isExplored;
     private int level;
     private int graphSearchPosition;
@@ -29,11 +39,16 @@ public class UnVertex implements Vertex {
      * @param name name of the vertex
      */
     public UnVertex(@NotNull String name) {
+        this(name, -1);
+    }
+
+    public UnVertex(@NotNull String name, int weight) {
         if (StringUtils.isBlank(name)) {
-            throw new IllegalArgumentException(String.format(BLANK_NAME_PASSED_EXCEPTION_MSG_TEXT_FORMAT, name));
+            throw new IllegalArgumentException(String.format(BLANK_NAME_PASSED_EXCEPTION_MSG_TF, name));
         }
         this.name = name;
         this.edges = new ArrayList<>();
+        this.weight = weight;
         this.isExplored = false;
         this.graphSearchPosition = -1;
         this.level = -1;
@@ -57,7 +72,7 @@ public class UnVertex implements Vertex {
      */
     public void addEdge(@NotNull UnEdge edge) {
         if (!edge.getVertices().contains(this)) {
-            throw new IllegalArgumentException(String.format(VERTEX_NOT_PART_OF_ADDED_EDGE_EXCEPTION_MSG_TEXT_FORMAT,
+            throw new IllegalArgumentException(String.format(VERTEX_NOT_PART_OF_ADDED_EDGE_EXCEPTION_MSG_TF,
                     this.name, edge));
         }
         this.edges.add(edge);
@@ -65,6 +80,10 @@ public class UnVertex implements Vertex {
 
     public boolean removeEdge(@NotNull UnEdge edge) {
         return this.edges.remove(edge);
+    }
+
+    public int getWeight() {
+        return weight;
     }
 
     @Override
@@ -103,20 +122,34 @@ public class UnVertex implements Vertex {
         this.cc = cc;
     }
 
+    /**
+     * Resets all attribute values of the vertex which could be set in diverse algorithms to their default values.
+     * <p>
+     * The {@code name}, set of edges {@code edges}, and the {@code weight} are not reset.
+     */
+    public void resetAttributeValuesModifiableByAlgorithms() {
+        this.isExplored = DAV_UG_IS_EXPLORED;
+        this.graphSearchPosition = DAV_UG_GRAPH_SEARCH_POSITION;
+        this.level = DAV_UG_LEVEL;
+        this.cc = DAV_UG_CC;
+    }
+
     @Override
     public @NotNull String toString() {
-        String edgesToString = this.edges.stream().map(UnEdge::getName).collect(Collectors.joining(GraphConstants.STRING_JOIN_DELIMITER));
-        return "Vertex(name=" + this.name + ", edges=[" + edgesToString + "], isExplored=" + this.isExplored +
+        return "Vertex(name=" + this.name + ", edges=[" + this.edgesToString() + "], weight=" + this.weight + ", isExplored=" + this.isExplored +
                 ", level=" + this.level + ", graphSearchPosition=" + this.graphSearchPosition + ", cc=" + this.cc + ")";
     }
 
     public @NotNull String toStringWithoutEdges() {
-        return "Vertex(name=" + this.name + ", isExplored=" + this.isExplored +
+        return "Vertex(name=" + this.name + ", weight=" + this.weight + ", isExplored=" + this.isExplored +
                 ", level=" + this.level + ", graphSearchPosition=" + this.graphSearchPosition + ", cc=" + this.cc + ")";
     }
 
     public @NotNull String toStringOnlyWithNameAndEdges() {
-        String edgesToString = this.edges.stream().map(UnEdge::getName).collect(Collectors.joining(GraphConstants.STRING_JOIN_DELIMITER));
-        return "Vertex(name=" + this.name + ", edges=[" + edgesToString + "])";
+        return "Vertex(name=" + this.name + ", edges=[" + this.edgesToString() + "])";
+    }
+
+    private @NotNull String edgesToString() {
+        return this.edges.stream().map(UnEdge::getName).collect(Collectors.joining(GraphConstants.STRING_JOIN_DELIMITER));
     }
 }
