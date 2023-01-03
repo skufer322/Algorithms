@@ -15,6 +15,7 @@ public final class UndirectedGraphUtils {
 
     static final String EDGE_IS_NOT_INCIDENT_TO_VERTEX_EXCEPTION_MSG_TF = "Edge %s is not incident to vertex %s.";
     static final String EDGE_STARTS_AND_ENDS_AT_VERTEX_EXCEPTION_MSG_TF = "Edge %s starts and ends at vertex %s.";
+    static final String VERTEX_IS_NOT_PART_OF_GIVEN_EDGE_EXCEPTION_MSG_TF = "Vertex %s is not part of edge %s.";
     static final String TOO_MANY_EDGES_FOR_UNDIRECTED_GRAPH_EXCEPTION_MSG_TF = "An undirected graph of %d vertices can only have %d edges at a max " +
             "(if there cannot be more than 1 edge between each pair of vertices). Number of edges was specified as %d.";
 
@@ -48,15 +49,16 @@ public final class UndirectedGraphUtils {
     }
 
     /**
-     * TODO
+     * Returns all the other edges incident of the given {@code vertex} except the given {@code incidentEdge}. Throws an
+     * {@link IllegalArgumentException} if {@code incidentEdge} does not have {@code vertex} as one of its endpoints.
      *
-     * @param vertex
-     * @param incidentEdge
-     * @return
+     * @param vertex       vertex for which the incident edges except {@code incidentEdge} are to be returned
+     * @param incidentEdge the single incident edge which is not to be returned
+     * @return all incident edges of {@code vertex} except {@code incidentEdge}
      */
     public static @NotNull List<UnEdge> getOtherIncidentEdgesOfVertex(@NotNull UnVertex vertex, @NotNull UnEdge incidentEdge) {
         if (!incidentEdge.getVertices().contains(vertex)) {
-            throw new IllegalArgumentException("TODO vertex is not part of the given incident edfge!");
+            throw new IllegalArgumentException(String.format(VERTEX_IS_NOT_PART_OF_GIVEN_EDGE_EXCEPTION_MSG_TF, vertex, incidentEdge));
         }
         return vertex.getEdges().stream()
                 .filter(edge -> edge != incidentEdge)
@@ -75,11 +77,11 @@ public final class UndirectedGraphUtils {
     }
 
     /**
-     * TODO
+     * Returns all vertices of the graph (represented as adjacency list) which have exactly {@code n} incident edges.
      *
-     * @param adjacencyList
-     * @param n
-     * @return
+     * @param adjacencyList the graph
+     * @param n             number of incident edges a vertex should have to be in the returned result
+     * @return list of vertices which have exactly {@code n} incident edges
      */
     public static @NotNull List<UnVertex> findVerticesWithNIncidentEdges(@NotNull UnAdjacencyList adjacencyList, int n) {
         return adjacencyList.vertices().stream()
@@ -88,10 +90,11 @@ public final class UndirectedGraphUtils {
     }
 
     /**
-     * TODO
+     * Returns all adjacent vertices for the given {@code vertex}, i.e. all vertices which are connected with
+     * {@code vertex} by a common edge .
      *
-     * @param vertex
-     * @return
+     * @param vertex vertex for which the adjacent vertices are to be returned
+     * @return set of the adjacent vertices for the given {@code vertex}
      */
     public static @NotNull Set<UnVertex> getAdjacentVertices(@NotNull UnVertex vertex) {
         Set<UnVertex> adjacentVertices = new HashSet<>();
@@ -100,6 +103,17 @@ public final class UndirectedGraphUtils {
         return adjacentVertices;
     }
 
+    /**
+     * Creates a random, undirected graph with the given {@code numberOfVertices} and the given {@code numberOfEdges}.
+     * The weight of an edge in the created graph is between 0 and {@code maxWeight}. The created graph is represented
+     * as adjacency list.
+     *
+     * @param numberOfVertices number of vertices in the created graph
+     * @param numberOfEdges    number of vertices in the created graph
+     * @param maxWeight        maximum weight an edge can have in the given graph
+     * @param random           {@link Random} to use in the creation process
+     * @return random, undirected graph with {@code numberOfVertices} vertices and {@code numberOfEdges} edges
+     */
     public static @NotNull UnAdjacencyList createRandomGraph(int numberOfVertices, int numberOfEdges, int maxWeight, @NotNull Random random) {
         List<UnVertex> vertices = new ArrayList<>();
         for (int i = 1; i <= numberOfVertices; i++) {

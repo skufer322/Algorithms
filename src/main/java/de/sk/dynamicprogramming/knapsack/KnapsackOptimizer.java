@@ -6,8 +6,20 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Implementation of a dynamic programming algorithm to solve the Knapsack problem for a set of values with sizes and values.
+ */
 public class KnapsackOptimizer {
 
+    /**
+     * Determines the optimal sub-selection of items from the given list of {@code items}, considering the given {@code capacity}.
+     * Each item has an associated size and value. The optimal sub-selection of items is the collection of items with the
+     * maximum possible value fitting into a knapsack of the given {@code capacity}.
+     *
+     * @param items list of items for which the optimal sub-selection of item is to be determined
+     * @param capacity maximum capacity of the knapsack
+     * @return optimal sub-selection of items maximising the value for the given knapsack {@code capacity}
+     */
     public @NotNull Collection<KnapsackItem> determineOptimumItems(@NotNull List<KnapsackItem> items, int capacity) {
         int[][] optimumSolutions = this.calculateOptimumValueForEachSubProblems(items, capacity);
         return this.reconstructOptimumSolutionMembers(optimumSolutions, items);

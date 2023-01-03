@@ -11,9 +11,8 @@ import de.sk.greedy.mst.prim.PrimsAlgSimple;
 
 import java.util.List;
 
-// TODO: Laufzeitvergleich Prim vs Kruskal -> Java micro-benchmarking framework
 // TODO: string in Javadoc mit {@link} versehen? ebenso true/false?
-// ergebnisse der 4 mst varianten miteinander vergleichen
+// TODO: ergebnisse der 4 mst varianten miteinander vergleichen
 public class App15Mst {
 
     public static void main(String[] args) {

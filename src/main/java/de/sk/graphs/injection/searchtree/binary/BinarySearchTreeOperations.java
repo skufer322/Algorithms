@@ -87,7 +87,6 @@ public final class BinarySearchTreeOperations {
             BinarySearchTreeOperations.swapNonNeighboredNodes(first, second);
         }
         // swap counters of the swapped nodes
-        // TODO Löschoperationen und Kindknoten-COunter im Zusammenspiel prüfen
         treeChildCounter.put(first, formerCounterOfSecond.getLeft(), formerCounterOfSecond.getRight());
         treeChildCounter.put(second, formerCounterOfFirst.getLeft(), formerCounterOfFirst.getRight());
     }
