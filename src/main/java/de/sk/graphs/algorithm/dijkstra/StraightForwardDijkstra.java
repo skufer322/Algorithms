@@ -13,7 +13,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Straight-forward implementation of {@link Dijkstra}'s algorithm for the single-source shortest path problem which runs in O(mn).
+ * Straight-forward implementation of {@link Dijkstra}'s algorithm for the Single-Source Shortest Path problem which runs in O(mn).
  */
 public class StraightForwardDijkstra extends AbstractDijkstra {
 

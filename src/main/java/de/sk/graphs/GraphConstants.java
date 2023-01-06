@@ -33,4 +33,6 @@ public final class GraphConstants {
 
     // delimiter separating information concatenated in toString methods
     public static final String STRING_JOIN_DELIMITER = ",";
+
+    public static final int POSITIVE_INFINITY = Integer.MAX_VALUE;
 }

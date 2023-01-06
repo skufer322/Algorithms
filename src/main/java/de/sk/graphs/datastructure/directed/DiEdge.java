@@ -24,8 +24,8 @@ public class DiEdge implements Edge {
      * Constructor.
      *
      * @param name name of the edge
-     * @param tail tail vertex of the edge (i.e. the start of the edge)
-     * @param head head vertex of the edge (i.e. the end of the edge)
+     * @param tail tail vertex of the edge (i.e. the start/origin of the edge)
+     * @param head head vertex of the edge (i.e. the end/destination of the edge)
      */
     public DiEdge(@NotNull String name, @NotNull DiVertex tail, @NotNull DiVertex head) {
         this(name, tail, head, -1);

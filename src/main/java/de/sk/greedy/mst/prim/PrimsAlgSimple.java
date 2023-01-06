@@ -35,7 +35,6 @@ public class PrimsAlgSimple implements MstAlg {
         return Collections.unmodifiableList(this.mst);
     }
 
-    // TODO: auslagerbar machen bzw. zwei verschiedene Varianten haben?
     private @NotNull List<UnEdge> getEligibleEdges(@NotNull List<UnEdge> edges) {
         List<UnEdge> eligibleEdges = new ArrayList<>();
         for (UnEdge edge : edges) {
