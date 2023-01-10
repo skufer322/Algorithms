@@ -142,4 +142,53 @@ public final class UndirectedGraphUtils {
         }
         return new UnAdjacencyList(vertices, edges);
     }
+
+    /**
+     * Creates a complete graph with {@code numberOfVertices} vertices. A "complete" graph means that there is an edge
+     * between each pair of vertices v,w ∈ V. The weight of an edge in the created graph is between 0 and {@code maxWeight}.
+     * The created graph is represented as adjacency list.
+     *
+     * @param numberOfVertices number of vertices in the graph
+     * @param maxWeight        maximum weight an edge can have in the given graph
+     * @param random           {@link Random} to use in the creation process
+     * @return random, undirected, complete graph with {@code numberOfVertices} vertices
+     */
+    public static @NotNull UnAdjacencyList createCompleteGraph(int numberOfVertices, int maxWeight, @NotNull Random random) {
+        List<UnVertex> vertices = new ArrayList<>();
+        for (int i = 1; i <= numberOfVertices; i++) {
+            UnVertex vertex = new UnVertex(String.format(VERTEX_NAME_TF, i), random.nextInt(maxWeight));
+            vertices.add(vertex);
+        }
+        List<UnEdge> edges = new ArrayList<>();
+        for (int i = 0; i < vertices.size() - 1; i++) {
+            UnVertex v = vertices.get(i);
+            for (int j = i + 1; j < vertices.size(); j++) {
+                UnVertex w = vertices.get(j);
+                UnEdge edge = new UnEdge(String.format(EDGE_NAME_TF, v.getName(), w.getName()), random.nextInt(maxWeight), v, w);
+                edges.add(edge);
+            }
+        }
+        return new UnAdjacencyList(vertices, edges);
+    }
+
+    /**
+     * Checks whether the given graph (represented as adjacency list) is a complete graph (i.e. there is an edge between
+     * each pair of vertices v,w ∈ V).
+     *
+     * @param adjacencyList graph which is to check for its completeness
+     * @return {@code true} if the graph is a complete graph, {@code false} else
+     */
+    public static boolean isCompleteGraph(@NotNull UnAdjacencyList adjacencyList) {
+        List<UnVertex> vertices = adjacencyList.vertices();
+        for (UnVertex vertex : vertices) {
+            Set<UnVertex> verticesOfIncidentEdges = new HashSet<>();
+            for (UnEdge edge : vertex.getEdges()) {
+                verticesOfIncidentEdges.addAll(edge.getVertices());
+            }
+            if (verticesOfIncidentEdges.size() != vertices.size()) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

@@ -30,18 +30,7 @@ public class SequenceAligner {
         char[] symbolsOfY = y.toCharArray();
         Pair<Double, double[][]> minPenaltyAndPenaltyMatrix = this.calculatePenalties(symbolsOfX, symbolsOfY);
         Pair<String, String> alignments = this.reconstructAlignedStrings(minPenaltyAndPenaltyMatrix.getRight(), symbolsOfX, symbolsOfY);
-        // handle possibly empty sequence strings -> fill with gaps in the length of the non-empty sequence
-        String alignedX = this.handlePossiblyEmptyStrings(alignments.getLeft(), alignments.getRight());
-        String alignedY = this.handlePossiblyEmptyStrings(alignments.getRight(), alignments.getLeft());
-        //noinspection SuspiciousNameCombination
-        return new ImmutableTriple<>(minPenaltyAndPenaltyMatrix.getLeft(), alignedX, alignedY);
-    }
-
-    private @NotNull String handlePossiblyEmptyStrings(@NotNull String sequenceToCheck, @NotNull String otherSequence) {
-        // @formatter:off
-        return !sequenceToCheck.isEmpty() ? sequenceToCheck // if the sequence to check is not an empty string, just return it
-                : SequenceAlignmentUtils.GAP.toString().repeat(otherSequence.length()); // else, return a string of gaps matching the size of the other sequence
-        // @formatter:on
+        return new ImmutableTriple<>(minPenaltyAndPenaltyMatrix.getLeft(), alignments.getLeft(), alignments.getRight());
     }
 
     private @NotNull Pair<Double, double[][]> calculatePenalties(char @NotNull [] x, char @NotNull [] y) {
@@ -95,14 +84,14 @@ public class SequenceAligner {
                 j--;
             }
         }
-        // fill possible remainders ...
-        while (i > 0) { // ... for x
-            reconstructX.append(x[i - 1]);
-            i--;
+        // handle bases cases
+        if (i == 0) {
+            reconstructX.append(SequenceAlignmentUtils.GAP.toString().repeat(j)); // fill x with gaps
+            reconstructY.append(new StringBuilder(new String(y, 0, j)).reverse()); // remaining string of y
         }
-        while (j > 0) { // ... for y
-            reconstructY.append(y[j - 1]);
-            j--;
+        if (j == 0) {
+            reconstructY.append(SequenceAlignmentUtils.GAP.toString().repeat(i)); // fill y with gaps
+            reconstructX.append(new StringBuilder(new String(x, 0, i)).reverse()); // remaining string of x
         }
         return new ImmutablePair<>(reconstructX.reverse().toString(), reconstructY.reverse().toString());
     }

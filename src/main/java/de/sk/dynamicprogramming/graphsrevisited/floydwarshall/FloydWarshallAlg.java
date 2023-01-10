@@ -25,10 +25,22 @@ public class FloydWarshallAlg {
     private DiVertex[][] predecessors;
 
     /**
-     * TODO
+     * Determines the shortest paths between all pairs of vertices in the given graph (represented as adjacency list).
+     * <br><br>
+     * The returned map contains all the vertices of the graph as keys.
+     * <br>
+     * For each key/starting vertex, the value is another map.
+     * <br>
+     * In this map, the destination vertex is the key, and the value to the key/destination vertex is a pair.
+     * <br>
+     * The left of the pair is the list of vertices compromising the shortest path between the starting vertex
+     * and the destination vertex (with the path starting at the starting vertex).
+     * <br>
+     * The right of the pair is the length of the shortest path between
+     * starting vertex and destination vertex.
      *
      * @param adjacencyList graph with possibly negative edge lengths for which the All-Pairs Shortest Path problem is to be solved
-     * @return
+     * @return map representing the information about the solution for the All-Pairs Shortest Path problem for the given graph
      */
     public @NotNull Map<DiVertex, Map<DiVertex, Pair<List<DiVertex>, Integer>>> determineShortestPathForAllPairs(@NotNull DiAdjacencyList adjacencyList) {
         this.clearDatastructures();

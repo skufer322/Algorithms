@@ -6,7 +6,7 @@ public class App17SA {
 
     public static void main(String[] args) {
         String x = "AGGGCT";
-        String y = "AGGCA";
+        String y = "AGGCTA";
 
         SequenceAligner sequenceAligner = new SequenceAligner();
         Triple<Double, String, String> xxx = sequenceAligner.determineMinimumPenaltyAlignment(x, y);

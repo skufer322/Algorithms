@@ -9,19 +9,19 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Implementation of a dynamic programming algorithm to determine the maximum weighted independent set for a given path
+ * Implementation of a dynamic programming algorithm to determine the Maximum-Weight Independent Set for a given path
  * graph.
  */
 public class MWISFinder {
 
     /**
-     * Returns the set of vertices which form the maximum weighted independent set for the given path graph (represented
+     * Returns the set of vertices which form the Maximum-Weight Independent Set for the given path graph (represented
      * as adjacency list). In an independent set, there are no two vertices which are directly connected via an edge
-     * (i.e. an independent set does not contain both endpoints of any edge). The maximum weighted independent set is,
+     * (i.e. an independent set does not contain both endpoints of any edge). The Maximum-Weight Independent Set is,
      * of all possible independent set, the independent set whose vertices have the largest sum of weights.
      *
-     * @param adjacencyList path graph for which the maximum weighted independent set is to be determined
-     * @return the set of vertices which form the maximum weighted independent for the given path graph
+     * @param adjacencyList path graph for which the Maximum-Weight Independent Set is to be determined
+     * @return the set of vertices which form the Maximum-Weight Independent Set for the given path graph
      */
     public @NotNull Collection<UnVertex> determineMWIS(@NotNull UnAdjacencyList adjacencyList) {
         List<UnVertex> verticesInPathOrder = MWISUtils.getVerticesOfPathGraphInOrderOfPath(adjacencyList);

@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Utility class for methods required for solving the Maximum Weighted Independent Set (MWIS) problem for path graphs.
+ * Utility class for methods required for solving the Maximum-Weight Independent Set (MWIS) problem for path graphs.
  */
 public final class MWISUtils {
 
