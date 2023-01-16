@@ -24,7 +24,7 @@ public final class SortingUtils {
      * @param n size of the array to create
      * @return randomly ordered integer array of size n with integers from 1 to n, no duplicates
      */
-    public static int[] createArrayWithoutDuplicates(int n) {
+    public static int @NotNull [] createArrayWithoutDuplicates(int n) {
         int[] array = IntStream.range(1, n + 1).toArray();
         SortingUtils.shuffleArray(array, RANDOM);
         return array;
@@ -39,7 +39,7 @@ public final class SortingUtils {
      * @param random Random to shuffle the array
      * @return randomly ordered integer array of size n with integers from 1 to n, no duplicates, shuffled by the passed Random
      */
-    public static int[] createArrayWithoutDuplicates(int n, @NotNull Random random) {
+    public static int @NotNull [] createArrayWithoutDuplicates(int n, @NotNull Random random) {
         int[] array = IntStream.range(1, n + 1).toArray();
         SortingUtils.shuffleArray(array, random);
         return array;
@@ -57,7 +57,7 @@ public final class SortingUtils {
     }
 
     /**
-     * Swaps the two elements specified with the indexes i and j for the given array.
+     * Swaps the two elements specified with the indices i and j for the given array.
      *
      * @param array array for which the two specified elements are to be swapped
      * @param i     position of the first element to swap

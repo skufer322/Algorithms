@@ -1,9 +1,11 @@
 package de.sk.graphs.util;
 
+import de.sk.graphs.GraphConstants;
 import de.sk.graphs.datastructure.undirected.UnAdjacencyList;
 import de.sk.graphs.datastructure.undirected.UnEdge;
 import de.sk.graphs.datastructure.undirected.UnVertex;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -190,5 +192,36 @@ public final class UndirectedGraphUtils {
             }
         }
         return true;
+    }
+
+    /**
+     * Returns the edges of {@code vertex} sorted by weight (in ascending order).
+     *
+     * @param vertex vertex whose edges are to be returned
+     * @return edges of {@code vertex} sorted by weight (in ascending order)
+     */
+    public static @NotNull List<UnEdge> getEdgesSortedByWeight(@NotNull UnVertex vertex) {
+        List<UnEdge> edgesSortedByLength = new ArrayList<>(vertex.getEdges());
+        edgesSortedByLength.sort(GraphConstants.COMPARE_VERTICES_BY_WEIGHT);
+        return edgesSortedByLength;
+    }
+
+    /**
+     * Returns the edge connecting the vertices {@code v} and {@code w}. Returns {@code null} if there is no such edge.
+     *
+     * @param v vertex whose connecting edge with {@code w} is to be returned
+     * @param w vertex whose connecting edge with {@code v} is to be returned
+     * @return edge connecting {@code v} and {@code w}, {@code null} if there is no such edge
+     */
+    public static @Nullable UnEdge getEdgeConnectingVAndW(@NotNull UnVertex v, @NotNull UnVertex w) {
+        UnEdge connectingEdge = null;
+        for (UnEdge currentEdge : v.getEdges()) {
+            UnVertex otherVertex = UndirectedGraphUtils.getOtherVertexOfEdge(currentEdge, v);
+            if (otherVertex == w) {
+                connectingEdge = currentEdge;
+                break;
+            }
+        }
+        return connectingEdge;
     }
 }

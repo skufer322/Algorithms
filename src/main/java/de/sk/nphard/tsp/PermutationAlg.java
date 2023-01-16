@@ -10,8 +10,8 @@ import java.util.List;
 public interface PermutationAlg {
 
     /**
-     * Creates all possible permutations of the given {@code elements} array of integers, and returns them as a list
-     * of size {@code elements.length}!.
+     * Creates all possible permutations of {@code elements}, and returns them as a list
+     * of size {@code elements.length}! (note the '!', i.e. faculty).
      *
      * @param elements array for which all possible permutations are to be created
      * @return list of all possible permutations for the given array

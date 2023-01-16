@@ -12,9 +12,11 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Instantiable implementation of {@link AbstractExhaustiveTspSolver}. Time complexity: exponential.
+ * Instantiable implementation of {@link AbstractExhaustiveTspSolver}. Time complexity: exponential running time.
+ * <br><br>
  * All possible permutations of the vertices are created one after another. Instantly after a permutation is created,
  * the corresponding tour and its length are determined.
+ * <br><br>
  * Therefore, in contrast to {@link ExhaustiveSearchTspSolver}, no caching of all the possible permutations is required
  * which is much more memory-efficient.
  */

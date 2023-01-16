@@ -12,9 +12,11 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Instantiable implementation of {@link AbstractExhaustiveTspSolver}. Time complexity: exponential.
+ * Instantiable implementation of {@link AbstractExhaustiveTspSolver}. Time complexity: exponential running time.
+ * <br><br>
  * All possible permutations of the vertices are pre-created with an instance of {@link  PermutationAlg} and stored in a list.
  * The algorithm then iterates over the list to determine the solution.
+ * <br><br>
  * {@link ExhaustiveSearchLowMemoryTspSolver} is an improved exhaustive search which integrates the creation of the
  * permutation with the determination of the corresponding tour and therefore is much more memory-efficient.
  */

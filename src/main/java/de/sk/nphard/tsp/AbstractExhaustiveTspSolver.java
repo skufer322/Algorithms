@@ -37,6 +37,9 @@ public abstract class AbstractExhaustiveTspSolver implements TspSolver {
         return this.solveShortestTourForNonSpecialCases(vertices, indices);
     }
 
+    /**
+     * Template method to use by instantiable implementations solving the TSP problem.
+     */
     abstract @NotNull Pair<List<UnEdge>, Integer> solveShortestTourForNonSpecialCases(@NotNull List<UnVertex> vertices, int @NotNull [] indices);
 
     private void validateInputGraph(@NotNull UnAdjacencyList adjacencyList) {

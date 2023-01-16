@@ -19,11 +19,13 @@ public class A19TSP {
         Injector injector = Guice.createInjector(new NpHardInjectionModule());
 //        UnAdjacencyList graph = createCompleteGraphFromQuiz19_2();
         Random random = new Random(322);
-        UnAdjacencyList graph = UndirectedGraphUtils.createCompleteGraph(4, 100, random);
+        UnAdjacencyList graph = UndirectedGraphUtils.createCompleteGraph(11, 100, random);
         TspSolver tspSolver = injector.getInstance(ExhaustiveSearchLowMemoryTspSolver.class);
         Pair<List<UnEdge>, Integer> shortestTour = tspSolver.determineShortestTour(graph);
-        System.out.println(shortestTour.getRight());
-        System.out.println(shortestTour.getLeft());
+        System.out.printf("tspsolver: %d -> %s%n", shortestTour.getRight(), shortestTour);
+        TspSolver tspSolver2 = injector.getInstance(NearestNeighborTspSolver.class);
+        shortestTour = tspSolver2.determineShortestTour(graph);
+        System.out.printf("tspsolver2: %d -> %s%n", shortestTour.getRight(), shortestTour);
     }
 
     private static @NotNull UnAdjacencyList createCompleteGraphFromQuiz19_2() {

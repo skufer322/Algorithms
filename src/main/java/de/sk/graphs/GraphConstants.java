@@ -1,6 +1,7 @@
 package de.sk.graphs;
 
 import de.sk.graphs.datastructure.directed.DiVertex;
+import de.sk.graphs.datastructure.undirected.UnEdge;
 import de.sk.graphs.datastructure.undirected.UnVertex;
 
 import java.util.Comparator;
@@ -26,6 +27,9 @@ public final class GraphConstants {
     public static final Comparator<UnVertex> COMPARE_VERTICES_BY_GRAPH_SEARCH_POSITION = Comparator.comparingInt(UnVertex::getGraphSearchPosition);
     // comparators to compare vertices (in directed graphs)
     public static final Comparator<DiVertex> COMPARE_VERTICES_BY_TOP_SORT_POSITION = Comparator.comparingInt(DiVertex::getTopSortPosition);
+
+    // comparators to compare edges (in undirected graphs)
+    public static final Comparator<UnEdge> COMPARE_VERTICES_BY_WEIGHT = Comparator.comparingInt(UnEdge::getWeight);
 
     // default values for vertex attributes in algorithms
     public static final int INITIAL_GRAPH_SEARCH_POSITION = 1;
