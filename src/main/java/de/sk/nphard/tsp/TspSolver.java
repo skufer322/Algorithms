@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  * Interface defining the methods for implementations solving the Traveling Salesman Problem (TSP) for complete graphs.
- * The solutions determined by the implementations might be approximate solutions since the TSP problem is NP-hard.
+ * The solutions determined by the implementations might be approximate solutions since the TSP is NP-hard.
  */
 public interface TspSolver {
 

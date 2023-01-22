@@ -1,4 +1,4 @@
-package de.sk.nphard.tsp;
+package de.sk.nphard.tsp.impl;
 
 import de.sk.graphs.datastructure.undirected.UnEdge;
 import de.sk.graphs.datastructure.undirected.UnVertex;
@@ -27,7 +27,7 @@ public class ExhaustiveSearchLowMemoryTspSolver extends AbstractExhaustiveTspSol
     private List<UnVertex> vertices;
 
     @Override
-    @NotNull Pair<List<UnEdge>, Integer> solveShortestTourForNonSpecialCases(@NotNull List<UnVertex> vertices, int @NotNull [] indices) {
+    @NotNull Pair<List<UnEdge>, Integer> solveShortestTourViaExhaustiveSearch(@NotNull List<UnVertex> vertices, int @NotNull [] indices) {
         this.vertices = vertices;
         this.shortestTour = Collections.emptyList();
         this.lengthOfShortestTour = Integer.MAX_VALUE;

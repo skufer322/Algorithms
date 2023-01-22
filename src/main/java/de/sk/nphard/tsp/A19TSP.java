@@ -7,6 +7,8 @@ import de.sk.graphs.datastructure.undirected.UnEdge;
 import de.sk.graphs.datastructure.undirected.UnVertex;
 import de.sk.graphs.util.UndirectedGraphUtils;
 import de.sk.nphard.NpHardInjectionModule;
+import de.sk.nphard.tsp.impl.ExhaustiveSearchLowMemoryTspSolver;
+import de.sk.nphard.tsp.impl.NearestNeighborTspSolver;
 import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.NotNull;
 

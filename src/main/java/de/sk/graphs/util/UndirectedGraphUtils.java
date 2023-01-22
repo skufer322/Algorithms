@@ -2,6 +2,7 @@ package de.sk.graphs.util;
 
 import de.sk.graphs.GraphConstants;
 import de.sk.graphs.datastructure.undirected.UnAdjacencyList;
+import de.sk.graphs.datastructure.undirected.UnAdjacencyMatrix;
 import de.sk.graphs.datastructure.undirected.UnEdge;
 import de.sk.graphs.datastructure.undirected.UnVertex;
 import org.jetbrains.annotations.NotNull;
@@ -223,5 +224,44 @@ public final class UndirectedGraphUtils {
             }
         }
         return connectingEdge;
+    }
+
+    /**
+     * Converts the given {@code adjacencyList} into a corresponding adjacency matrix representation.
+     * The indices of the vertices in the adjacency matrix are derived from the indices of the vertices in the
+     * vertices' list of {@code adjacencyList}
+     *
+     * @param adjacencyList adjacency list to be converted into a corresponding adjacency matrix representation
+     * @return adjacency matrix representation of {@code adjacencyList}
+     */
+    public static @NotNull UnAdjacencyMatrix convertToAdjacencyMatrix(@NotNull UnAdjacencyList adjacencyList) {
+        List<UnVertex> vertices = adjacencyList.vertices();
+        // create matrix
+        UnAdjacencyMatrix adjacencyMatrix = new UnAdjacencyMatrix(vertices.size());
+        // add edges
+        Map<UnVertex, Integer> indexLookupForVertices = UndirectedGraphUtils.createIndexLookupForVertices(adjacencyList);
+        // iterate over edges, add to adjacency matrix
+        for (UnEdge edge : adjacencyList.edges()) {
+            List<Integer> indicesOfEndpoints = edge.getVertices().stream().map(indexLookupForVertices::get).toList();
+            adjacencyMatrix.addEdge(indicesOfEndpoints.get(0), indicesOfEndpoints.get(1), edge.getWeight());
+        }
+        return adjacencyMatrix;
+    }
+
+    /**
+     * Creates a lookup table for the indices of the {@code adjacencyList}'s vertices, i.e. to the returned map, a vertex
+     * can be passed as key and the returned value is the index of the vertex in the vertices' list of {@code adjacencyList}.
+     *
+     * @param adjacencyList adjacency list for which a lookup table for the indices of the vertices is to be created
+     * @return lookup table as a map with the vertices as keys and their indices as corresponding values
+     */
+    public static @NotNull Map<UnVertex, Integer> createIndexLookupForVertices(@NotNull UnAdjacencyList adjacencyList) {
+        List<UnVertex> vertices = adjacencyList.vertices();
+        Map<UnVertex, Integer> indexLookupForVertices = new HashMap<>();
+        for (int i = 0; i < vertices.size(); i++) {
+            UnVertex vertex = vertices.get(i);
+            indexLookupForVertices.put(vertex, i);
+        }
+        return indexLookupForVertices;
     }
 }

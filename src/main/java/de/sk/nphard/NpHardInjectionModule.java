@@ -7,7 +7,9 @@ import de.sk.nphard.influencemaximization.InfMaxSolver;
 import de.sk.nphard.makespan.GrahamsAlg;
 import de.sk.nphard.makespan.LongestProcessingTimeFirstAlg;
 import de.sk.nphard.makespan.MakeSpanSolver;
-import de.sk.nphard.tsp.*;
+import de.sk.nphard.tsp.PermutationAlg;
+import de.sk.nphard.tsp.TspSolver;
+import de.sk.nphard.tsp.impl.*;
 
 public class NpHardInjectionModule extends AbstractModule {
 
@@ -22,6 +24,13 @@ public class NpHardInjectionModule extends AbstractModule {
         bind(TspSolver.class).annotatedWith(Names.named(NpHardnessConstants.IN_EXHAUSTIVE_CACHED_PERMUTATIONS_TSP_SOLVER)).to(ExhaustiveSearchTspSolver.class);
         bind(TspSolver.class).annotatedWith(Names.named(NpHardnessConstants.IN_EXHAUSTIVE_MEMORY_EFFICIENT_TSP_SOLVER)).to(ExhaustiveSearchLowMemoryTspSolver.class);
         bind(TspSolver.class).annotatedWith(Names.named(NpHardnessConstants.IN_NEAREST_NEIGHBOR_TSP_SOLVER)).to(NearestNeighborTspSolver.class);
+        bind(TspSolver.class).annotatedWith(Names.named(NpHardnessConstants.IN_2OPT_HEURISTIC_TSP_SOLVER)).to(TwoOptHeuristicTspSolver.class);
+        bind(Long.class).toInstance(NpHardnessConstants.PV_RANDOM_TSP_SOLVER_SEED_FOR_RANDOM);
+        try {
+            bind(TspSolver.class).annotatedWith(Names.named(NpHardnessConstants.IN_RANDOM_TSP_SOLVER)).toConstructor(RandomTspSolver.class.getConstructor(Long.TYPE));
+        } catch (NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        }
 
         // MakeSpan solvers
         bind(MakeSpanSolver.class).to(LongestProcessingTimeFirstAlg.class);
@@ -29,8 +38,8 @@ public class NpHardInjectionModule extends AbstractModule {
         bind(MakeSpanSolver.class).annotatedWith(Names.named(NpHardnessConstants.IN_LPT_FIRST_MAKE_SPAN_SOLVER)).to(LongestProcessingTimeFirstAlg.class);
 
         // Influence Maximization solvers
-        bind(Integer.class).toInstance(NpHardnessConstants.GREEDY_INF_MAX_REPETITIONS);
-        bind(Long.class).toInstance(NpHardnessConstants.GREEDY_INF_MAX_SEED_FOR_RANDOM);
+        bind(Integer.class).toInstance(NpHardnessConstants.PV_GREEDY_INFLUENCE_MAXIMIZATION_REPETITIONS);
+        bind(Long.class).toInstance(NpHardnessConstants.PV_GREEDY_INFLUENCE_MAXIMIZATION_SEED_FOR_RANDOM);
         try {
             bind(InfMaxSolver.class).toConstructor(GreedySamplingInfMaxSolver.class.getConstructor(Integer.TYPE, Long.TYPE));
             bind(InfMaxSolver.class).annotatedWith(Names.named(NpHardnessConstants.IN_GREEDY_INFLUENCE_MAXIMIZATION_SOLVER)).toConstructor(GreedySamplingInfMaxSolver.class.getConstructor(Integer.TYPE, Long.TYPE));

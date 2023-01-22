@@ -1,22 +1,21 @@
-package de.sk.nphard.tsp;
+package de.sk.nphard.tsp.impl;
 
 import de.sk.graphs.datastructure.undirected.UnAdjacencyList;
 import de.sk.graphs.datastructure.undirected.UnEdge;
 import de.sk.graphs.datastructure.undirected.UnVertex;
 import de.sk.graphs.util.UndirectedGraphUtils;
+import de.sk.nphard.tsp.TspSolver;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.IntStream;
 
 /**
- * Abstract implementation of {@link TspSolver} for exhaustive searches. Bundles up commonly used methods of the instantiable
- * implementations.
+ * Abstract implementation of {@link TspSolver}. Bundles commonly used methods of the instantiable implementations.
  */
-public abstract class AbstractExhaustiveTspSolver implements TspSolver {
+public abstract class AbstractTspSolver implements TspSolver {
 
     static final String NOT_A_COMPLETE_GRAPH_EXCEPTION_MSG = "The given graph is not a complete graph. There must be an edge between each pair of vertices v,w ∈ V.";
 
@@ -32,15 +31,13 @@ public abstract class AbstractExhaustiveTspSolver implements TspSolver {
             UnEdge edge = vertices.get(0).getEdges().get(0);
             return new ImmutablePair<>(Collections.singletonList(edge), edge.getWeight());
         }
-        // index vertices from [0; vertices.size-1]
-        int[] indices = IntStream.range(0, vertices.size()).toArray();
-        return this.solveShortestTourForNonSpecialCases(vertices, indices);
+        return this.solveShortestTourProblemForCommonCases(adjacencyList);
     }
 
     /**
-     * Template method to use by instantiable implementations solving the TSP problem.
+     * Template method to use by instantiable implementations solving the TSP.
      */
-    abstract @NotNull Pair<List<UnEdge>, Integer> solveShortestTourForNonSpecialCases(@NotNull List<UnVertex> vertices, int @NotNull [] indices);
+    abstract @NotNull Pair<List<UnEdge>, Integer> solveShortestTourProblemForCommonCases(@NotNull UnAdjacencyList adjacencyList);
 
     private void validateInputGraph(@NotNull UnAdjacencyList adjacencyList) {
         if (!UndirectedGraphUtils.isCompleteGraph(adjacencyList)) {

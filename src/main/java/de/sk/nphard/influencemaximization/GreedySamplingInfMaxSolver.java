@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.*;
 
 /**
- * Implementation of {@link InfMaxSolver} utilizing a greedy algorithm..
+ * Implementation of {@link InfMaxSolver} utilizing a greedy algorithm.
  * <br>
  * Time complexity: O(knm²r) (k = number of seeds in the solution, n = number of vertices, m = number of edges,
  * r = number of repetitions for estimating the influence of a vertex).
@@ -17,9 +17,12 @@ import java.util.*;
 public class GreedySamplingInfMaxSolver implements InfMaxSolver {
 
     static final String REPETITIONS_MUST_BE_GREATER_0_EXCEPTION_MSG_TF = "The number of repetitions must be greater than zero. Given: %d";
+    static final String INVALID_ACTIVATION_PROBABILITY_EXCEPTION_MSG_TF = "Activation probability p has to be between ]0;1]. Given: %f.";
+    static final String INVALID_NUMBER_OF_SEEDS_SPECIFIED_EXCEPTION_MSG_TF = "The number k of seeds must bet between 1 and the number of vertices " +
+            "in the graph (%d). Given: %d.";
 
     private final Random random;
-    private final int repetitions; // could be also made dependent on number of edges, theoretically
+    private final int repetitions; // could also be made dependent on number of edges, theoretically
 
     private final Set<DiVertex> seedsWithMaxInfluence = new LinkedHashSet<>();
 
@@ -39,7 +42,12 @@ public class GreedySamplingInfMaxSolver implements InfMaxSolver {
 
     @Override
     public @NotNull Set<DiVertex> maximizeInfluence(@NotNull DiAdjacencyList adjacencyList, double p, int k) {
-        // TODO: ggf. konsistenzprüfungen -> p=[0;1] -> k=]1; |vertices|[
+        if (p <= 0 || p > 1) {
+            throw new IllegalArgumentException(String.format(INVALID_ACTIVATION_PROBABILITY_EXCEPTION_MSG_TF, p));
+        }
+        if (k < 1 || k > adjacencyList.vertices().size()) {
+            throw new IllegalArgumentException(String.format(INVALID_NUMBER_OF_SEEDS_SPECIFIED_EXCEPTION_MSG_TF, adjacencyList.vertices().size(), k));
+        }
         this.clearDatastructures();
         List<DiVertex> vertices = adjacencyList.vertices();
         while (this.seedsWithMaxInfluence.size() < k) {
@@ -53,7 +61,7 @@ public class GreedySamplingInfMaxSolver implements InfMaxSolver {
                 this.determineAdditionalInfluenceOfCandidatesInH(edgeStatuses, candidates, numberOfReachableNodes);
             }
             List<Integer> indicesOfBestCandidates = AdditionalArrayUtils.indicesOfLargestElement(numberOfReachableNodes);
-            int indexOfNextSeed = this.random.nextInt(indicesOfBestCandidates.size()); // break possible ties arbitrarily
+            int indexOfNextSeed = indicesOfBestCandidates.get(this.random.nextInt(indicesOfBestCandidates.size())); // break possible ties arbitrarily
             DiVertex nextSeed = candidates.get(indexOfNextSeed);
             this.seedsWithMaxInfluence.add(nextSeed);
         }

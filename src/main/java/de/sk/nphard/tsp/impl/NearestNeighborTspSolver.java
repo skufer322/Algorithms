@@ -1,4 +1,4 @@
-package de.sk.nphard.tsp;
+package de.sk.nphard.tsp.impl;
 
 import de.sk.graphs.datastructure.undirected.UnAdjacencyList;
 import de.sk.graphs.datastructure.undirected.UnEdge;
@@ -14,12 +14,12 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Greedy instantiable implementation of {@link TspSolver}. Is only a heuristic algorithm, i.e. the solution will be
+ * Greedy instantiable implementation of {@link AbstractTspSolver}. Is a heuristic algorithm, i.e. the solution will be
  * suboptimal in the overwhelming majority of cases.
  * <br><br>
  * Time complexity: O(nm log m).
  */
-public class NearestNeighborTspSolver implements TspSolver {
+public class NearestNeighborTspSolver extends AbstractTspSolver {
 
     static final String NO_EDGE_BACK_TO_STARTING_VERTEX_FOUND_EXCEPTION_MSG_TF = "Internal error: No edge back to the starting vertex %s found.";
     static final String NOT_ALL_VERTICES_IN_TOUR_EXCEPTION_MSG_TF = "Internal error: Tour only contains %d vertices, but there are %d vertices in the graph";
@@ -28,11 +28,10 @@ public class NearestNeighborTspSolver implements TspSolver {
     private final Set<UnVertex> verticesInTour = new HashSet<>();
 
     @Override
-    public @NotNull Pair<List<UnEdge>, Integer> determineShortestTour(@NotNull UnAdjacencyList adjacencyList) {
-        // TODO: auf kompletten graph prüfen
+    @NotNull Pair<List<UnEdge>, Integer> solveShortestTourProblemForCommonCases(@NotNull UnAdjacencyList adjacencyList) {
         this.clearDatastructures();
         List<UnVertex> vertices = adjacencyList.vertices();
-        // select starting vertex and add it to verticesInTour
+        // select starting vertex and add it to verticesInTour (selection could also be randomized)
         UnVertex startingVertex = vertices.get(0);
         this.verticesInTour.add(startingVertex);
         // from the starting vertex, determine approximate shortest tour by greedily going for the nearest unused neighbor as next target vertex
