@@ -37,7 +37,7 @@ public class TwoOptHeuristicTspSolver extends AbstractTspSolver {
     @NotNull Pair<List<UnEdge>, Integer> solveShortestTourProblemForCommonCases(@NotNull UnAdjacencyList adjacencyList) {
         // determine initial solution
         Pair<List<UnEdge>, Integer> initialSolution = this.initialSolutionProvider.determineShortestTour(adjacencyList);
-        // convert graph and tour to adjacency matrix representations
+        // convert graph and tour to adjacency matrix respectively adjacency-matrix-suitable representations
         UnAdjacencyMatrix adjacencyMatrix = UndirectedGraphUtils.convertToAdjacencyMatrix(adjacencyList);
         List<Pair<Integer, Integer>> tour = TspUtils.convertTourToRepresentationFittingAnAdjacencyMatrix(initialSolution.getLeft(), adjacencyList);
         boolean isStillImproving = true;

@@ -50,4 +50,16 @@ public final class CollectionUtils {
         });
         map.computeIfAbsent(key, v -> new HashSet<>()).add(element);
     }
+
+    /**
+     * TODO
+     *
+     * @param key
+     * @param map
+     * @param <T>
+     */
+    public static <T> void incrementCounterForElement(@NotNull T key, @NotNull Map<T, Integer> map) {
+        map.computeIfPresent(key, (k, v) -> v + 1);
+        map.putIfAbsent(key, 1);
+    }
 }

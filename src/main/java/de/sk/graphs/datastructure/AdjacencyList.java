@@ -4,7 +4,6 @@ import java.util.List;
 
 /**
  * Interface defining the general methods for adjacency list implementations (for both directed and undirected graphs).
- * Adjacency lists represent graphs made up of vertices (objects) and edges (pairwise relations between objects).
  */
 public interface AdjacencyList {
 

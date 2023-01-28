@@ -1,6 +1,5 @@
-package de.sk.nphard.tsp.impl;
+package de.sk.nphard.tsp.piggyback;
 
-import de.sk.nphard.tsp.PermutationAlg;
 import de.sk.util.SortingUtils;
 import org.jetbrains.annotations.NotNull;
 

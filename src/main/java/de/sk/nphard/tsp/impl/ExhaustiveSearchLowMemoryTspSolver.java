@@ -1,13 +1,15 @@
 package de.sk.nphard.tsp.impl;
 
+import de.sk.graphs.datastructure.undirected.UnAdjacencyList;
+import de.sk.graphs.datastructure.undirected.UnAdjacencyMatrix;
 import de.sk.graphs.datastructure.undirected.UnEdge;
-import de.sk.graphs.datastructure.undirected.UnVertex;
+import de.sk.graphs.util.UndirectedGraphUtils;
+import de.sk.nphard.tsp.TspUtils;
 import de.sk.util.SortingUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,22 +24,24 @@ import java.util.List;
  */
 public class ExhaustiveSearchLowMemoryTspSolver extends AbstractExhaustiveTspSolver {
 
-    private List<UnEdge> shortestTour;
+    private List<Pair<Integer, Integer>> shortestTourAsIndices;
     private int lengthOfShortestTour;
-    private List<UnVertex> vertices;
+    private UnAdjacencyMatrix adjacencyMatrix;
 
     @Override
-    @NotNull Pair<List<UnEdge>, Integer> solveShortestTourViaExhaustiveSearch(@NotNull List<UnVertex> vertices, int @NotNull [] indices) {
-        this.vertices = vertices;
-        this.shortestTour = Collections.emptyList();
+    @NotNull Pair<List<UnEdge>, Integer> solveShortestTourViaExhaustiveSearch(@NotNull UnAdjacencyList adjacencyList, int @NotNull [] indices) {
+        // convert graph to adjacency matrix
+        this.adjacencyMatrix = UndirectedGraphUtils.convertToAdjacencyMatrix(adjacencyList);
+        this.shortestTourAsIndices = Collections.emptyList();
         this.lengthOfShortestTour = Integer.MAX_VALUE;
         this.createAllPermutationsRecAndDetermineCorrespondingTours(indices.length, indices);
-        return new ImmutablePair<>(this.shortestTour, this.lengthOfShortestTour);
+        List<UnEdge> shortestTour = TspUtils.determineTourFromRepresentationFittingAnAdjacencyMatrix(this.shortestTourAsIndices, adjacencyList);
+        return new ImmutablePair<>(shortestTour, this.lengthOfShortestTour);
     }
 
     private void createAllPermutationsRecAndDetermineCorrespondingTours(int n, int @NotNull [] elements) {
         if (n == 1) {
-            this.determineTourForPermutation(elements);
+            this.processPermutation(elements);
         } else {
             for (int i = 0; i < n - 1; i++) {
                 createAllPermutationsRecAndDetermineCorrespondingTours(n - 1, elements);
@@ -51,21 +55,13 @@ public class ExhaustiveSearchLowMemoryTspSolver extends AbstractExhaustiveTspSol
         }
     }
 
-    private void determineTourForPermutation(int @NotNull [] permutation) {
-        List<UnEdge> currentTour = new ArrayList<>();
-        for (int i = 0; i < permutation.length; i++) {
-            int currentIdx = permutation[i];
-            // if at the end of the permutation, go back to start; else go to next of the permutation
-            int nextIdx = i == permutation.length - 1 ? permutation[0] : permutation[i + 1];
-            UnVertex currentVertex = this.vertices.get(currentIdx);
-            UnEdge currentEdge = currentIdx < nextIdx ? currentVertex.getEdges().get(nextIdx - 1) : currentVertex.getEdges().get(nextIdx);
-            currentTour.add(currentEdge);
-        }
+    private void processPermutation(int @NotNull [] permutation) {
+        List<Pair<Integer, Integer>> currentTourAsIndices = this.determineTourForPermutation(permutation);
         // determine length of the tour
-        int lengthOfCurrentTour = currentTour.stream().map(UnEdge::getWeight).mapToInt(Integer::intValue).sum();
+        int lengthOfCurrentTour = this.determineLengthOfTour(currentTourAsIndices, this.adjacencyMatrix);
         // check if the tour is the new shortest tour
         if (lengthOfCurrentTour < this.lengthOfShortestTour) {
-            this.shortestTour = currentTour;
+            this.shortestTourAsIndices = currentTourAsIndices;
             this.lengthOfShortestTour = lengthOfCurrentTour;
         }
     }

@@ -1,15 +1,17 @@
 package de.sk.nphard.tsp.impl;
 
+import de.sk.graphs.datastructure.undirected.UnAdjacencyList;
+import de.sk.graphs.datastructure.undirected.UnAdjacencyMatrix;
 import de.sk.graphs.datastructure.undirected.UnEdge;
-import de.sk.graphs.datastructure.undirected.UnVertex;
-import de.sk.nphard.tsp.PermutationAlg;
+import de.sk.graphs.util.UndirectedGraphUtils;
+import de.sk.nphard.tsp.TspUtils;
+import de.sk.nphard.tsp.piggyback.PermutationAlg;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.NotNull;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -27,31 +29,30 @@ public class ExhaustiveSearchTspSolver extends AbstractExhaustiveTspSolver {
     private PermutationAlg permutationCreator;
 
     @Override
-    @NotNull Pair<List<UnEdge>, Integer> solveShortestTourViaExhaustiveSearch(@NotNull List<UnVertex> vertices, int @NotNull [] indices) {
+    @NotNull Pair<List<UnEdge>, Integer> solveShortestTourViaExhaustiveSearch(@NotNull UnAdjacencyList adjacencyList, int @NotNull [] indices) {
         // create all permutations of the array indices (one permutation represents one possible tour)
         List<int[]> permutations = permutationCreator.createAllPermutations(indices);
-        // init left and right of return value
-        List<UnEdge> shortestTour = Collections.emptyList();
+        // convert graph to adjacency matrix
+        UnAdjacencyMatrix adjacencyMatrix = UndirectedGraphUtils.convertToAdjacencyMatrix(adjacencyList);
+        List<Pair<Integer, Integer>> shortestTourAsIndices = new ArrayList<>();
         int lengthOfShortestTour = Integer.MAX_VALUE;
-        // iterate over all permutations and determine the shortest tour
         for (int[] permutation : permutations) {
-            List<UnEdge> currentTour = new ArrayList<>();
+            List<Pair<Integer, Integer>> currentTourAsIndices = new ArrayList<>();
             for (int i = 0; i < permutation.length; i++) {
-                int currentIdx = permutation[i];
-                // if at the end of the permutation, go back to the start of the tour; else go to the next index of the permutation (= next vertex of the tour)
+                int currentVertex = permutation[i];
                 int nextIdx = i == permutation.length - 1 ? permutation[0] : permutation[i + 1];
-                UnVertex currentVertex = vertices.get(currentIdx);
-                UnEdge currentEdge = currentIdx < nextIdx ? currentVertex.getEdges().get(nextIdx - 1) : currentVertex.getEdges().get(nextIdx);
-                currentTour.add(currentEdge);
+                Pair<Integer, Integer> edgeOfTour = new ImmutablePair<>(currentVertex, nextIdx);
+                currentTourAsIndices.add(edgeOfTour);
             }
             // determine length of the tour
-            int lengthOfCurrentTour = currentTour.stream().map(UnEdge::getWeight).mapToInt(Integer::intValue).sum();
+            int lengthOfCurrentTour = this.determineLengthOfTour(currentTourAsIndices, adjacencyMatrix);
             // check if the tour is the new shortest tour
             if (lengthOfCurrentTour < lengthOfShortestTour) {
-                shortestTour = currentTour;
+                shortestTourAsIndices = currentTourAsIndices;
                 lengthOfShortestTour = lengthOfCurrentTour;
             }
         }
+        List<UnEdge> shortestTour = TspUtils.determineTourFromRepresentationFittingAnAdjacencyMatrix(shortestTourAsIndices, adjacencyList);
         return new ImmutablePair<>(shortestTour, lengthOfShortestTour);
     }
 }

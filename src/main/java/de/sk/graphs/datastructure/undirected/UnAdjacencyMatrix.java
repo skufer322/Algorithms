@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 
 /**
- * TODO:
+ * Implementation of {@link AdjacencyMatrix} for undirected graphs.
  */
 public class UnAdjacencyMatrix implements AdjacencyMatrix {
 
@@ -15,8 +15,6 @@ public class UnAdjacencyMatrix implements AdjacencyMatrix {
     static final String EDGE_WEIGHT_NOT_ALLOWED_EXCEPTION_MSG_TF = "Edges with edge weight %d are not allowed (this value is the marker for non-existing edges).";
     static final String REMOVE_EDGE_OPERATION_NOT_SUPPORTED_EXCEPTION_MSG = "The removeEdge operation is not supported by this implementation.";
     static final String EDGE_IDX_OUT_OF_BOUNDS_EXCEPTION_MSG_TF = "The given edge index '%d' is out of bounds, it must be between [0;%d]";
-
-    static final int MARKER_NON_EXISTING_EDGE = Integer.MIN_VALUE;
 
     private final int[][] matrix;
 
@@ -63,7 +61,7 @@ public class UnAdjacencyMatrix implements AdjacencyMatrix {
     }
 
     @Override
-    public int @NotNull [] getAdjacentEdges(int v) {
+    public int @NotNull [] getAdjacencyInformation(int v) {
         this.verifyEdgeIndex(v);
         return this.matrix[v];
     }
@@ -72,5 +70,10 @@ public class UnAdjacencyMatrix implements AdjacencyMatrix {
         if (edgeIndex < 0 || edgeIndex > this.matrix.length) {
             throw new IllegalArgumentException(String.format(EDGE_IDX_OUT_OF_BOUNDS_EXCEPTION_MSG_TF, edgeIndex, this.matrix.length - 1));
         }
+    }
+
+    @Override
+    public int getNumberOfVertices() {
+        return this.matrix.length;
     }
 }

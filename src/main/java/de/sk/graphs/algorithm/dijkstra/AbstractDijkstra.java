@@ -6,7 +6,6 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * Abstract class implementing common methods required by implementations of {@link Dijkstra}'s algorithm.
- * TODO: in utility class auslagern?
  */
 public abstract class AbstractDijkstra implements Dijkstra {
 

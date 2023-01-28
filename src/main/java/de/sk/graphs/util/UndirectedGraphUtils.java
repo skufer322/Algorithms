@@ -5,6 +5,7 @@ import de.sk.graphs.datastructure.undirected.UnAdjacencyList;
 import de.sk.graphs.datastructure.undirected.UnAdjacencyMatrix;
 import de.sk.graphs.datastructure.undirected.UnEdge;
 import de.sk.graphs.datastructure.undirected.UnVertex;
+import de.sk.util.IntegerUtils;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -148,8 +149,8 @@ public final class UndirectedGraphUtils {
 
     /**
      * Creates a complete graph with {@code numberOfVertices} vertices. A "complete" graph means that there is an edge
-     * between each pair of vertices v,w ∈ V. The weight of an edge in the created graph is between 0 and {@code maxWeight}.
-     * The created graph is represented as adjacency list.
+     * between each pair of vertices v,w ∈ V. The weight of an edge in the created graph is between [0;{@code maxWeight}].
+     * The created graph is represented as adjacency list. Calls {@link UndirectedGraphUtils#createCompleteGraph(int, int, int, Random)}.
      *
      * @param numberOfVertices number of vertices in the graph
      * @param maxWeight        maximum weight an edge can have in the given graph
@@ -157,9 +158,25 @@ public final class UndirectedGraphUtils {
      * @return random, undirected, complete graph with {@code numberOfVertices} vertices
      */
     public static @NotNull UnAdjacencyList createCompleteGraph(int numberOfVertices, int maxWeight, @NotNull Random random) {
+        return UndirectedGraphUtils.createCompleteGraph(numberOfVertices, 0, maxWeight, random);
+    }
+
+    /**
+     * Creates a complete graph with {@code numberOfVertices} vertices. A "complete" graph means that there is an edge
+     * between each pair of vertices v,w ∈ V. The weight of an edge in the created graph is between [{@code minWeight};{@code maxWeight}].
+     * The created graph is represented as adjacency list.
+     *
+     * @param numberOfVertices number of vertices in the graph
+     * @param minWeight        minimum weight an edge can have in the given graph
+     * @param maxWeight        maximum weight an edge can have in the given graph
+     * @param random           {@link Random} to use in the creation process
+     * @return random, undirected, complete graph with {@code numberOfVertices} vertices of weight between [{@code minWeight};{@code maxWeight}]
+     */
+    public static @NotNull UnAdjacencyList createCompleteGraph(int numberOfVertices, int minWeight, int maxWeight, @NotNull Random random) {
         List<UnVertex> vertices = new ArrayList<>();
         for (int i = 1; i <= numberOfVertices; i++) {
-            UnVertex vertex = new UnVertex(String.format(VERTEX_NAME_TF, i), random.nextInt(maxWeight));
+            int vertexWeight = IntegerUtils.getRandomIntBetween(minWeight, maxWeight, random);
+            UnVertex vertex = new UnVertex(String.format(VERTEX_NAME_TF, i), vertexWeight);
             vertices.add(vertex);
         }
         List<UnEdge> edges = new ArrayList<>();
@@ -167,7 +184,8 @@ public final class UndirectedGraphUtils {
             UnVertex v = vertices.get(i);
             for (int j = i + 1; j < vertices.size(); j++) {
                 UnVertex w = vertices.get(j);
-                UnEdge edge = new UnEdge(String.format(EDGE_NAME_TF, v.getName(), w.getName()), random.nextInt(maxWeight), v, w);
+                int edgeWeight = IntegerUtils.getRandomIntBetween(minWeight, maxWeight, random);
+                UnEdge edge = new UnEdge(String.format(EDGE_NAME_TF, v.getName(), w.getName()), edgeWeight, v, w);
                 edges.add(edge);
             }
         }

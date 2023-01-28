@@ -4,10 +4,13 @@ import de.sk.graphs.datastructure.undirected.UnAdjacencyList;
 import de.sk.graphs.datastructure.undirected.UnEdge;
 import de.sk.graphs.datastructure.undirected.UnVertex;
 import de.sk.graphs.util.UndirectedGraphUtils;
+import de.sk.nphard.NpHardnessConstants;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.NotNull;
 
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.*;
 
 /**
@@ -18,17 +21,19 @@ import java.util.*;
  */
 public class RandomTspSolver extends AbstractTspSolver {
 
+    @Inject
+    @Named(NpHardnessConstants.IN_SEED_FOR_RANDOM_IN_RANDOM_TSP_SOLVER)
+    private long seed;
+
     private final Random random;
 
     private final Set<UnVertex> verticesInTour = new HashSet<>();
 
     /**
      * Constructor.
-     *
-     * @param seed seed for the random number generator used in the selection process
      */
-    public RandomTspSolver(long seed) {
-        this.random = new Random(seed);
+    public RandomTspSolver() {
+        this.random = new Random(this.seed);
     }
 
     @Override
@@ -49,12 +54,9 @@ public class RandomTspSolver extends AbstractTspSolver {
             this.verticesInTour.add(currentVertex);
         }
         // go back to starting vertex to complete the tour
-        UnEdge edgeBackToStart = UndirectedGraphUtils.getEdgeConnectingVAndW(startingVertex, currentVertex);
-        if (edgeBackToStart == null) {
-            // TODO: sinnvoll auslagern
-            throw new IllegalStateException(String.format(NearestNeighborTspSolver.NO_EDGE_BACK_TO_STARTING_VERTEX_FOUND_EXCEPTION_MSG_TF, startingVertex.getName()));
-        }
-        tour.add(edgeBackToStart);
+        UnEdge edgeBackToStartingVertex = UndirectedGraphUtils.getEdgeConnectingVAndW(startingVertex, currentVertex);
+        this.validateEdgeBackToStartingVertexIsNotNull(startingVertex, edgeBackToStartingVertex);
+        tour.add(edgeBackToStartingVertex);
         // return tour information
         int lengthOfTour = tour.stream().map(UnEdge::getWeight).mapToInt(Integer::intValue).sum();
         return new ImmutablePair<>(tour, lengthOfTour);

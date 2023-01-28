@@ -16,7 +16,7 @@ public final class MathUtils {
      * 6/2 = ⌈3⌉ = 3.
      *
      * @param dividend dividend integer
-     * @param divisor divisor integer
+     * @param divisor  divisor integer
      * @return result of dividend/divisor rounded up to the next integer
      */
     public static int getCeilInteger(int dividend, int divisor) {

@@ -1,4 +1,4 @@
-package de.sk.nphard.tsp;
+package de.sk.nphard.tsp.piggyback;
 
 import org.jetbrains.annotations.NotNull;
 
