@@ -28,6 +28,9 @@ public class NpHardnessConstants {
     // Shortest K-Path Solvers
     public static final String IN_RANDOMIZED_COLOR_CODER_SHORTEST_K_PATH_SOLVER = "Randomized-Color-Coder-Shortest-K-Path-Solver";
 
+    // Panchromatic Path Solvers
+    public static final String IN_DP_PANCHROMATIC_PATHS_SOLVER = "Dynamic-Programming-Panchromatic-Path-Solver";
+
     // Subset Generators
     public static final String IN_GOSPERS_HACK_SUBSET_GENERATOR = "Gosper's-Hack-SubsetGenerator";
 
@@ -42,5 +45,5 @@ public class NpHardnessConstants {
 
     // other Injection-Related Names and Values
     public static final String IN_FAILURE_PROBABILITY_FOR_RANDOMIZED_COLOR_CODER_SHORTEST_K_PATH_SOLVER = "Failure-Probability-Randomized-Color-Coder-Shortest-K-Path-Solver";
-    public static final double PV_FAILURE_PROBABILITY_FOR_RANDOMIZED_COLOR_CODER_SHORTEST_K_PATH_SOLVER = 0.01d;  // ]0;1[
+    public static final double PV_FAILURE_PROBABILITY_FOR_RANDOMIZED_COLOR_CODER_SHORTEST_K_PATH_SOLVER = 0.1d;  // ]0;1[
 }

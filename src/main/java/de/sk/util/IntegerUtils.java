@@ -14,22 +14,22 @@ public final class IntegerUtils {
     }
 
     /**
-     * Returns whether the {@code k}-th bit of the given {@code integer}'s the binary representation is set to {@code true}, or not.
+     * Returns whether the {@code n}-th bit of the given {@code integer}'s the binary representation is set to {@code true}, or not.
      * The least significant bit (2^0) is at index 0.
      *
-     * @param integer integer for which it is to be determined whether in its binary representation, the {@code k}-th is set to {@code true}
-     * @param k       index of the bit to verify
-     * @return {@code true}, if the {@code k}-th bit of {@code integer}'s binary representation is set to {@code true}, else {@code false}
+     * @param integer integer for which it is to be determined whether in its binary representation, the {@code n}-th is set to {@code true}
+     * @param n       index of the bit to verify
+     * @return {@code true}, if the {@code n}-th bit of {@code integer}'s binary representation is set to {@code true}, else {@code false}
      */
-    public static boolean isKthBitSetForInteger(int integer, int k) {
-        return ((integer & (1L << k)) != 0);
+    public static boolean isNthBitSetForInteger(int integer, int n) {
+        return ((integer & (1L << n)) != 0);
     }
 
     /**
      * Returns a random integer between the specified bounds [{@code min}; {@code max}].
      *
-     * @param min lower bound for the generated random integer (inclusive)
-     * @param max upper bound for the generated random integer (inclusive)
+     * @param min    lower bound for the generated random integer (inclusive)
+     * @param max    upper bound for the generated random integer (inclusive)
      * @param random {@link Random} used to generate the ranom number
      * @return random integer between [{@code min}; {@code max}]
      */

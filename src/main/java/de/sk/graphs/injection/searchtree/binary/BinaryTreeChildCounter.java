@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class BinaryTreeChildCounter {
 
-    static final String NO_COUNTER_FOR_NODE_EXCEPTION_MSG_TF = "Internal error: No counter exists for node with key %d.";
+    static final String NO_COUNTER_FOR_NODE_EXCEPTION_MSG_TF = "Internal error! No counter exists for node with key %d.";
     static final String CHILD_COUNTS_ARE_NEGATIVE_EXCEPTION_MSG_TF = "Child counts must not be negative. leftChildCount: %d, "
             + "rightChildCount: %d.";
 

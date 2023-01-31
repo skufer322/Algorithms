@@ -49,6 +49,7 @@ public final class TspUtils {
     }
 
     /**
+     * TODO: verallgemeinern und auslagern
      * Converts the given TSP {@code tour} of edges created from an adjacency matrix representation of the tour's graph
      * to a TSP tour representation fitting the given {@code adjacencyList} representation of the same graph.
      * <br><br>

@@ -23,8 +23,8 @@ public abstract class AbstractTspSolver implements TspSolver {
 
     static final String NOT_A_COMPLETE_GRAPH_EXCEPTION_MSG = "The given graph is not a complete graph. There must be an edge between each pair of vertices v,w ∈ V.";
     static final String WEIGHTS_OF_ALL_EDGES_MUST_BE_GREATER_EXCEPTION_MSG_TF = "The weight/length of all edges must be greater 0. The edge with name '%s' violates this requirement with a weight/length of %d.";
-    static final String NO_EDGE_BACK_TO_STARTING_VERTEX_FOUND_EXCEPTION_MSG_TF = "Internal error: No edge back to the starting vertex %s found.";
-    static final String TOUR_IS_INVALID_EXCEPTION_MSG_TF = "INTERNAL ERROR: The vertex with name '%s' appears not exactly twice in the tour (%d occurrence(s)). Hence, the determined solution is not a valid TSP tour.";
+    static final String NO_EDGE_BACK_TO_STARTING_VERTEX_FOUND_EXCEPTION_MSG_TF = "Internal error! No edge back to the starting vertex %s found.";
+    static final String TOUR_IS_INVALID_EXCEPTION_MSG_TF = "Internal Error! The vertex with name '%s' appears not exactly twice in the tour (%d occurrence(s)). Hence, the determined solution is not a valid TSP tour.";
 
     public @NotNull Pair<List<UnEdge>, Integer> determineShortestTour(@NotNull UnAdjacencyList adjacencyList) {
         // validate input graph is a complete graph

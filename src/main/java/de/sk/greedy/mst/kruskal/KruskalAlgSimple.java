@@ -67,9 +67,8 @@ public class KruskalAlgSimple implements MstAlg {
                     this.partitions.remove(partitionOfW);
                     partitionOfV.addAll(partitionOfW);
                     this.partitions.add(partitionOfV);
-                } else {
-                    // v and w already in same partition -> discard nextCandidate, do nothing
                 }
+                // else, v and w are already in same partition -> discard nextCandidate, do nothing
             }
         }
         return Collections.unmodifiableList(this.mst);

@@ -24,7 +24,7 @@ import java.util.List;
  */
 public class BellmanHeldKarpTspSolver extends AbstractTspSolver {
 
-    static final String NO_PATH_TO_VERTEX_COULD_BE_CALCULATED_EXCEPTION_MSG_TF = "INTERNAL ERROR: Could not calculate a minimum length path to vertex '%d'.";
+    static final String NO_PATH_TO_VERTEX_COULD_BE_CALCULATED_EXCEPTION_MSG_TF = "Internal Error! Could not calculate a minimum length path to vertex '%d'.";
 
     static final int MARKER_NON_EXISTING_ENTRY = 0;
 
@@ -38,7 +38,7 @@ public class BellmanHeldKarpTspSolver extends AbstractTspSolver {
         int numberOfSubProblems = (int) Math.pow(2, adjacencyMatrix.getNumberOfVertices() - 1) - 1;
         // the vertex at index 0 is fixed as starting vertex and contained in all subsets -> does not need to be considered with an own column in the array of optimal solutions
         int numberOfVerticesToConsider = adjacencyMatrix.getNumberOfVertices() - 1;
-        // the number of rows in the array of optimal solutions is numberOfSubProblems + 1 for convenience/clearer and easier implementation (row 0 will be left empty)
+        // the number of rows in the array of optimal solutions is 'numberOfSubProblems + 1' for convenience/clearer and easier implementation (row 0 will be left empty)
         int[][] optimalSolutions = new int[numberOfSubProblems + 1][numberOfVerticesToConsider];
         // solve base cases
         List<Integer> indicesOfSubProblemsToConsider = this.subsetGenerator.generateAllKSubsetsOfAnNSetAsInts(1, numberOfVerticesToConsider);
@@ -48,13 +48,13 @@ public class BellmanHeldKarpTspSolver extends AbstractTspSolver {
             optimalSolutions[idxOfBaseCase][j] = adjacencyMatrix.getEdgeWeight(0, idxOfVertexInAdjacencyMatrix);
         }
         // systematically solve all sub problems
-        for (int s = 2; s < adjacencyMatrix.getNumberOfVertices(); s++) {
+        for (int s = 2; s < adjacencyMatrix.getNumberOfVertices(); s++) { // s is the sub problem size
             indicesOfSubProblemsToConsider = this.subsetGenerator.generateAllKSubsetsOfAnNSetAsInts(s, numberOfVerticesToConsider);
             for (int idxOfCurrentSubProblem : indicesOfSubProblemsToConsider) {
                 //j is the index of the vertex which is considered to be the latest add to the current sub problem
 //                for (int j = 0; j < Math.min(numberOfVerticesToConsider, idxOfCurrentSubProblem; j++) { // TODO: welches Math.min ist schneller?
                 for (int j = 0; j < Math.min(numberOfVerticesToConsider, MultiplierUtils.getNextGreaterPowerOfTwo(idxOfCurrentSubProblem)); j++) {
-                    if (IntegerUtils.isKthBitSetForInteger(idxOfCurrentSubProblem, j)) { // j + 1 = account for that the starting vertex does not have a column in optimalSolutions
+                    if (IntegerUtils.isNthBitSetForInteger(idxOfCurrentSubProblem, j)) { // j + 1 = account for that the starting vertex does not have a column in optimalSolutions
                         int idxOfRelevantSmallerSubProblem = idxOfCurrentSubProblem - (int) Math.pow(2, j); // j + 1
                         optimalSolutions[idxOfCurrentSubProblem][j] = this.calculateMinimumPathLengthToVertexJ(idxOfRelevantSmallerSubProblem, j, optimalSolutions, adjacencyMatrix);
                     }
@@ -121,12 +121,12 @@ public class BellmanHeldKarpTspSolver extends AbstractTspSolver {
     }
 
     private @NotNull List<UnEdge> reconstructTourOfEdges(@NotNull List<Integer> idxOfVerticesOfTour, @NotNull UnAdjacencyList adjacencyList) {
-        List<Pair<Integer, Integer>> tourAsEdgeIndices = new ArrayList<>();
+        List<Pair<Integer, Integer>> edgesAsIndicesOfTheirVertices = new ArrayList<>();
         for (int i = 0; i < idxOfVerticesOfTour.size(); i++) {
             int j = i == idxOfVerticesOfTour.size() - 1 ? 0 : i + 1;
             Pair<Integer, Integer> nextEdgeIndices = new ImmutablePair<>(idxOfVerticesOfTour.get(i), idxOfVerticesOfTour.get(j));
-            tourAsEdgeIndices.add(nextEdgeIndices);
+            edgesAsIndicesOfTheirVertices.add(nextEdgeIndices);
         }
-        return TspUtils.determineTourFromRepresentationFittingAnAdjacencyMatrix(tourAsEdgeIndices, adjacencyList);
+        return TspUtils.determineTourFromRepresentationFittingAnAdjacencyMatrix(edgesAsIndicesOfTheirVertices, adjacencyList);
     }
 }

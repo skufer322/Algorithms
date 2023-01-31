@@ -14,7 +14,7 @@ import java.util.Arrays;
  */
 public class SimpleClosestPairFinder extends ArgumentValidatingClosestPairFinder {
 
-    static final String CLOSEST_PAIR_CONTAINS_NULL_TXT_FORMAT = "Internal Error: At least one of the closest pair points is null: %s!";
+    static final String CLOSEST_PAIR_CONTAINS_NULL_TXT_FORMAT = "Internal Error! At least one of the closest pair points is null: %s!";
 
     @Inject
     private Distance distance;

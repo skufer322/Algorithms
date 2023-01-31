@@ -13,7 +13,7 @@ public class PrimsAlgSimple implements MstAlg {
 
     static final String NO_ELIGIBLE_EDGE_EXISTS_EXCEPTION_MSG_TF = "Internal error! No eligible edge exists to be selected " +
             "in the next iteration of Prim's algorithm. Number of vertices connected by the MST: %d.";
-    static final String NO_EDGE_WAS_SELECTED_EXCEPTION_MSG_TF = "Internal error!. None of the %d eligible edges has been selected " +
+    static final String NO_EDGE_WAS_SELECTED_EXCEPTION_MSG_TF = "Internal error! None of the %d eligible edges has been selected " +
             "for the next iteration of Prim's algorithm.";
 
     private final List<UnEdge> mst = new ArrayList<>();

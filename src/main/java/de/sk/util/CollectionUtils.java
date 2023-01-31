@@ -52,11 +52,12 @@ public final class CollectionUtils {
     }
 
     /**
-     * TODO
+     * For the given {@code map} which has objects of generic type {@code T} as {@code key}s and a counter as associated
+     * value for each {@code key}, increments the counter for the given {@code key}.
      *
-     * @param key
-     * @param map
-     * @param <T>
+     * @param key key for which the associated counter is to be incremented
+     * @param map map of objects of generic type {@code T} as {@code key}s and an associated counter as value for each {@code key}
+     * @param <T> generic type of the {@code key}s
      */
     public static <T> void incrementCounterForElement(@NotNull T key, @NotNull Map<T, Integer> map) {
         map.computeIfPresent(key, (k, v) -> v + 1);

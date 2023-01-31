@@ -8,6 +8,8 @@ import de.sk.nphard.kpaths.RandomizedColorCoder;
 import de.sk.nphard.kpaths.ShortestKPathSolver;
 import de.sk.nphard.kpaths.colorize.GraphColorist;
 import de.sk.nphard.kpaths.colorize.UniformGraphColorist;
+import de.sk.nphard.kpaths.panchromatic.DPPanchromaticPathSolver;
+import de.sk.nphard.kpaths.panchromatic.PanchromaticPathSolver;
 import de.sk.nphard.makespan.GrahamsAlg;
 import de.sk.nphard.makespan.LongestProcessingTimeFirstAlg;
 import de.sk.nphard.makespan.MakeSpanSolver;
@@ -56,6 +58,10 @@ public class NpHardInjectionModule extends AbstractModule {
         // Shortest K-Path Solvers
         bind(ShortestKPathSolver.class).to(RandomizedColorCoder.class);
         bind(ShortestKPathSolver.class).annotatedWith(Names.named(NpHardnessConstants.IN_RANDOMIZED_COLOR_CODER_SHORTEST_K_PATH_SOLVER)).to(RandomizedColorCoder.class);
+
+        // Panchromatic Path Solvers
+        bind(PanchromaticPathSolver.class).to(DPPanchromaticPathSolver.class);
+        bind(PanchromaticPathSolver.class).annotatedWith(Names.named(NpHardnessConstants.IN_DP_PANCHROMATIC_PATHS_SOLVER)).to(DPPanchromaticPathSolver.class);
 
         // Subset Generators
         bind(SubsetGenerator.class).to(GospersHack.class);

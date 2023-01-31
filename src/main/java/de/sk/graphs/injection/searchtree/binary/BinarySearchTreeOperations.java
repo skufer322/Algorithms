@@ -14,7 +14,7 @@ import java.util.List;
  */
 public final class BinarySearchTreeOperations {
 
-    static final String WRONG_PARENT_EXCEPTION_MSG_TF = "Internal error. Parent node %d of given child %d of given parent %d.";
+    static final String WRONG_PARENT_EXCEPTION_MSG_TF = "Internal error! Parent node %d of given child %d of given parent %d.";
 
     private BinarySearchTreeOperations() {
         // only utilities

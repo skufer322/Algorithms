@@ -21,8 +21,8 @@ import java.util.Set;
  */
 public class NearestNeighborTspSolver extends AbstractTspSolver {
 
-    static final String NOT_ALL_VERTICES_IN_TOUR_EXCEPTION_MSG_TF = "Internal error: Tour only contains %d vertices, but there are %d vertices in the graph";
-    static final String NO_UNUSED_VERTEX_FOUND_EXCEPTION_MSG_TF = "Internal error: No unused vertex found which could serve as the next nearest neighbor for vertex %s in the tour.";
+    static final String NOT_ALL_VERTICES_IN_TOUR_EXCEPTION_MSG_TF = "Internal error! Tour only contains %d vertices, but there are %d vertices in the graph";
+    static final String NO_UNUSED_VERTEX_FOUND_EXCEPTION_MSG_TF = "Internal error! No unused vertex found which could serve as the next nearest neighbor for vertex %s in the tour.";
 
     private final Set<UnVertex> verticesInTour = new HashSet<>();
 

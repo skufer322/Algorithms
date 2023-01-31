@@ -14,8 +14,8 @@ public class HuffmanCodesImpl implements HuffmanCodes {
     static final String PROBABILITIES_SUM_IS_NOT_1_EXCEPTION_MSG_TF = "Probabilities do not add up to 1. Sum of probabilities: %s.";
     static final String SYMBOL_IS_NOT_UNIQUE_EXCEPTION_MSG_TF = "Symbol '%s' exists at least twice in input map. Symbols must be unique.";
     // exception message text formats for implementation errors
-    static final String COULD_NOT_FIND_LOWEST_PROBABILITY_NODE_EXCEPTION_MSG_TF = "Internal error: Could not find the node with the lowest probability.";
-    static final String FAILED_TO_CREATE_HUFFMAN_TREE_EXCEPTION_MSG_TF = "Internal error: Failed to create Huffman tree for symbols and probabilities: %s.";
+    static final String COULD_NOT_FIND_LOWEST_PROBABILITY_NODE_EXCEPTION_MSG_TF = "Internal error! Could not find the node with the lowest probability.";
+    static final String FAILED_TO_CREATE_HUFFMAN_TREE_EXCEPTION_MSG_TF = "Internal error! Failed to create Huffman tree for symbols and probabilities: %s.";
 
     static final String NOT_A_VALID_LEAF_NODE_EXCEPTION_MSG_TF = "Node with name '%s' is not a valid leaf node (valid leaf nodes represent a symbol of length 1).";
     static final String CONTAINS_MORE_THAN_1_NODE_FOR_SYMBOL_EXCEPTION_MSG_TF = "Huffman tree contains more than one leaf node representing symbol '%s'.";

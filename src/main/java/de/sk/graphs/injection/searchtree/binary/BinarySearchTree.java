@@ -16,8 +16,8 @@ import java.util.List;
 public class BinarySearchTree implements SearchTree {
 
     static final String DUPLICATE_KEY_EXCEPTION_MSG_TF = "Duplicate keys are not allowed. Key does already exist in search tree: %d.";
-    static final String NO_PREDECESSOR_FOUND_EXCEPTION_MSG_TF = "Internal error. No predecessor found for node to delete %d even though the node has two children.";
-    static final String ONLY_NULL_CHILDREN_FOUND_EXCEPTION_MSG_TF = "Internal error. Both children of node to delete %d are null, even " +
+    static final String NO_PREDECESSOR_FOUND_EXCEPTION_MSG_TF = "Internal error! No predecessor found for node to delete %d even though the node has two children.";
+    static final String ONLY_NULL_CHILDREN_FOUND_EXCEPTION_MSG_TF = "Internal error! Both children of node to delete %d are null, even " +
             "though the node should have one non-null child.";
     static final String TREE_IS_EMPTY_EXCEPTION_MSG_TF = "The tree is empty, key %d not contained";
     static final String KEY_NOT_CONTAINED_IN_TREE_EXCEPTION_MSG_TF = "Key %d is not contained in the tree";

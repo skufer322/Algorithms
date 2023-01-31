@@ -1,9 +1,8 @@
 package de.sk.graphs.datastructure.undirected;
 
 import de.sk.graphs.datastructure.AdjacencyMatrix;
+import de.sk.util.AdditionalArrayUtils;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Arrays;
 
 /**
  * Implementation of {@link AdjacencyMatrix} for undirected graphs.
@@ -28,9 +27,7 @@ public class UnAdjacencyMatrix implements AdjacencyMatrix {
             throw new IllegalArgumentException(String.format(NUMBER_OF_NODES_TOO_LOW_EXCEPTION_MSG_TF, numberOfNodes));
         }
         this.matrix = new int[numberOfNodes][numberOfNodes];
-        for (int[] row : this.matrix) {
-            Arrays.fill(row, MARKER_NON_EXISTING_EDGE);
-        }
+        AdditionalArrayUtils.setAllElementsOfMatrixToValue(this.matrix, MARKER_NON_EXISTING_EDGE);
     }
 
     @Override
