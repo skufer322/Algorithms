@@ -8,7 +8,7 @@ import de.sk.greedy.mst.datastructure.unionfind.UnionFind;
 import de.sk.greedy.mst.datastructure.unionfind.UnionFindSizeBased;
 import de.sk.nphard.NpHardnessConstants;
 import de.sk.nphard.tsp.TspSolver;
-import de.sk.nphard.tsp.TspUtils;
+import de.sk.nphard.GraphPathUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.NotNull;
@@ -39,7 +39,7 @@ public class TwoOptHeuristicTspSolver extends AbstractTspSolver {
         Pair<List<UnEdge>, Integer> initialSolution = this.initialSolutionProvider.determineShortestTour(adjacencyList);
         // convert graph and tour to adjacency matrix respectively adjacency-matrix-suitable representations
         UnAdjacencyMatrix adjacencyMatrix = UndirectedGraphUtils.convertToAdjacencyMatrix(adjacencyList);
-        List<Pair<Integer, Integer>> tour = TspUtils.convertTourToRepresentationFittingAnAdjacencyMatrix(initialSolution.getLeft(), adjacencyList);
+        List<Pair<Integer, Integer>> tour = GraphPathUtils.convertPathToRepresentationFittingAnAdjacencyMatrix(initialSolution.getLeft(), adjacencyList);
         boolean isStillImproving = true;
         while (isStillImproving) {
 //            System.out.println(tour.stream().map(edge -> adjacencyMatrix.getEdgeWeight(edge.getLeft(), edge.getRight())).mapToInt(costs -> costs).sum());
@@ -71,7 +71,7 @@ public class TwoOptHeuristicTspSolver extends AbstractTspSolver {
                 }
             }
         }
-        List<UnEdge> tourRepresentationFittingAdjacencyList = TspUtils.determineTourFromRepresentationFittingAnAdjacencyMatrix(tour, adjacencyList);
+        List<UnEdge> tourRepresentationFittingAdjacencyList = GraphPathUtils.convertPathToRepresentationFittingAnAdjacencyList(tour, adjacencyList);
         int lengthOfShortestTour = tour.stream().map(edge -> adjacencyMatrix.getEdgeWeight(edge.getLeft(), edge.getRight())).mapToInt(costs -> costs).sum();
         return new ImmutablePair<>(tourRepresentationFittingAdjacencyList, lengthOfShortestTour);
     }

@@ -4,7 +4,7 @@ import de.sk.graphs.datastructure.undirected.UnAdjacencyList;
 import de.sk.graphs.datastructure.undirected.UnAdjacencyMatrix;
 import de.sk.graphs.datastructure.undirected.UnEdge;
 import de.sk.graphs.util.UndirectedGraphUtils;
-import de.sk.nphard.tsp.TspUtils;
+import de.sk.nphard.GraphPathUtils;
 import de.sk.util.SortingUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
@@ -35,7 +35,7 @@ public class ExhaustiveSearchLowMemoryTspSolver extends AbstractExhaustiveTspSol
         this.shortestTourAsIndices = Collections.emptyList();
         this.lengthOfShortestTour = Integer.MAX_VALUE;
         this.createAllPermutationsRecAndDetermineCorrespondingTours(indices.length, indices);
-        List<UnEdge> shortestTour = TspUtils.determineTourFromRepresentationFittingAnAdjacencyMatrix(this.shortestTourAsIndices, adjacencyList);
+        List<UnEdge> shortestTour = GraphPathUtils.convertPathToRepresentationFittingAnAdjacencyList(this.shortestTourAsIndices, adjacencyList);
         return new ImmutablePair<>(shortestTour, this.lengthOfShortestTour);
     }
 

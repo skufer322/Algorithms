@@ -5,7 +5,7 @@ import de.sk.graphs.datastructure.undirected.UnAdjacencyList;
 import de.sk.graphs.datastructure.undirected.UnAdjacencyMatrix;
 import de.sk.graphs.datastructure.undirected.UnEdge;
 import de.sk.graphs.util.UndirectedGraphUtils;
-import de.sk.nphard.tsp.TspUtils;
+import de.sk.nphard.GraphPathUtils;
 import de.sk.nphard.tsp.piggyback.SubsetGenerator;
 import de.sk.util.IntegerUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
@@ -127,6 +127,6 @@ public class BellmanHeldKarpTspSolver extends AbstractTspSolver {
             Pair<Integer, Integer> nextEdgeIndices = new ImmutablePair<>(idxOfVerticesOfTour.get(i), idxOfVerticesOfTour.get(j));
             edgesAsIndicesOfTheirVertices.add(nextEdgeIndices);
         }
-        return TspUtils.determineTourFromRepresentationFittingAnAdjacencyMatrix(edgesAsIndicesOfTheirVertices, adjacencyList);
+        return GraphPathUtils.convertPathToRepresentationFittingAnAdjacencyList(edgesAsIndicesOfTheirVertices, adjacencyList);
     }
 }
