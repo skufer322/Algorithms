@@ -5,6 +5,7 @@ import de.sk.nphard.makespan.schedule.Machine;
 import org.jetbrains.annotations.NotNull;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -17,12 +18,15 @@ import java.util.List;
  */
 public class LongestProcessingTimeFirstAlg implements MakeSpanSolver {
 
+    static final Comparator<Job> LPTF_JOB_SORTING_CRITERION = Comparator.reverseOrder();
+
     @Inject
     private GrahamsAlg grahamsAlg;
 
     @Override
     public @NotNull List<Machine> determineMinimumMakeSpan(@NotNull List<Job> jobs, @NotNull List<Machine> machines) {
-        jobs.sort(Comparator.reverseOrder());
-        return this.grahamsAlg.determineMinimumMakeSpan(jobs, machines);
+        List<Job> jobsCopy = new ArrayList<>(jobs);
+        jobsCopy.sort(LPTF_JOB_SORTING_CRITERION);
+        return this.grahamsAlg.determineMinimumMakeSpan(jobsCopy, machines);
     }
 }

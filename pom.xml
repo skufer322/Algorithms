@@ -17,6 +17,7 @@
     <maven.compiler.source>17.</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
     <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+    <mockito.version>4.8.1</mockito.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
@@ -49,6 +50,7 @@
       <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
+    <!-- for parameterized tests -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-params</artifactId>
@@ -58,9 +60,24 @@
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
-      <version>4.8.1</version>
+      <version>${mockito.version}</version>
       <scope>test</scope>
     </dependency>
+    <!-- include mockito extension -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-junit-jupiter</artifactId>
+      <version>${mockito.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- for being able to mock records/final classes -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-inline</artifactId>
+      <version>${mockito.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- assertj for readable assertions -->
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>

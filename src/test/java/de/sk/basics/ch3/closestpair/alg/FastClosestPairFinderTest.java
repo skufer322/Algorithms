@@ -2,7 +2,7 @@ package de.sk.basics.ch3.closestpair.alg;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import de.sk.basics.TestUtils;
+import de.sk.TestUtils;
 import de.sk.basics.ch3.closestpair.point.Point2D;
 import de.sk.basics.ch3.closestpair.point.Point2DGenerator;
 import de.sk.basics.ch3.closestpair.point.UniqueXAndYCoordinatesPoint2DGenerator;

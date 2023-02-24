@@ -2,10 +2,7 @@ package de.sk.nphard.makespan.schedule;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Representation of a machine in the realm of the make span minimization problem.
@@ -14,10 +11,12 @@ public class Machine implements Comparable<Machine> {
 
     private final Set<Job> assignedJobs;
     private int load;
+    private final UUID uuid;
 
     public Machine() {
         this.assignedJobs = new LinkedHashSet<>();
         this.load = 0;
+        this.uuid = UUID.randomUUID();
     }
 
     /**
@@ -36,6 +35,15 @@ public class Machine implements Comparable<Machine> {
      */
     public int getLoad() {
         return this.load;
+    }
+
+    /**
+     * Returns the UUID of the machine.
+     *
+     * @return uuid of the machine
+     */
+    public @NotNull UUID getUuid() {
+        return this.uuid;
     }
 
     /**
@@ -62,5 +70,18 @@ public class Machine implements Comparable<Machine> {
     @Override
     public int compareTo(@NotNull Machine other) {
         return Integer.compare(this.load, other.load);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Machine machine = (Machine) o;
+        return this.load == machine.load && this.assignedJobs.equals(machine.assignedJobs) && this.uuid.equals(machine.uuid);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.assignedJobs, this.load, this.uuid);
     }
 }

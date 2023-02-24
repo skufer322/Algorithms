@@ -2,7 +2,7 @@ package de.sk.basics.ch5.quicksort;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import de.sk.basics.TestUtils;
+import de.sk.TestUtils;
 import de.sk.basics.injection.BasicsInjectionModule;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;

@@ -1,6 +1,6 @@
 package de.sk.basics.ch3.inversions.inversionscounter;
 
-import de.sk.basics.TestUtils;
+import de.sk.TestUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
