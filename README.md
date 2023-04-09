@@ -23,7 +23,7 @@ Below package `src/main/java/de/sk/`, there are the following packages:
   
 - `dynamicprogramming`
   
-  Contains the various *Dynamic Programming* algorithms presented in the books:
+  Contains various *Dynamic Programming* algorithms presented in the books:
   - the **Bellman-Ford algorithm** for solving the single-source shortest-path problem for graphs with negative edge weights (`graphsrevisited/bellmanford`)
   - the **Floyd-Warshall algorithm** for solving the all-source shortest-path problem for graphs (`graphsrevisited/floydwarshall`)
   - an algorithm to solve the **Knapsack** problem (`knapsack`)
