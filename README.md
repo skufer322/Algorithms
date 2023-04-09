@@ -1,6 +1,13 @@
 # Algorithms
 
-This repository contains Java implementations of almost all the algorithms presented in the book series "Algorithms Illuminated" by Tim Roughgarden (see https://www.algorithmsilluminated.org/)
+This repository contains Java implementations of almost all the algorithms presented in the book series "Algorithms Illuminated" by Tim Roughgarden (see https://www.algorithmsilluminated.org/). See below for a list of packages and the concrete algorithm implementations they contain.
+
+Please consider the following:
+- There are not many unit tests due to their high time effort and because I implemented all this in my spare time. Basically, the considerably complete unit test is the one for the Longest Processing Time First algorithm (see package `src/test/java/de/sk/nphard/makespan`).
+- However, there are Javadoc comments for at least the very most classes, public methods, and public constants.
+- Usually, for each subpackage, there are classes named `App18GR` or the like. The subpackages are organized by chapters in the book, so e.g. `App18GR` belongs to chapter 18 "Graphs Revisited". These classes contain `main` methods which instantiate the algorithm implementations, create and pass them some input arguments, run the algorithms , and finally print the determined solutions to the console. This way, I tested the implementations reasonably thoroughly, but of course it is not comparable to covering them with unit tests.
+- Google Guice is ised for dependeny injection. there are multiple classes named `GraphsInjectionModule`, `GreedyInjectionModule`, or the like which are used for wiring.
+- If I had to unit test the various algorithms, I would probably split the algorithm implementations into more classes.
 
 Below the package `src/main/java/de/sk/`, there are the following packages:
 - `basics`
@@ -43,7 +50,7 @@ Below the package `src/main/java/de/sk/`, there are the following packages:
   
   There is also a `benchmark` subpackage in which the various MST implementations are benchmarked against each other via utilizing the Java Microbenchmark Harness (JMH) framework.
   
-- nphard
+- `nphard`
 
   Collection of various algorithms for NP-hard problems:
   - a greedy smapling algorithm for the Influence Maximization problem (`influencemaximization`)
