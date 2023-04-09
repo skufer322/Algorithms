@@ -20,7 +20,7 @@ Below package `src/main/java/de/sk/`, there are the following packages:
   - an algorithm for finding the **Closest Pair** of a set of 2D points (`ch3`)
   - an algorithm counting the **Inversions** in an array (piggybacking on the **Mergesort** algorithm, `ch3`)
   - **Quicksort** and **Insertionsort** (the latter is not a *Divide & Conquer* algorithm, `ch5`)
-  - **RSelect** and **DSelect** for solving the **Selection** problem (ch6)
+  - **RSelect** and **DSelect** for solving the **Selection** problem (`ch6`)
   
 - `dynamicprogramming`
   
