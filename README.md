@@ -17,39 +17,39 @@ Below package `src/main/java/de/sk/`, there are the following packages:
   
   Contains the algorithms from the first book of the series. The subpackages are organized in chapters. Contains implementations of the following *Divide & Conquer* algorithms:
   - **Karatsuba algorithm** (subpackage `ch1/multiply`)
-  - an algorithm for finding the **closest pair** of a set of 2D points (`ch3`)
-  - an algorithm counting the **inversions** in an array (piggybacking on the Mergesort algorithm, `ch3`)
-  - **Quicksort** and **Insertionsort** (the latter is not a Divide & Conquer algorithm, `ch5`)
-  - **RSelect** and **DSelect** for solving the selection problem (ch6)
+  - an algorithm for finding the **Closest Pair** of a set of 2D points (`ch3`)
+  - an algorithm counting the **Inversions** in an array (piggybacking on the **Mergesort** algorithm, `ch3`)
+  - **Quicksort** and **Insertionsort** (the latter is not a *Divide & Conquer* algorithm, `ch5`)
+  - **RSelect** and **DSelect** for solving the **Selection** problem (ch6)
   
 - `dynamicprogramming`
   
   Contains various *Dynamic Programming* algorithms presented in the books:
-  - the **Bellman-Ford algorithm** for solving the single-source shortest-path problem for graphs with negative edge weights (`graphsrevisited/bellmanford`)
-  - the **Floyd-Warshall algorithm** for solving the all-source shortest-path problem for graphs (`graphsrevisited/floydwarshall`)
+  - the **Bellman-Ford algorithm** for solving the **Single-Source Shortest-Path** problem for graphs with negative edge weights (`graphsrevisited/bellmanford`)
+  - the **Floyd-Warshall algorithm** for solving the **All-Source Shortest-Path** problem for graphs (`graphsrevisited/floydwarshall`)
   - an algorithm to solve the **Knapsack** problem (`knapsack`)
-  - an algorithm to determine the **Maximum Weighted Independent Set for a path graph** (`mwis`)
+  - an algorithm to determine the **Maximum Weighted Independent Set for a Path Graph** (`mwis`)
   - a **Sequence Alignment** algorithm to determine an optimal *Needleman-Wunsch score* for two strings of genomic symbols
   
 - `graphs`
 
-  Various *Graph Search* algorithms for directed as well as undirected graphs based-on Breadth-First Search (bfs) or Depth-First Search (dfs):
-  - **simple bfs** for an undirected graph (`bfs`)
-  - **augmented bfs** for an undirected graph, determining the level of each vertex (`bfs`)
-  - an algorithm determining the **connected components** of an undirected graph (based on bfs, `cc`)
-  - **iterative dfs** for an undirected graph (`dfs`)
-  - **recursive dfs** for an undirected graph (`dfs`)
-  - **topology sort** for a directed graph (`dfs`)
+  Various *Graph Search* algorithms for directed as well as undirected graphs based-on *Breadth-First Search* (bfs) or *Depth-First Search* (dfs):
+  - **Simple BFS** for an undirected graph (`bfs`)
+  - **Augmented BFS** for an undirected graph, determining the level of each vertex (`bfs`)
+  - an algorithm determining the **Connected Components** of an undirected graph (based on bfs, `cc`)
+  - **Iterative DFS** for an undirected graph (`dfs`)
+  - **Recursive DFS** for an undirected graph (`dfs`)
+  - **Topology Sort** for a directed graph (`dfs`)
   - **Kosaraju's algorithm** to find the strongly connected components in a directed graph (`dfs`)
   
 - `greedy`
 
   Collection of *greedy algorithms* presented thoughout the books:
-  - an implementation of the **Huffman coding** for entropy encoding (`huffman`)
-  - a **naïve** implementation of **Prim's algorithm** to determine the Minimum Spanning Tree (MST) of an undirected graph (`mst`)
-  - a **heap-based** implementation of **Prim's algorithm** to determine the MST of an undirected graph (`mst`)
-  - a **naïve** implementation of **Kruskal's algorithm** to determine the MST of an undirected graph (`mst`)
-  - an implementation of **Kruskal's algorithm** based on the **union-find** data structure to determine the MST of an undirected graph (`mst`)
+  - an implementation of the **Huffman Coding** for entropy encoding (`huffman`)
+  - a **naïve** implementation of **Prim's algorithm** to determine the **Minimum Spanning Tree** (MST) of an undirected graph (`mst`)
+  - a **Heap-based** implementation of **Prim's algorithm** to determine the **MST** of an undirected graph (`mst`)
+  - a **naïve** implementation of **Kruskal's algorithm** to determine the **MST** of an undirected graph (`mst`)
+  - an implementation of **Kruskal's algorithm** based on the **Union-Find** data structure to determine the **MST** of an undirected graph (`mst`)
   
   There is also a `benchmark` subpackage in which the various MST implementations are benchmarked against each other via utilizing the *Java Microbenchmark Harness* (JMH) framework.
   
@@ -57,15 +57,15 @@ Below package `src/main/java/de/sk/`, there are the following packages:
 
   Collection of various algorithms for *NP-hard* problems:
   - a greedy sampling algorithm for the **Influence Maximization** problem (`influencemaximization`)
-  - an algorithm determining the **Shortest k-Path** in graph based on **color coding** (`kpaths`)
+  - an algorithm determining the **Shortest k-Path** in graph based on **Color cCding** (`kpaths`)
   - **Graham's algorithm** (greedy) for the **Make Span Minimization** problem (`makespan`)
-  - the **Longest Processing Time First algorithm** for the **Make Span Minimization** problem, improving Graham's algorithm (`makespan`)
+  - the **Longest Processing Time First algorithm** for the **Make Span Minimization** problem, improving *Graham's algorithm* (`makespan`)
   - a greedy algorithm for the **Maximum Coverage** problem (`maxcoverage`)
   - the **Bellman-Held-Karp algorithm** for optimal solutions of the **Travelling Salesman Problem** (TSP) (`tsp`)
   - two different **Exhaustive Search algorithms** for optimally solving the **TSP** (one very naïve implementation, one *somewhat* optimizing memory usage) (`tsp`)
-  - a simple **nearest-neighbor-based algorithm** for (most likely) suboptimal solutions to the **TSP** (`tsp`)
-  - a simple **randomization-based algorithm** for (most likely) suboptimal solutions to the **TSP** (`tsp`)
-  - an implementation of the **2-Opt Heuristic algorithm**, a **local search algorithm** iteratively improving base solutions to the **TSP** (`tsp`)
+  - a simple **Nearest-Neighbor-based algorithm** for (most likely) suboptimal solutions to the **TSP** (`tsp`)
+  - a simple **Randomization-based algorithm** for (most likely) suboptimal solutions to the **TSP** (`tsp`)
+  - an implementation of the **2-Opt Heuristic algorithm**, a **Local Search Algorithm** iteratively improving base solutions to the **TSP** (`tsp`)
   
   The subpackage `piggyback` contains implementations of two algorithms required by for diverse TSP algorithms:
   - an implementation of **Gosper's hack** to generate all *k subsets of an n set*
