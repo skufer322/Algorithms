@@ -9,7 +9,7 @@ Please consider the following:
 - Google Guice is ised for dependeny injection. there are multiple classes named `GraphsInjectionModule`, `GreedyInjectionModule`, or the like which are used for wiring.
 - If I had to unit test the various algorithms, I would probably split the algorithm implementations into more classes.
 
-Below the package `src/main/java/de/sk/`, there are the following packages:
+Below package `src/main/java/de/sk/`, there are the following packages:
 - `basics`
   
   Contains the algorithms from the first book of the series. The subpackages are organized in chapters. Contains implementations of the following Divide & Conquer algorithms:
