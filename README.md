@@ -1,6 +1,6 @@
 # Algorithms
 
-This repository contains Java implementations of almost all the algorithms presented in the book series "Algorithms Illuminated" by Tim Roughgarden (https://www.algorithmsilluminated.org/). See below for a list of packages and the concrete algorithm implementations they contain.
+This repository contains Java implementations of almost all the algorithms presented in the book series "Algorithms Illuminated" by Tim Roughgarden (https://www.algorithmsilluminated.org/). See "Packages and implemented algorithms" below for a list of packages and the concrete algorithm implementations they contain.
 
 Please consider the following:
 - There are not many unit tests due to their high time effort and because I implemented all this in my spare time. Basically, the only considerably complete unit test is the one for the Longest Processing Time First algorithm (see package `src/test/java/de/sk/nphard/makespan`).
@@ -9,6 +9,8 @@ Please consider the following:
 - Google Guice is used for dependeny injection. There are multiple classes named `GraphsInjectionModule`, `GreedyInjectionModule`, or the like which handle the wiring.
 - If I had to unit test the various algorithms, I would probably split the algorithm implementations into more classes.
 
+
+## Packages and implemented algorithms
 Below package `src/main/java/de/sk/`, there are the following packages:
 - `basics`
   
